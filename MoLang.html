@@ -1,4 +1,4 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.4</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.5</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -448,6 +448,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.get_name</td>
 <td style="border-style:solid; border-width:3; padding:7px">get the name of the mob if there is one, otherwise return ''</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.get_rendered_item_name</td>
+<td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot as a parameter (0 or 'main_hand' for main hand, 1 or 'off_hand' for off hand), and returns the name of the item in the requested slot that is currently being rendered (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.ground_speed</td>
