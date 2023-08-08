@@ -1,5 +1,4 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.9.0.3</h1>
-This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.9.0.10</h1>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Scripting System">Scripting System</a></th> </tr>
@@ -126,7 +125,7 @@ So you want to make your own Scripts? That's awesome! In this section you will f
 <h1><p id="Getting Started">Getting Started</p></h1>
 
 First you will need to download the latest Vanilla Behavior Pack. You can get this from the following link: https://aka.ms/behaviorpacktemplate </br>Once you have downloaded the Behavior Pack, unzip it to a folder. Inside the Behavior Pack you will find the scripts folder which contains all the scripting files you want to run.</br>In the scripts folder you will find two folders: one for client scripts and one for server scripts.</br>-Server Scripts: These scripts run on the server side of the game. This includes spawning new entities, adding components, or modifying components on an entity.</br>-Client Scripts: These scripts run on each individual player's side of the game. This is a good place to respond to events and manage anything specific to the player.</br>Once you have chosen whether you are making a client or server script, simply add a new blank text file with .js extension to the appropriate folder, and open it in your preferred code editor. Then code away! You can have as many or as few JavaScript files as you want here (the name of the files doesn't matter) and they will all be run independently of each other!</br></br> NOTE: For scripts to be run by the game, you need to enable Experimental Gameplay on the world where you will run scripts on. This will be necessary while scripting is still in beta.</br>When entering a world that has client scripts in it, you will be prompted to accept that you wish to run scripts on your device (this will show up both for local worlds as well as multiplayer worlds).</br><h2>Folder Structure</h2>
-<textarea readonly="true" cols="22" rows="8">
+vanilla_behavior_pack<br / ><textarea readonly="true" cols="22" rows="8">
 |-scripts
 |--client
 |---myClientScript.js
@@ -159,10 +158,10 @@ First off we need to register the system for our file. This signs up our script 
 </tr>
 </table>
 <h3>Code Examples:</h3>
-<textarea readonly="true" cols="54" rows="2">
+Client System<br / ><textarea readonly="true" cols="54" rows="2">
 let sampleClientSystem = client.registerSystem(0, 0);
 </textarea> </br>
-<textarea readonly="true" cols="54" rows="2">
+Server System<br / ><textarea readonly="true" cols="54" rows="2">
 let sampleServerSystem = server.registerSystem(0, 0);
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -170,7 +169,7 @@ let sampleServerSystem = server.registerSystem(0, 0);
 <h2><p id="2. System Initialization">2. System Initialization</p></h2>
 
 This is the first method that gets called immediately after the system is registered. It will run as soon as the script loads at world start.</br>You can use this to set up the environment for your script: register custom components and events, sign up event listeners, etc. This will run BEFORE the world is ready and the player has been added to it, so you shouldn't try to spawn any entities here!</br><h3>Code Example:</h3>
-<textarea readonly="true" cols="39" rows="4">
+<br / ><textarea readonly="true" cols="39" rows="4">
 sampleSystem.initialize = function() {
 	//Initialize all the things
 };
@@ -180,7 +179,7 @@ sampleSystem.initialize = function() {
 <h2><p id="3. System Update">3. System Update</p></h2>
 
 This method gets called once every game tick. The server and client tick at 20 times per second. This is a good place to get, check, and react to component changes.</br><h3>Code Example:</h3>
-<textarea readonly="true" cols="35" rows="4">
+<br / ><textarea readonly="true" cols="35" rows="4">
 sampleSystem.update = function() {
 	//Update all the things
 };
@@ -190,7 +189,7 @@ sampleSystem.update = function() {
 <h2><p id="4. System Shutdown">4. System Shutdown</p></h2>
 
 This method gets called when the Minecraft Script Engine is shutting down. For the client this is when they leave the world; for the server this is after the last player has exited the world.</br><h3>Code Example:</h3>
-<textarea readonly="true" cols="37" rows="4">
+<br / ><textarea readonly="true" cols="37" rows="4">
 sampleSystem.shutdown = function() {
 	//Cleanup all the things
 };
@@ -1068,10 +1067,10 @@ These components only run on the client where the script ran and can only be use
 
 <h2><p id="minecraft:molang">minecraft:molang</p></h2>
 
-The MoLang component gives access to the MoLang variables in an entity. To learn more about MoLang varibles review the add-on documentation. In scripts, you can get and set these varibles that are defined in the entity's JSON files. Because of how the MoLang variables are formatted (entity.isgrazing for example) you must use the [] operator on the object to access the variable. The example below shows how to use the [] operator to access the variable.</br><h3>Code Example:</h3>
-<textarea readonly="true" cols="73" rows="5">
+The MoLang component gives access to the MoLang variables in an entity. To learn more about MoLang varibles review the add-on documentation. In scripts, you can get and set these varibles that are defined in the entity's JSON files. Because of how the MoLang variables are formatted (variable.isgrazing for example) you must use the [] operator on the object to access the variable. The example below shows how to use the [] operator to access the variable.</br><h3>Code Example:</h3>
+<br / ><textarea readonly="true" cols="73" rows="5">
 let molangComponent = this.createComponent(entity, "minecraft:molang"); 
-molangComponent["entity.molangexample"] = 1.0; 
+molangComponent["variable.molangexample"] = 1.0; 
 this.applyComponentChanges(molangComponent); 
 
 </textarea> </br>
@@ -1804,7 +1803,7 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <h1><p id="User-Defined Components">User-Defined Components</p></h1>
 
 User-Defined components are a special kind of component that can be defined in script and no built-in game system acts on it.</br>The component needs to be registered with the Script Engine by giving it a name and a set of fields in the format name:value. Once applied, the component behaves like any of the built-in components: you can get it from an entity, modify its values, and apply the changes.</br>Currently User-Defined components are the only components that can be dynamically added and removed from an entity using scripts. They don't need to be previously defined in an entity's JSON file. In the current version these components will NOT be saved out or loaded back in: they only exist while the entity is there and need to be added back when reloading the level.</br><h2>Code Example:</h2>
-<textarea readonly="true" cols="125" rows="2">
+Component Registration<br / ><textarea readonly="true" cols="125" rows="2">
 this.registerComponent("myNamespace:myComponent", { myString: "TamerJeison", myInt: 42, myFloat: 1.0, myArray: [1, 2, 3] });
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -1841,13 +1840,13 @@ This event is triggered whenever the reticle changes from pointing at a block or
 </tr>
 </table>
 <h4>Code Example:</h4>
-<textarea readonly="true" cols="95" rows="5">
+<br / ><textarea readonly="true" cols="95" rows="5">
 system.initialize = function() {
 	this.listenForEvent("minecraft:hit_result_changed", (eventData) = > this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<textarea readonly="true" cols="128" rows="6">
+<br / ><textarea readonly="true" cols="155" rows="6">
 system.onPick = function(eventData) { 
 	if (eventData.position !== null) { 
 		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
@@ -1874,13 +1873,13 @@ This event is triggered every update and tells you what entity the reticle is po
 </tr>
 </table>
 <h4>Code Example:</h4>
-<textarea readonly="true" cols="98" rows="5">
+<br / ><textarea readonly="true" cols="98" rows="5">
 system.initialize = function() {
 	this.listenForEvent("minecraft:hit_result_continuous", (eventData) = > this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<textarea readonly="true" cols="128" rows="6">
+<br / ><textarea readonly="true" cols="155" rows="6">
 system.onPick = function(eventData) { 
 	if (eventData.position !== null) { 
 		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
@@ -1907,13 +1906,13 @@ This event is triggered whenever the mouse pointer changes from pointing at a bl
 </tr>
 </table>
 <h4>Code Example:</h4>
-<textarea readonly="true" cols="100" rows="5">
+<br / ><textarea readonly="true" cols="100" rows="5">
 system.initialize = function() {
 	this.listenForEvent("minecraft:pick_hit_result_changed", (eventData) = > this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<textarea readonly="true" cols="128" rows="6">
+<br / ><textarea readonly="true" cols="155" rows="6">
 system.onPick = function(eventData) { 
 	if (eventData.position !== null) { 
 		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
@@ -1940,13 +1939,13 @@ This event is triggered every update and tells you what entity the mouse pointer
 </tr>
 </table>
 <h4>Code Example:</h4>
-<textarea readonly="true" cols="103" rows="5">
+<br / ><textarea readonly="true" cols="103" rows="5">
 system.initialize = function() {
 	this.listenForEvent("minecraft:pick_hit_result_continuous", (eventData) = > this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<textarea readonly="true" cols="128" rows="6">
+<br / ><textarea readonly="true" cols="155" rows="6">
 system.onPick = function(eventData) { 
 	if (eventData.position !== null) { 
 		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
