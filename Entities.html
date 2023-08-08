@@ -1,4 +1,4 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.11.0.5</h1>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.11.0.8</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -2947,7 +2947,7 @@ Allows the mob to attack the player by summoning other entities.</br><h2>Paramet
 
 <h1><p id="minecraft:behavior.mingle">minecraft:behavior.mingle</p></h1>
 
-Allows a villager to go to the village bell and mingle with other villagers</br><h2>Parameters</h2>
+Allows an entity to go to the village bell and mingle with other entities</br><h2>Parameters</h2>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
 <tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Default Value</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
@@ -2967,7 +2967,19 @@ Allows a villager to go to the village bell and mingle with other villagers</br>
 <td style="border-style:solid; border-width:3; padding:7px">duration</td>
 <td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
 <td style="border-style:solid; border-width:3; padding:7px">1.0</td>
-<td style="border-style:solid; border-width:3; padding:7px">Amount of time in seconds that the villager will chat with another villager</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">Amount of time in seconds that the entity will chat with another entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">mingle_partner_type</td>
+<td style="border-style:solid; border-width:3; padding:7px">List</td>
+<td style="border-style:solid; border-width:3; padding:7px">empty</td>
+<td style="border-style:solid; border-width:3; padding:7px">The entity type that this entity is allowed to mingle with</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">mingle_distance</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">2.0f</td>
+<td style="border-style:solid; border-width:3; padding:7px">The distance from its partner that this entity will mingle. If the entity type is not the same as the entity, this value needs to be identical on both entities.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -8895,7 +8907,8 @@ Locator offsets are specified in model space. An example of a locator is the "le
 
 <h2></h2>
 Example client entity definitions JSON for the pig<br / ><textarea readonly="true" cols="62" rows="32">
-"format_version": "1.8.0",   "minecraft:client_entity": {
+"format_version": "1.8.0",
+  "minecraft:client_entity": {
      "description": {
        "identifier": "minecraft:pig",
        "min_engine_version": "1.8.0",
@@ -8981,10 +8994,10 @@ Disables all current and future backwards compatibility for this entity. If new 
 Specifies the version of the game this entity was made in. If the version is lower than the current version, any changes made to the entity in the vanilla version will be applied to it.</br><a href="#Index">Back to top</a><br><br>
 
 <h2>Code Example</h2>
-Example<br / ><textarea readonly="true" cols="31" rows="11">
+Example<br / ><textarea readonly="true" cols="29" rows="11">
 {
+  "format_version": "1.8.0",
   "minecraft:entity": {
-    "format_version": "1.2.0",
     "do_not_upgrade": {},
     "component_groups": {
       ...
@@ -9445,6 +9458,10 @@ Sets that this entity is charged.</br><a href="#Index">Back to top</a><br><br>
 
 Sets that this entity is currently carrying a chest.</br><a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:is_hidden_when_invisible">minecraft:is_hidden_when_invisible</p></h2>
+
+Sets that this entity can hide from hostile mobs while invisible.</br><a href="#Index">Back to top</a><br><br>
+
 <h2><p id="minecraft:is_ignited">minecraft:is_ignited</p></h2>
 
 Sets that this entity is currently on fire.</br><a href="#Index">Back to top</a><br><br>
@@ -9781,7 +9798,24 @@ Defines the conditions and behavior of a rideable entity's boost</br><h3>Paramet
 
 <h2><p id="minecraft:annotation.break_door">minecraft:annotation.break_door</p></h2>
 
-Allows the actor to break doors assuming that that flags set up for the component to use in navigation</br><a href="#Index">Back to top</a><br><br>
+Allows the actor to break doors assuming that that flags set up for the component to use in navigation</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">break_time</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">12.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">The time in seconds required to break through doors.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">min_difficulty</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px">hard</td>
+<td style="border-style:solid; border-width:2; padding:8px">The minimum difficulty that the world must be on for this entity to break doors.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:breathable">minecraft:breathable</p></h2>
 
@@ -12750,6 +12784,10 @@ Adds a trigger to call when this pet's owner awakes after sleeping with the pet.
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:is_chested</td>
 <td style="border-style:solid; border-width:2; padding:8px">-817599379</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:is_hidden_when_invisible</td>
+<td style="border-style:solid; border-width:2; padding:8px">-1553744</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:is_ignited</td>
