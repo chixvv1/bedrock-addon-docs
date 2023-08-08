@@ -1,4 +1,4 @@
-<h1>BIOMES DOCUMENTATION </br>Version: 1.13.0.5</h1>
+<h1>BIOMES DOCUMENTATION </br>Version: 1.13.0.9</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -616,7 +616,6 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
               }
           }
       }
-      object "minecraft:automatic_features"[0] : opt // Use normal decorative feature spawn rules to determine the tree, plants, etc. that appear in this biome.
       object "minecraft:ignore_automatic_features"[0] : opt // No features will be automatically attached to this Biome, only features specified in the minecraft:forced_features component will appear.
       object "minecraft:overworld_surface"[0,5] : opt // Control the blocks used for the default Minecraft Overworld terrain generation.
       {
@@ -679,7 +678,7 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
       }
       object "minecraft:nether_surface"[0] : opt // Use default Minecraft Nether terrain generation.
       object "minecraft:the_end_surface"[0] : opt // Use default Minecraft End terrain generation.
-      object "minecraft:world_generation_rules"[0,3] : opt // Control how this biome is instantiated (and then potentially modified) during world generation.
+      object "minecraft:world_generation_rules"[0,5] : opt // Control how this biome is instantiated (and then potentially modified) during world generation.
       {
           biome_reference "hills_transformation" : opt
           array "hills_transformation" : opt
@@ -709,7 +708,28 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
                   int "1" // Weight with which this biome should be selected, relative to other biomes in the same category
               }
           }
+          biome_reference "river_transformation" : opt
+          array "river_transformation" : opt
+          {
+              biome_reference "<any array element>" : opt
+              array "<any array element>"[2] : opt
+              {
+                  biome_reference "0"
+                  int "1"
+              }
+          }
+          biome_reference "shore_transformation" : opt
+          array "shore_transformation" : opt
+          {
+              biome_reference "<any array element>" : opt
+              array "<any array element>"[2] : opt
+              {
+                  biome_reference "0"
+                  int "1"
+              }
+          }
       }
+      object "minecraft:legacy_world_generation_rules"[0] : opt // Additional world generation control applicable only to legacy limited worlds.
       object "[a-z0-9_.:]+"[0] : opt // Attach arbitrary string tags to this biome
   }
 

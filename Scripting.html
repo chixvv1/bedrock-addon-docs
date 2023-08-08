@@ -1,4 +1,4 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.13.0.5</h1>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.13.0.9</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -26,8 +26,8 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#Component Bindings"> Component Bindings</a> </tr> </td>
 <tr> <td> <a href="#Event Bindings"> Event Bindings</a> </tr> </td>
 <tr> <td> <a href="#Entity Queries"> Entity Queries</a> </tr> </td>
-<tr> <td> <a href="#Slash Commands"> Slash Commands</a> </tr> </td>
 <tr> <td> <a href="#Block Bindings"> Block Bindings</a> </tr> </td>
+<tr> <td> <a href="#Slash Commands"> Slash Commands</a> </tr> </td>
 <tr> <th><a href="#Script Components">Script Components</a></th> </tr>
 <tr> <td> <a href="#Level Components"> Level Components</a> </tr> </td>
 <tr> <td> <a href="#Server Components"> Server Components</a> </tr> </td>
@@ -1574,44 +1574,6 @@ mySystem.update = function() {
 
 <br><br>
 
-<h1><p id="Slash Commands">Slash Commands</p></h1>
-
-You can use the traditional Slash Command system from scripts. Currently you can either trigger an event ("minecraft:execute_command") or use the executeCommand binding. Commands in scripts are restricted to server scripts, they can't be run from the client's side at the moment.</br><h2></h2>
-
-<h2><p id="executeCommand(Command, Callback)">executeCommand(Command, Callback)</p></h2>
-
-Allows you to execute a Slash Command on the server. The command will be queried and executed at the end of the current frame. All data output from the command will be compiled on a JavaScript Object and sent to the Callback object specified in the second parameter.</br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">Command</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px">The slash command to run</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">Callback</td>
-<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
-<td style="border-style:solid; border-width:2; padding:8px">The JavaScript object that will be called after the command executes</br></td>
-</tr>
-</table>
-<h3>Example</h3>
-<br / ><textarea readonly="true" cols="183" rows="11">
-system.executeCommand("/fill ~ ~ ~ ~100 ~5 ~50 stone", (commandResultData) => this.commandCallback(commandResultData));
-
-system.commandCallback = function (commandResultData) {
-  let eventData = this.createEventData("minecraft:display_chat_event");
-  if (eventData) {
-    eventData.data.message = message;
-    this.broadcastEvent("minecraft:display_chat_event", "Callback called! Command: " + commandResultData.command + " Data: " + JSON.stringify(commandResultData.data, null, "    ") );
-  }
-};
-
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
-
-<br><br>
-
 <h1><p id="Block Bindings">Block Bindings</p></h1>
 
 These functions define how you interact with blocks.</br><h2></h2>
@@ -1656,14 +1618,14 @@ Allows you to get a block from the world when provided an x, y, and z position. 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">Block JS API Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An object containing the block</br></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">object</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">null</td>
-<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the block</br></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">null</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1793,14 +1755,14 @@ Allows you to get an array of blocks from the world when provided a minimum and 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">Array</td>
-<td style="border-style:solid; border-width:1; padding:9px">array</td>
-<td style="border-style:solid; border-width:1; padding:9px">A 3D array of block objects. Indexs are the blocks positions relative to the min position given</br></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">array</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">null</td>
-<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the blocks</br></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">null</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1895,14 +1857,52 @@ Allows you to get an array of blocks from the world when provided a minimum and 
 <td style="border-style:solid; border-width:1; padding:9px">A 3D array of block objects. Indexs are the blocks positions relative to the min position given</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">null</td>
-<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the blocks</br></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">null</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
 <br><br>
+
+<br><br>
+
+<h1><p id="Slash Commands">Slash Commands</p></h1>
+
+You can use the traditional Slash Command system from scripts. Currently you can either trigger an event ("minecraft:execute_command") or use the executeCommand binding. Commands in scripts are restricted to server scripts, they can't be run from the client's side at the moment.</br><h2></h2>
+
+<h2><p id="executeCommand(Command, Callback)">executeCommand(Command, Callback)</p></h2>
+
+Allows you to execute a Slash Command on the server. The command will be queried and executed at the end of the current frame. All data output from the command will be compiled on a JavaScript Object and sent to the Callback object specified in the second parameter.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">Command</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px">The slash command to run</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">Callback</td>
+<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
+<td style="border-style:solid; border-width:2; padding:8px">The JavaScript object that will be called after the command executes</br></td>
+</tr>
+</table>
+<h3>Example</h3>
+<br / ><textarea readonly="true" cols="183" rows="11">
+system.executeCommand("/fill ~ ~ ~ ~100 ~5 ~50 stone", (commandResultData) => this.commandCallback(commandResultData));
+
+system.commandCallback = function (commandResultData) {
+  let eventData = this.createEventData("minecraft:display_chat_event");
+  if (eventData) {
+    eventData.data.message = message;
+    this.broadcastEvent("minecraft:display_chat_event", "Callback called! Command: " + commandResultData.command + " Data: " + JSON.stringify(commandResultData.data, null, "    ") );
+  }
+};
+
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
 
 <br><br>
 
@@ -2043,13 +2043,13 @@ Controls the collision box of the entity. When changes to the component are appl
 
 <h2><p id="minecraft:damage_sensor">minecraft:damage_sensor</p></h2>
 
-Defines an array of damages and how the entity reacts to them - including whether the entity ignores that damage or not. Currently Minecraft triggers can't be properly serialized so any existing triggers will be completely replaced when applyComponentChanges().</br><h3>Parameters</h3>
+Defines what events to call when this entity is damaged by specific entities or items.</br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">triggers</td>
-<td style="border-style:solid; border-width:2; padding:8px">Array</td>
+<td style="border-style:solid; border-width:2; padding:8px">List</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
 <td style="border-style:solid; border-width:2; padding:8px">List of triggers with the events to call when taking specific kinds of damage.</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
@@ -2068,14 +2068,20 @@ Defines an array of damages and how the entity reacts to them - including whethe
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">cause</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
-<td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Type of damage that triggers this set of events.</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">none</td>
+<td style="border-style:solid; border-width:1; padding:9px">Type of damage that triggers the events.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">damage_multiplier</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">1.0</td>
 <td style="border-style:solid; border-width:1; padding:9px">A multiplier that modifies the base damage from the damage cause. If deals_damage is true the multiplier can only reduce the damage the entity will take to a minimum of 1.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">on_damage_sound_event</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">Defines what sound to play, if any, when the on_damage filters are met.</br></td>
 </tr>
 </table>
 </td>
@@ -2116,11 +2122,11 @@ Defines the loot table the entity uses to defines its equipment. Once the change
 
 <h2><p id="minecraft:equippable">minecraft:equippable</p></h2>
 
-Defines how many and what items the entity can be equipped with.</br><h3>Parameters</h3>
+Defines an entity's behavior for having items equipped to it.</br><h3>Parameters</h3>
 
 <h3><p id="slots">slots</p></h3>
 
-List of slots and the item that can be equipped</br><h4>Parameters</h4>
+List of slots and the item that can be equipped.</br><h4>Parameters</h4>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
@@ -2128,37 +2134,37 @@ List of slots and the item that can be equipped</br><h4>Parameters</h4>
 <td style="border-style:solid; border-width:1; padding:9px">slot</td>
 <td style="border-style:solid; border-width:1; padding:9px">Integer</td>
 <td style="border-style:solid; border-width:1; padding:9px">0</td>
-<td style="border-style:solid; border-width:1; padding:9px">The slot number of this slot</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The slot number of this slot.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">accepted_items</td>
 <td style="border-style:solid; border-width:1; padding:9px">List</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">The list of items that can go in this slot</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The list of items that can go in this slot.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">item</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Identifier of the item that can be equipped for this slot</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Identifier of the item that can be equipped for this slot.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">interact_text</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Text to be displayed when the entity can be equipped with this item when playing with Touch-screen controls</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Text to be displayed when the entity can be equipped with this item when playing with Touch-screen controls.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">on_equip</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Event to trigger when this entity is equipped with this item</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Event to trigger when this entity is equipped with this item.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">on_unequip</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Event to trigger when this item is removed from this entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Event to trigger when this item is removed from this entity.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2167,7 +2173,7 @@ List of slots and the item that can be equipped</br><h4>Parameters</h4>
 
 <h2><p id="minecraft:explode">minecraft:explode</p></h2>
 
-Controls the entity's explosion, timer until the explosion, and whether the timer is counting down or not.</br><h3>Parameters</h3>
+Defines how the entity explodes.</br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
@@ -2175,49 +2181,61 @@ Controls the entity's explosion, timer until the explosion, and whether the time
 <td style="border-style:solid; border-width:2; padding:8px">fuse_length</td>
 <td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
 <td style="border-style:solid; border-width:2; padding:8px">[0.0, 0.0]</td>
-<td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time the fuse will be lit before exploding, a negative value means the explosion will be immediate</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time the fuse will be lit before exploding, a negative value means the explosion will be immediate.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">power</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">3.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">The radius of the explosion in blocks and the amount of damage the explosion deals</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The radius of the explosion in blocks and the amount of damage the explosion deals.</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_Resistance</td>
+<td style="border-style:solid; border-width:2; padding:8px">max_resistance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">Infinite</td>
-<td style="border-style:solid; border-width:2; padding:8px">A blocks explosion resistance will be capped at this value when an explosion occurs</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">A blocks explosion resistance will be capped at this value when an explosion occurs.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">fuse_lit</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, the fuse is already lit when this component is added to the entity</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, the fuse is already lit when this component is added to the entity.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">causes_fire</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, blocks in the explosion radius will be set on fire</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, blocks in the explosion radius will be set on fire.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">breaks_blocks</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">true</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, the explosion will destroy blocks in the explosion radius</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, the explosion will destroy blocks in the explosion radius.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">fire_affected_by_griefing</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, whether the explosion causes fire is affected by the mob griefing game rule</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, whether the explosion causes fire is affected by the mob griefing game rule.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">destroy_affected_by_griefing</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, whether the explosion breaks blocks is affected by the mob griefing game rule</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, whether the explosion breaks blocks is affected by the mob griefing game rule.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">allow_breaking_underwater</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">Whether the explosion breaks blocks while submerged in water.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">allow_damage_underwater</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">Whether the explosion deals damage while submerged in water.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2242,7 +2260,7 @@ system.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
 
 <h2><p id="minecraft:healable">minecraft:healable</p></h2>
 
-Defines how the entity can be healed by the player. This doesn't control how much health the entity can have; you must use the Health component for that instead.</br><h3>Parameters</h3>
+Defines the interactions with this entity for healing it.</br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
@@ -2250,25 +2268,19 @@ Defines how the entity can be healed by the player. This doesn't control how muc
 <td style="border-style:solid; border-width:2; padding:8px">items</td>
 <td style="border-style:solid; border-width:2; padding:8px">Array</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">The array of items that can be used to heal this entity</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<td style="border-style:solid; border-width:2; padding:8px">The array of items that can be used to heal this entity.</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">item</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Item identifier that can be used to heal this entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Item identifier that can be used to heal this entity.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">heal_amount</td>
 <td style="border-style:solid; border-width:1; padding:9px">Integer</td>
 <td style="border-style:solid; border-width:1; padding:9px">1</td>
-<td style="border-style:solid; border-width:1; padding:9px">The amount of health this entity gains when fed this item</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">filters</td>
-<td style="border-style:solid; border-width:1; padding:9px">Minecraft Filter</td>
-<td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">The filter group that defines the conditions for using this item to heal the entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The amount of health this entity gains when fed this item.</br></td>
 </tr>
 </table>
 </td>
@@ -2277,13 +2289,13 @@ Defines how the entity can be healed by the player. This doesn't control how muc
 <td style="border-style:solid; border-width:2; padding:8px">force_use</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Determines if item can be used regardless of entity being at full health</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Determines if item can be used regardless of entity being at full health.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">filters</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">The filter group that defines the conditions for this trigger</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The filter group that defines the conditions for using this item to heal the entity.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2333,45 +2345,6 @@ Defines the ways the player can interact with the entity to which this component
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">spawn_entities</td>
-<td style="border-style:solid; border-width:2; padding:8px">Array</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">An array of entity identifiers to spawn when the interaction occurs</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">on_interact</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">An event identifier to fire when the interaction occurs</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">particle_on_start</td>
-<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">Particle effect that will be triggered at the start of the interaction</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">particle_type</td>
-<td style="border-style:solid; border-width:1; padding:9px">String</td>
-<td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">The type of particle that will be spawned</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">particle_y_offset</td>
-<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
-<td style="border-style:solid; border-width:1; padding:9px">0.0</td>
-<td style="border-style:solid; border-width:1; padding:9px">Will offset the particle this amount in the y direction</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">particle_offset_towards_interactor</td>
-<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
-<td style="border-style:solid; border-width:1; padding:9px">false</td>
-<td style="border-style:solid; border-width:1; padding:9px">Whether or not the particle will appear closer to who performed the interaction</br></td>
-</tr>
-</table>
-</td>
-</tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">cooldown</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
@@ -2444,6 +2417,45 @@ Defines the ways the player can interact with the entity to which this component
 <td style="border-style:solid; border-width:2; padding:8px"></td>
 <td style="border-style:solid; border-width:2; padding:8px">An array of sound identifiers to play when the interaction occurs</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">spawn_entities</td>
+<td style="border-style:solid; border-width:2; padding:8px">Array</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">An array of entity identifiers to spawn when the interaction occurs</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">on_interact</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">An event identifier to fire when the interaction occurs</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">particle_on_start</td>
+<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Particle effect that will be triggered at the start of the interaction</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">particle_type</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The type of particle that will be spawned</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">particle_y_offset</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">0.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">Will offset the particle this amount in the y direction</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">particle_offset_towards_interactor</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Whether or not the particle will appear closer to who performed the interaction</br></td>
+</tr>
+</table>
+</td>
+</tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
@@ -2512,7 +2524,7 @@ system.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
 
 <h2><p id="minecraft:lookat">minecraft:lookat</p></h2>
 
-Makes the entity look at another entity. Once applied, if an entity of the specified type is nearby and can be targeted the entity will turn towards it.</br><h3>Parameters</h3>
+Defines the behavior when another entity looks at this entity.</br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
@@ -2520,37 +2532,37 @@ Makes the entity look at another entity. Once applied, if an entity of the speci
 <td style="border-style:solid; border-width:2; padding:8px">set_target</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">true</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, this entity will set the attack target as the entity that looked at it</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this entity will set the attack target as the entity that looked at it.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">search_radius</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">10.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum distance this entity will look for another entity looking at it</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Maximum distance this entity will look for another entity looking at it.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">allow_invulnerable</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, invulnerable entities (e.g. Players in creative mode) are considered valid targets</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, invulnerable entities (e.g. Players in creative mode) are considered valid targets.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">look_cooldown</td>
 <td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
 <td style="border-style:solid; border-width:2; padding:8px">[0.0, 0.0]</td>
-<td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time during which the entity is 'cooling down' and won't get angered or look for a target</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time during which the entity is 'cooling down' and won't get angered or look for a target.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">filters</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
-<td style="border-style:solid; border-width:2; padding:8px">player</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the entities that can trigger this component</br></td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Defines the entities that can trigger this component.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">look_event</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">The event identifier to run when the entities specified in filters look at this entity</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The event identifier to run when the entities specified in filters look at this entity.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2685,18 +2697,6 @@ Controls the entity's ability to spawn an entity or an item. This is similar to 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">should_leash</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, this the spawned entity will be leashed to the parent</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">num_to_spawn</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">1</td>
-<td style="border-style:solid; border-width:2; padding:8px">The number of entities of this type to spawn each time that this triggers</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">min_wait_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Integer</td>
 <td style="border-style:solid; border-width:2; padding:8px">300</td>
@@ -2749,6 +2749,18 @@ Controls the entity's ability to spawn an entity or an item. This is similar to 
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, this component will only ever spawn the specified entity once</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">should_leash</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this the spawned entity will be leashed to the parent</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">num_to_spawn</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">1</td>
+<td style="border-style:solid; border-width:2; padding:8px">The number of entities of this type to spawn each time that this triggers</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3365,6 +3377,11 @@ This event is triggered whenever an entity changes the item carried in their han
 <td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The item that is now in the entities hands</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">hand</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">Defines which hand the item was equipped to. Either main or offhand.</br></td>
+</tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
@@ -3378,6 +3395,25 @@ This event is triggered whenever an entity is added to the world.</br><h4>Parame
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
 <td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that was just created</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:entity_definition_event">minecraft:entity_definition_event</p></h3>
+
+This event is triggered whenever an entity definition event is triggered by either script or the entity's JSON.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was affected</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">event</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The event that was triggered</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3450,6 +3486,11 @@ This event is triggered whenever an entity equips an item in their armor slots.<
 <td style="border-style:solid; border-width:1; padding:9px">item_stack</td>
 <td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The armor that is being equipped</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">slot</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">Defines which slot the item was equipped to.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>

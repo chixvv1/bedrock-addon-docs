@@ -1,4 +1,4 @@
-<h1>PARTICLES DOCUMENTATION </br>Version: 1.13.0.5</h1>
+<h1>PARTICLES DOCUMENTATION </br>Version: 1.13.0.9</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -557,7 +557,7 @@ Emitter will turn 'on' when the activation expression is non-zero, and will turn
 <h3><p id="Emitter Lifetime Events component">Emitter Lifetime Events component</p></h3>
 
 Allows for lifetime events on the emitter to trigger certain events.</br><h4></h4>
-<br / ><textarea readonly="true" cols="121" rows="20">
+<br / ><textarea readonly="true" cols="121" rows="32">
 "minecraft:emitter_lifetime_events": {
       // all events use the event names in the event section
       // all events can be an array or a string
@@ -576,6 +576,35 @@ Allows for lifetime events on the emitter to trigger certain events.</br><h4></h
         "time": <string>
       }
     }
+
+    // travel_distance_events
+    "travel_distance_events: {
+        // a series of distances, e.g. 0.0 or 1.0, that trigger the event
+        // these get fired when the emitter has moved by the specified input 
+    // distance, e.g. one line might be:
+        // "0.4": "event"
+        "distance": [ <string>, ... ]
+        "distance": <string>
+    }
+
+    // looping_travel_distance_events
+    "looping_travel_distance_events: [
+        // a series of events that occur at set intervals
+    // these get fired every time the emitter has moved the specified input
+    // distance from the last time it was fired.
+    // An example for how to format these events would be:
+        // {
+        //   "distance": 1.0,
+        //   "effects": [ "effect_one" ]
+        // },
+        // {
+        //   "distance": 2.0,
+        //   "effects": [ "effect_two" ]
+        // }
+    //
+    // Note that "effect_one" and "effect_two" must be defined events within the particle_effect
+    ]
+
 }
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -891,7 +920,7 @@ This component enables collisions between the terrain and the particle. Collisio
 <h3><p id="Particle Appearance Billboard component">Particle Appearance Billboard component</p></h3>
 
 This component tells the particle system to render the particle as a billboard, a rectangle in the world facing a particluar direction.</br><h4></h4>
-<br / ><textarea readonly="true" cols="121" rows="32">
+<br / ><textarea readonly="true" cols="178" rows="32">
 "minecraft:particle_appearance_billboard": {
     // specifies the x/y size of the billboard
     // evaluated every frame
@@ -899,13 +928,24 @@ This component tells the particle system to render the particle as a billboard, 
 
     // used to orient the billboard.  Options are:
     // "rotate_xyz" - aligned to the camera, perpendicular to the view axis
-    // "rotate_y" -aligned to camera, but rotating around world y axis
+    // "rotate_y" - aligned to camera, but rotating around world y axis
     // "lookat_xyz" - aimed at the camera, biased towards world y up
     // "lookat_y" - aimed at the camera, but rotating around world y axis
     // "direction_x" - unrotated particle x axis is along the direction vector, unrotated y axis attempts to aim upwards
     // "direction_y" - unrotated particle y axis is along the direction vector, unrotated x axis attempts to aim upwards
     // "direction_z" - billboard face is along the direction vector, unrotated y axis attempts to aim upwards
     "face_camera_mode": <string>
+
+    // Specifies how to calculate the direction of a particle, this will be used by facing modes that require a direction as input (for instance: lookat_direction and direction)
+    // Options are:
+    // "derive_from_velocity" - The direction matches the direction of the velocity.
+    // "custom_direction" - The direction is specified in the json definition using a vector of floats or molang expressions.
+    // If the direction subsection is not defined, the default will be "derive_from_velocity" mode with a "min_speed_threshold" of 0.01.
+    "direction": {
+        "mode": "derive_from_velocity" or "custom_direction",
+        "min_speed_threshold": <float> // only used in "derive_from_velocity" mode. The direction is set if the speed of the particle is above the threshold. The default is 0.01
+        "custom_direction": [ <float/molang>, <float/molang>, <float/molang> ], // only used in "custom_direction" mode. Specifies the direction vector
+    }
 
     // specifies the UVs for the particle.  
     "uv": {
