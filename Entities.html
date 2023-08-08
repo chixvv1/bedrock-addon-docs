@@ -1,5 +1,4 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.14.2.50</h1>
-This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>ENTITIES DOCUMENTATION </br>Version: 1.14.20.1</h1>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#AI Goals">AI Goals</a></th> </tr>
@@ -2124,16 +2123,16 @@ Allow the mob to move towards selected types of blocks. The goal will activate i
 </tr>
 </table>
 <h2>Vanilla entities that use this</h2>
-target_blocks usage<br / ><textarea readonly="true" cols="68" rows="9">
-// String format: "(namespace:)block_name(:data_value)"
-"target_blocks": "minecraft:stone:2"
+target_blocks usage<br / ><pre class="language-json">
+<span class="token comment">// String format: </span><span class="token string">"(namespace:)block_name(:data_value)"</span>
+<span class="token property">"target_blocks"</span><span class="token operator">:</span> <span class="token string">"minecraft:stone:2"</span>
 
-// Object format (data field is optional):
-"target_blocks": { "item":"minecraft:dirt", "data":1 }
+<span class="token comment">// Object format (data field is optional):</span>
+<span class="token property">"target_blocks"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"item"</span><span class="token operator">:</span><span class="token string">"minecraft:dirt"</span><span class="token punctuation">,</span> <span class="token property">"data"</span><span class="token operator">:</span><span class="token number">1</span> <span class="token punctuation">}</span>
 
-// List format can combine object and string format:
-"target_blocks": ["stone", "minecraft:dirt:2", { "item": "grass" }]
-</textarea> </br>
+<span class="token comment">// List format can combine object and string format:</span>
+<span class="token property">"target_blocks"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"stone"</span><span class="token punctuation">,</span> <span class="token string">"minecraft:dirt:2"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"item"</span><span class="token operator">:</span> <span class="token string">"grass"</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="minecraft:behavior.move_to_land">minecraft:behavior.move_to_land</p></h1>
@@ -4236,43 +4235,43 @@ Allows the wither to focus its attacks on whichever mob has dealt the most damag
 <h1><p id="Client Entity Documentation">Client Entity Documentation</p></h1>
 
 Client entity definitions are contained within a Resource Pack. </br>To start, create a new folder and name it "entity" inside the root of the Resource Pack. In the entity folder create a JSON file and give it a name.The JSON file needs a format version and minecraft:client_entity information.</br></br>The minecraft:client_entity section contains the description for the entity. Under description there are a number of things that you can set about an entity. Generally, this file is defining what resources a mob requires and gives a friendly name to each, that the other definition files can use.</br><h2></h2>
-Example client entity definitions JSON for the pig<br / ><textarea readonly="true" cols="62" rows="32">
-"format_version": "1.8.0",
-  "minecraft:client_entity": {
-     "description": {
-       "identifier": "minecraft:pig",
-       "min_engine_version": "1.8.0",
-       "materials": { "default": "pig" },
-       "textures": {
-         "default": "textures/entity/pig/pig",
-         "saddled": "textures/entity/pig/pig_saddle"
-       },
-       "geometry": {
-         "default": "geometry.pig.v1.8"
-       },
-       "animations": {
-         "setup": "animation.pig.setup",
-         "walk": "animation.quadruped.walk",
-         "look_at_target": "animation.common.look_at_target",
-         "baby_transform": "animation.pig.baby_transform"
-       },
-       "animation_controllers": [
-         { "setup": "controller.animation.pig.setup" },
-         { "move": "controller.animation.pig.move" },
-         { "baby": "controller.animation.pig.baby" }
-       ],
-       "render_controllers": [ "controller.render.pig" ],
-       "locators": {
-         "lead": { "head": [ 0.0, 14.0, -6.0 ] }
-       },
-       "spawn_egg": {
-         "texture": "spawn_egg",
-         "texture_index": 2
-       }
-     }
-   }
+Example client entity definitions JSON for the pig<br / ><pre class="language-json">
+<span class="token property">"format_version"</span><span class="token operator">:</span> <span class="token string">"1.8.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"minecraft:client_entity"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+     <span class="token property">"description"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+       <span class="token property">"identifier"</span><span class="token operator">:</span> <span class="token string">"minecraft:pig"</span><span class="token punctuation">,</span>
+       <span class="token property">"min_engine_version"</span><span class="token operator">:</span> <span class="token string">"1.8.0"</span><span class="token punctuation">,</span>
+       <span class="token property">"materials"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"default"</span><span class="token operator">:</span> <span class="token string">"pig"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token property">"textures"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"default"</span><span class="token operator">:</span> <span class="token string">"textures/entity/pig/pig"</span><span class="token punctuation">,</span>
+         <span class="token property">"saddled"</span><span class="token operator">:</span> <span class="token string">"textures/entity/pig/pig_saddle"</span>
+       <span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token property">"geometry"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"default"</span><span class="token operator">:</span> <span class="token string">"geometry.pig.v1.8"</span>
+       <span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token property">"animations"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"setup"</span><span class="token operator">:</span> <span class="token string">"animation.pig.setup"</span><span class="token punctuation">,</span>
+         <span class="token property">"walk"</span><span class="token operator">:</span> <span class="token string">"animation.quadruped.walk"</span><span class="token punctuation">,</span>
+         <span class="token property">"look_at_target"</span><span class="token operator">:</span> <span class="token string">"animation.common.look_at_target"</span><span class="token punctuation">,</span>
+         <span class="token property">"baby_transform"</span><span class="token operator">:</span> <span class="token string">"animation.pig.baby_transform"</span>
+       <span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token property">"animation_controllers"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+         <span class="token punctuation">{</span> <span class="token property">"setup"</span><span class="token operator">:</span> <span class="token string">"controller.animation.pig.setup"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span> <span class="token property">"move"</span><span class="token operator">:</span> <span class="token string">"controller.animation.pig.move"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+         <span class="token punctuation">{</span> <span class="token property">"baby"</span><span class="token operator">:</span> <span class="token string">"controller.animation.pig.baby"</span> <span class="token punctuation">}</span>
+       <span class="token punctuation">]</span><span class="token punctuation">,</span>
+       <span class="token property">"render_controllers"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"controller.render.pig"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+       <span class="token property">"locators"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"lead"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"head"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">14.0</span><span class="token punctuation">,</span> <span class="token number">-6.0</span> <span class="token punctuation">]</span> <span class="token punctuation">}</span>
+       <span class="token punctuation">}</span><span class="token punctuation">,</span>
+       <span class="token property">"spawn_egg"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"texture"</span><span class="token operator">:</span> <span class="token string">"spawn_egg"</span><span class="token punctuation">,</span>
+         <span class="token property">"texture_index"</span><span class="token operator">:</span> <span class="token number">2</span>
+       <span class="token punctuation">}</span>
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
 
-</textarea> </br>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="Spawn Egg">Spawn Egg</p></h1>
@@ -4280,18 +4279,18 @@ Example client entity definitions JSON for the pig<br / ><textarea readonly="tru
 This sets the color or texture used for the entity Spawn Egg. There are 2 ways to do this. The first is to use the hex value for the base color and the overlay color.</br><h2>Parameters</h2>
 
 When there are more than one texture associated with a texture name you can use an index to pick the one that you want. If no index is specified than it is assumed to be 0 and the first texture in the list is used.</br><h3></h3>
-Example Spawn Egg specifying a texture<br / ><textarea readonly="true" cols="27" rows="5">
-"spawn_egg": {
-  "texture": "spawn_egg", 
-  "texture_index": 2
-}
-</textarea> </br>
-Example Spawn Egg using hex value<br / ><textarea readonly="true" cols="29" rows="5">
-"spawn_egg": {
-  "base_color": "#53443E",
-  "overlay_color": "#2E6854"
-}
-</textarea> </br>
+Example Spawn Egg specifying a texture<br / ><pre class="language-json">
+<span class="token property">"spawn_egg"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"texture"</span><span class="token operator">:</span> <span class="token string">"spawn_egg"</span><span class="token punctuation">,</span> 
+  <span class="token property">"texture_index"</span><span class="token operator">:</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+</pre> </br>
+Example Spawn Egg using hex value<br / ><pre class="language-json">
+<span class="token property">"spawn_egg"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"base_color"</span><span class="token operator">:</span> <span class="token string">"#53443E"</span><span class="token punctuation">,</span>
+  <span class="token property">"overlay_color"</span><span class="token operator">:</span> <span class="token string">"#2E6854"</span>
+<span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <br><br>
@@ -4307,9 +4306,9 @@ Allows the player to assign names to reference the long name for animations. The
 <h1><p id="enable_attachables">enable_attachables</p></h1>
 
 This determines if the entity can equip attachables when this is set to true. This allows the entity to render armor.</br><h2></h2>
-<br / ><textarea readonly="true" cols="27" rows="2">
-"enable_attachables": true
-</textarea> </br>
+<br / ><pre class="language-json">
+<span class="token property">"enable_attachables"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="identifier">identifier</p></h1>
@@ -4319,11 +4318,11 @@ The identifier is used to register the entity with the server. In the Client Ent
 <h1><p id="locators">locators</p></h1>
 
 Locator offsets are specified in model space. An example of a locator is the "lead" locator used to specify where the lead will attach to graphically.</br><h2></h2>
-<br / ><textarea readonly="true" cols="42" rows="4">
-"locators": {
-  "lead": { "head": [ 0.0, 14.0, -6.0 ] }
-}
-</textarea> </br>
+<br / ><pre class="language-json">
+<span class="token property">"locators"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"lead"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"head"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">14.0</span><span class="token punctuation">,</span> <span class="token number">-6.0</span> <span class="token punctuation">]</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="materials, textures, animations">materials, textures, animations</p></h1>
@@ -4345,19 +4344,19 @@ Specifies the names of render controllers. This name needs to match the name of 
 <h1><p id="scripts">scripts</p></h1>
 
 Scripts allow players to use MoLang to compute calculations once and store that value. This value than can be used over and over again without the need to constantly recompute the calculations. Scripts currently support pre - animation and scale.More script types will be added later.</br>-Pre-animation scripts are evaluated immediately before animations are processed.</br>-Scale sets the scale of the mob's geometry.</br><h2></h2>
-Example pre-animation script for cod<br / ><textarea readonly="true" cols="125" rows="7">
-"scripts": {
-  "pre_animation": [
-    "variable.ZRot = !query.is_in_water ? Math.cos((query.time_stamp + global.frame_alpha) * 14.32) * 90 : 0.0;",
-    "variable.AnimationAmountBlend = Math.lerp(variable.AnimationAmountPrev, variable.AnimationAmount, global.frame_alpha);"
-  ]
-},
-</textarea> </br>
-Example scale script for the bat<br / ><textarea readonly="true" cols="18" rows="4">
-"scripts": {
-  "scale": "0.35"
-},
-</textarea> </br>
+Example pre-animation script for cod<br / ><pre class="language-json">
+<span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"pre_animation"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"variable.ZRot = !query.is_in_water ? Math.cos((query.time_stamp + global.frame_alpha) * 14.32) * 90 : 0.0;"</span><span class="token punctuation">,</span>
+    <span class="token string">"variable.AnimationAmountBlend = Math.lerp(variable.AnimationAmountPrev, variable.AnimationAmount, global.frame_alpha);"</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</pre> </br>
+Example scale script for the bat<br / ><pre class="language-json">
+<span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"scale"</span><span class="token operator">:</span> <span class="token string">"0.35"</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <br><br>
@@ -4891,48 +4890,48 @@ New Spawn Rules are contained within a Behavior Pack. To begin, create a new fol
 <br><br>
 
 <h2></h2>
-Example Spawn Rules for the zombie<br / ><textarea readonly="true" cols="72" rows="32">
-"format_version": "1.8.0",
-  "minecraft:spawn_rules": {
-    "description": {
-      "identifier": "minecraft:zombie",
-      "population_control": "monster"
-    },
-    "conditions": [
-      {
-        "minecraft:spawns_on_surface": {},
-        "minecraft:brightness_filter": {
-          "min": 0,
-          "max": 7,
-          "adjust_for_weather": true
-        },
-        "minecraft:difficulty_filter": {
-          "min": "easy",
-          "max": "hard"
-        },
-        "minecraft:weight": {
-          "default": 100
-        },
-        "minecraft:herd": {
-          "min_size": 2,
-          "max_size": 4
-        },
-        "minecraft:permute_type": [
-          {
-            "weight": 95
-          },
-          {
-            "weight": 5,
-            "entity_type": "minecraft:zombie_villager"
-          }
-        ],
-        "minecraft:biome_filter": {
-          "test": "has_biome_tag", "operator": "==", "value": "monster"
-        }
-      }
-    ]
-  }
-</textarea> </br>
+Example Spawn Rules for the zombie<br / ><pre class="language-json">
+<span class="token property">"format_version"</span><span class="token operator">:</span> <span class="token string">"1.8.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"minecraft:spawn_rules"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"description"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"identifier"</span><span class="token operator">:</span> <span class="token string">"minecraft:zombie"</span><span class="token punctuation">,</span>
+      <span class="token property">"population_control"</span><span class="token operator">:</span> <span class="token string">"monster"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"conditions"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"minecraft:spawns_on_surface"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"minecraft:brightness_filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"min"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+          <span class="token property">"max"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+          <span class="token property">"adjust_for_weather"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"minecraft:difficulty_filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"min"</span><span class="token operator">:</span> <span class="token string">"easy"</span><span class="token punctuation">,</span>
+          <span class="token property">"max"</span><span class="token operator">:</span> <span class="token string">"hard"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"minecraft:weight"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"default"</span><span class="token operator">:</span> <span class="token number">100</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"minecraft:herd"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"min_size"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+          <span class="token property">"max_size"</span><span class="token operator">:</span> <span class="token number">4</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"minecraft:permute_type"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">"weight"</span><span class="token operator">:</span> <span class="token number">95</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token punctuation">{</span>
+            <span class="token property">"weight"</span><span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+            <span class="token property">"entity_type"</span><span class="token operator">:</span> <span class="token string">"minecraft:zombie_villager"</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token property">"minecraft:biome_filter"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_biome_tag"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"=="</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"monster"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+</pre> </br>
 <br><br>
 
 <h1><p id="Filters">Filters</p></h1>
@@ -5037,12 +5036,12 @@ Compares the current time with a float value in the range (0.0, 1.0).
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "clock_time", "subject": "self", "operator": "equals", "value": "0.00" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="42" rows="2">
-{ "test": "clock_time", "value": "0.00" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"clock_time"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.00"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"clock_time"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.00"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="distance_to_nearest_player">distance_to_nearest_player</p></h1>
@@ -5141,12 +5140,12 @@ Compares the distance to the nearest Player with a float value.</br><h2>Paramete
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="99" rows="2">
-{ "test": "distance_to_nearest_player", "subject": "self", "operator": "equals", "value": "0.00" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="58" rows="2">
-{ "test": "distance_to_nearest_player", "value": "0.00" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"distance_to_nearest_player"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.00"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"distance_to_nearest_player"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.00"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_ability">has_ability</p></h1>
@@ -5288,12 +5287,12 @@ Returns true when the subject entity has the named ability.</br><h2>Parameters</
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="90" rows="2">
-{ "test": "has_ability", "subject": "self", "operator": "equals", "value": "instabuild" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="49" rows="2">
-{ "test": "has_ability", "value": "instabuild" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_ability"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"instabuild"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_ability"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"instabuild"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_biome_tag">has_biome_tag</p></h1>
@@ -5392,12 +5391,12 @@ Tests whether the biome the subject is in has the specified tag.</br><h2>Paramet
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "has_biome_tag", "subject": "self", "operator": "equals", "value": " " }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="42" rows="2">
-{ "test": "has_biome_tag", "value": " " }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_biome_tag"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">" "</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_biome_tag"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">" "</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_component">has_component</p></h1>
@@ -5496,12 +5495,12 @@ Returns true when the subject entity contains the named component.</br><h2>Param
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="99" rows="2">
-{ "test": "has_component", "subject": "self", "operator": "equals", "value": "minecraft:explode" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="58" rows="2">
-{ "test": "has_component", "value": "minecraft:explode" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_component"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"minecraft:explode"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_component"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"minecraft:explode"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_damage">has_damage</p></h1>
@@ -5699,12 +5698,12 @@ Returns true when the subject entity receives the named damage type.</br><h2>Par
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="84" rows="2">
-{ "test": "has_damage", "subject": "self", "operator": "equals", "value": "fatal" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="43" rows="2">
-{ "test": "has_damage", "value": "fatal" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_damage"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"fatal"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_damage"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"fatal"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_equipment">has_equipment</p></h1>
@@ -5840,12 +5839,12 @@ Tests for the presence of a named item in the designated slot of the subject ent
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="103" rows="2">
-{ "test": "has_equipment", "subject": "self", "domain": "any", "operator": "equals", "value": "dirt" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="45" rows="2">
-{ "test": "has_equipment", "value": "dirt" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_equipment"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token string">"any"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"dirt"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_equipment"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"dirt"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_mob_effect">has_mob_effect</p></h1>
@@ -5944,12 +5943,12 @@ Tests whether the Subject has the specified mob effect.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "has_mob_effect", "subject": "self", "operator": "equals", "value": "" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="29" rows="2">
-{ "test": "has_mob_effect" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_mob_effect"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">""</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_mob_effect"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_tag">has_tag</p></h1>
@@ -6048,12 +6047,12 @@ Returns true if the subject entity has the tag provided.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="76" rows="2">
-{ "test": "has_tag", "subject": "self", "operator": "equals", "value": "" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="22" rows="2">
-{ "test": "has_tag" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_tag"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">""</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_tag"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_target">has_target</p></h1>
@@ -6152,12 +6151,12 @@ Returns true if the subject entity has a valid target.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "has_target", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="25" rows="2">
-{ "test": "has_target" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_target"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_target"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="has_trade_supply">has_trade_supply</p></h1>
@@ -6256,12 +6255,12 @@ Tests whether the target has any trade supply left. Will return false if the tar
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="89" rows="2">
-{ "test": "has_trade_supply", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="31" rows="2">
-{ "test": "has_trade_supply" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_trade_supply"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"has_trade_supply"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="hourly_clock_time">hourly_clock_time</p></h1>
@@ -6360,12 +6359,12 @@ Compares the current 24 hour time with an int value in the range[0, 24000]</br><
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="87" rows="2">
-{ "test": "hourly_clock_time", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="46" rows="2">
-{ "test": "hourly_clock_time", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"hourly_clock_time"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"hourly_clock_time"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="in_caravan">in_caravan</p></h1>
@@ -6464,12 +6463,12 @@ Returns true if the subject entity is in a caravan.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "in_caravan", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="25" rows="2">
-{ "test": "in_caravan" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_caravan"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_caravan"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="in_clouds">in_clouds</p></h1>
@@ -6568,12 +6567,12 @@ Returns true when the subject entity is in the clouds.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "in_clouds", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="24" rows="2">
-{ "test": "in_clouds" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_clouds"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_clouds"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="in_lava">in_lava</p></h1>
@@ -6672,12 +6671,12 @@ Returns true when the subject entity is in lava.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="80" rows="2">
-{ "test": "in_lava", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="22" rows="2">
-{ "test": "in_lava" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_lava"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_lava"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="in_water">in_water</p></h1>
@@ -6776,12 +6775,12 @@ Returns true when the subject entity is in water.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="81" rows="2">
-{ "test": "in_water", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="23" rows="2">
-{ "test": "in_water" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_water"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_water"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="in_water_or_rain">in_water_or_rain</p></h1>
@@ -6880,12 +6879,12 @@ Returns true when the subject entity is in water or rain.</br><h2>Parameters</h2
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="89" rows="2">
-{ "test": "in_water_or_rain", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="31" rows="2">
-{ "test": "in_water_or_rain" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_water_or_rain"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"in_water_or_rain"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_altitude">is_altitude</p></h1>
@@ -6984,12 +6983,12 @@ Tests the current altitude against a provided value. 0= bedrock elevation.</br><
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="81" rows="2">
-{ "test": "is_altitude", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="40" rows="2">
-{ "test": "is_altitude", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_altitude"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_altitude"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_avoiding_mobs">is_avoiding_mobs</p></h1>
@@ -7088,12 +7087,12 @@ Returns true if the subject entity is fleeing from other mobs.</br><h2>Parameter
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="89" rows="2">
-{ "test": "is_avoiding_mobs", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="31" rows="2">
-{ "test": "is_avoiding_mobs" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_avoiding_mobs"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_avoiding_mobs"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_biome">is_biome</p></h1>
@@ -7267,12 +7266,12 @@ Tests whether the Subject is currently in the named biome.</br><h2>Parameters</h
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "is_biome", "subject": "self", "operator": "equals", "value": "beach" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="41" rows="2">
-{ "test": "is_biome", "value": "beach" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_biome"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"beach"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_biome"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"beach"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_block">is_block</p></h1>
@@ -7371,12 +7370,12 @@ Returns true when the block has the given name.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "is_block", "subject": "self", "operator": "equals", "value": "player" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="42" rows="2">
-{ "test": "is_block", "value": "player" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_block"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"player"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_block"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"player"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_brightness">is_brightness</p></h1>
@@ -7475,12 +7474,12 @@ Tests the current brightness against a provided value in the range (0.0f, 1.0f).
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="86" rows="2">
-{ "test": "is_brightness", "subject": "self", "operator": "equals", "value": "0.50" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="45" rows="2">
-{ "test": "is_brightness", "value": "0.50" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_brightness"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.50"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_brightness"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.50"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_climbing">is_climbing</p></h1>
@@ -7579,12 +7578,12 @@ Returns true if the subject entity is climbing.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="84" rows="2">
-{ "test": "is_climbing", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="26" rows="2">
-{ "test": "is_climbing" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_climbing"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_climbing"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_color">is_color</p></h1>
@@ -7750,12 +7749,12 @@ Returns true if the subject entity is the named color.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "is_color", "subject": "self", "operator": "equals", "value": "white" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="41" rows="2">
-{ "test": "is_color", "value": "white" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_color"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"white"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_color"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"white"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_daytime">is_daytime</p></h1>
@@ -7854,12 +7853,12 @@ Returns true during the daylight hours.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "is_daytime", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="25" rows="2">
-{ "test": "is_daytime" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_daytime"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_daytime"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_difficulty">is_difficulty</p></h1>
@@ -7977,12 +7976,12 @@ Tests the current difficulty level of the game.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="88" rows="2">
-{ "test": "is_difficulty", "subject": "self", "operator": "equals", "value": "normal" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="47" rows="2">
-{ "test": "is_difficulty", "value": "normal" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_difficulty"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"normal"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_difficulty"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"normal"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_family">is_family</p></h1>
@@ -8081,12 +8080,12 @@ Returns true when the subject entity is a member of the named family.</br><h2>Pa
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="84" rows="2">
-{ "test": "is_family", "subject": "self", "operator": "equals", "value": "player" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="43" rows="2">
-{ "test": "is_family", "value": "player" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_family"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"player"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_family"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"player"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_game_rule">is_game_rule</p></h1>
@@ -8191,12 +8190,12 @@ Tests whether a named game rule is active.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="112" rows="2">
-{ "test": "is_game_rule", "subject": "self", "domain": "domobspawning", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="54" rows="2">
-{ "test": "is_game_rule", "domain": "domobspawning" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_game_rule"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token string">"domobspawning"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_game_rule"</span><span class="token punctuation">,</span> <span class="token property">"domain"</span><span class="token operator">:</span> <span class="token string">"domobspawning"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_humid">is_humid</p></h1>
@@ -8295,12 +8294,12 @@ Tests whether the Subject is in an area with humidity</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="81" rows="2">
-{ "test": "is_humid", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="23" rows="2">
-{ "test": "is_humid" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_humid"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_humid"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_immobile">is_immobile</p></h1>
@@ -8399,12 +8398,12 @@ Returns true if the subject entity is immobile. An entity is immobile if it lack
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="84" rows="2">
-{ "test": "is_immobile", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="26" rows="2">
-{ "test": "is_immobile" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_immobile"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_immobile"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_in_village">is_in_village</p></h1>
@@ -8503,12 +8502,12 @@ Tests whether the Subject is inside the bounds of a village.</br><h2>Parameters<
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="86" rows="2">
-{ "test": "is_in_village", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="28" rows="2">
-{ "test": "is_in_village" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_in_village"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_in_village"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_leashed">is_leashed</p></h1>
@@ -8607,12 +8606,12 @@ Returns true if the subject entity is leashed.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "is_leashed", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="25" rows="2">
-{ "test": "is_leashed" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_leashed"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_leashed"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_leashed_to">is_leashed_to</p></h1>
@@ -8711,12 +8710,12 @@ Returns true if the subject entity leashed to the calling entity.</br><h2>Parame
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="86" rows="2">
-{ "test": "is_leashed_to", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="28" rows="2">
-{ "test": "is_leashed_to" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_leashed_to"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_leashed_to"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_mark_variant">is_mark_variant</p></h1>
@@ -8815,12 +8814,12 @@ Returns true if the subject entity is the mark variant number provided.</br><h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="85" rows="2">
-{ "test": "is_mark_variant", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="44" rows="2">
-{ "test": "is_mark_variant", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_mark_variant"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_mark_variant"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_moving">is_moving</p></h1>
@@ -8919,12 +8918,12 @@ Returns true if the subject entity is moving.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "is_moving", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="24" rows="2">
-{ "test": "is_moving" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_moving"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_moving"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_owner">is_owner</p></h1>
@@ -9023,12 +9022,12 @@ Returns true if the subject entity is the owner of the calling entity.</br><h2>P
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="81" rows="2">
-{ "test": "is_owner", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="23" rows="2">
-{ "test": "is_owner" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_owner"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_owner"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_riding">is_riding</p></h1>
@@ -9127,12 +9126,12 @@ Returns true if the subject entity is riding on another entity.</br><h2>Paramete
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "is_riding", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="24" rows="2">
-{ "test": "is_riding" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_riding"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_riding"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_skin_id">is_skin_id</p></h1>
@@ -9231,12 +9230,12 @@ Returns true if the subject entity is the skin id number provided.</br><h2>Param
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="80" rows="2">
-{ "test": "is_skin_id", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="39" rows="2">
-{ "test": "is_skin_id", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_skin_id"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_skin_id"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_sleeping">is_sleeping</p></h1>
@@ -9335,12 +9334,12 @@ Tests whether the Subject is sleeping.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="84" rows="2">
-{ "test": "is_sleeping", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="26" rows="2">
-{ "test": "is_sleeping" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_sleeping"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_sleeping"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_sneaking">is_sneaking</p></h1>
@@ -9439,12 +9438,12 @@ Returns true if the subject entity is sneaking.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="84" rows="2">
-{ "test": "is_sneaking", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="26" rows="2">
-{ "test": "is_sneaking" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_sneaking"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_sneaking"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_snow_covered">is_snow_covered</p></h1>
@@ -9543,12 +9542,12 @@ Tests whether the Subject is in an area with snow cover</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="88" rows="2">
-{ "test": "is_snow_covered", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="30" rows="2">
-{ "test": "is_snow_covered" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_snow_covered"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_snow_covered"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_target">is_target</p></h1>
@@ -9647,12 +9646,12 @@ Returns true if the subject entity is the target of the calling entity.</br><h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "is_target", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="24" rows="2">
-{ "test": "is_target" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_target"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_target"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_temperature_type">is_temperature_type</p></h1>
@@ -9770,12 +9769,12 @@ Tests whether the current temperature is a given type.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="92" rows="2">
-{ "test": "is_temperature_type", "subject": "self", "operator": "equals", "value": "cold" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="51" rows="2">
-{ "test": "is_temperature_type", "value": "cold" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_temperature_type"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"cold"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_temperature_type"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"cold"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_temperature_value">is_temperature_value</p></h1>
@@ -9874,12 +9873,12 @@ Tests the current temperature against a provided value in the range (0.0, 1.0) w
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="93" rows="2">
-{ "test": "is_temperature_value", "subject": "self", "operator": "equals", "value": "0.50" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="52" rows="2">
-{ "test": "is_temperature_value", "value": "0.50" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_temperature_value"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.50"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_temperature_value"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.50"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_underground">is_underground</p></h1>
@@ -9978,12 +9977,12 @@ Returns true when the subject entity is underground. An entity is considered und
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="87" rows="2">
-{ "test": "is_underground", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="29" rows="2">
-{ "test": "is_underground" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_underground"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_underground"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_underwater">is_underwater</p></h1>
@@ -10082,12 +10081,12 @@ Returns true when the subject entity is under water. An entity is considered und
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="86" rows="2">
-{ "test": "is_underwater", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="28" rows="2">
-{ "test": "is_underwater" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_underwater"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_underwater"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_variant">is_variant</p></h1>
@@ -10186,12 +10185,12 @@ Returns true if the subject entity is the variant number provided.</br><h2>Param
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="80" rows="2">
-{ "test": "is_variant", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="39" rows="2">
-{ "test": "is_variant", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_variant"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_variant"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_visible">is_visible</p></h1>
@@ -10290,12 +10289,12 @@ Returns true if the subject entity is visible.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="83" rows="2">
-{ "test": "is_visible", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="25" rows="2">
-{ "test": "is_visible" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_visible"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_visible"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="is_weather">is_weather</p></h1>
@@ -10394,12 +10393,12 @@ Tests the current weather against a provided weather value.</br><h2>Parameters</
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="85" rows="2">
-{ "test": "is_weather", "subject": "self", "operator": "equals", "value": "player" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="44" rows="2">
-{ "test": "is_weather", "value": "player" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_weather"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"player"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"is_weather"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"player"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="moon_intensity">moon_intensity</p></h1>
@@ -10498,12 +10497,12 @@ Compares the current moon intensity with a float value in the range (0.0, 1.0)</
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="87" rows="2">
-{ "test": "moon_intensity", "subject": "self", "operator": "equals", "value": "0.00" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="46" rows="2">
-{ "test": "moon_intensity", "value": "0.00" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"moon_intensity"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.00"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"moon_intensity"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0.00"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="moon_phase">moon_phase</p></h1>
@@ -10602,12 +10601,12 @@ Compares the current moon phase with an integer value in the range (0, 7).</br><
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="80" rows="2">
-{ "test": "moon_phase", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="39" rows="2">
-{ "test": "moon_phase", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"moon_phase"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"moon_phase"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="on_ground">on_ground</p></h1>
@@ -10706,12 +10705,12 @@ Returns true when the subject entity is on ground.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "on_ground", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="24" rows="2">
-{ "test": "on_ground" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"on_ground"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"on_ground"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="on_ladder">on_ladder</p></h1>
@@ -10810,12 +10809,12 @@ Returns true when the subject entity is on a ladder.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="82" rows="2">
-{ "test": "on_ladder", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="24" rows="2">
-{ "test": "on_ladder" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"on_ladder"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"on_ladder"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="rider_count">rider_count</p></h1>
@@ -10914,12 +10913,12 @@ Returns the number of riders on this entity.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="81" rows="2">
-{ "test": "rider_count", "subject": "self", "operator": "equals", "value": "0" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="40" rows="2">
-{ "test": "rider_count", "value": "0" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"rider_count"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"rider_count"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"0"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h1><p id="trusts">trusts</p></h1>
@@ -11018,24 +11017,24 @@ Returns true if the subject is trusted by entity.</br><h2>Parameters</h2>
 </tr>
 </table>
 <h2>Examples</h2>
-Full..<br / ><textarea readonly="true" cols="79" rows="2">
-{ "test": "trusts", "subject": "self", "operator": "equals", "value": "true" }
-</textarea> </br>
-Short (using Defaults)..<br / ><textarea readonly="true" cols="21" rows="2">
-{ "test": "trusts" }
-</textarea> </br>
+Full..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"trusts"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span><span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equals"</span><span class="token punctuation">,</span> <span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span>
+</pre> </br>
+Short (using Defaults)..<br / ><pre class="language-json">
+<span class="token punctuation">{</span> <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"trusts"</span> <span class="token punctuation">}</span>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h2>Example:</h2>
-This filter group will pass only when the moon_intensity is greater than 0.5 AND the caller's target entity is standing in water.<br / ><textarea readonly="true" cols="97" rows="8">
-"all_of" : [
+This filter group will pass only when the moon_intensity is greater than 0.5 AND the caller's target entity is standing in water.<br / ><pre class="language-json">
+<span class="token property">"all_of"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
 
-:   { "test" : "moon_intensity", "subject" : "self", "operator" : "greater", "value" : "0.5" }, 
+<span class="token operator">:</span>   <span class="token punctuation">{</span> <span class="token property">"test"</span> <span class="token operator">:</span> <span class="token string">"moon_intensity"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span> <span class="token operator">:</span> <span class="token string">"self"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span> <span class="token operator">:</span> <span class="token string">"greater"</span><span class="token punctuation">,</span> <span class="token property">"value"</span> <span class="token operator">:</span> <span class="token string">"0.5"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> 
 
-:   { "test" : "in_water", "subject" : "target", "operator" : "equal", "value" : "true" } 
+<span class="token operator">:</span>   <span class="token punctuation">{</span> <span class="token property">"test"</span> <span class="token operator">:</span> <span class="token string">"in_water"</span><span class="token punctuation">,</span> <span class="token property">"subject"</span> <span class="token operator">:</span> <span class="token string">"target"</span><span class="token punctuation">,</span> <span class="token property">"operator"</span> <span class="token operator">:</span> <span class="token string">"equal"</span><span class="token punctuation">,</span> <span class="token property">"value"</span> <span class="token operator">:</span> <span class="token string">"true"</span> <span class="token punctuation">}</span> 
 
-: ]
-</textarea> </br>
+<span class="token operator">:</span> <span class="token punctuation">]</span>
+</pre> </br>
 <br><br>
 
 <h1><p id="ID Lists">ID Lists</p></h1>
@@ -13153,9 +13152,9 @@ filters</br><a href="#Index">Back to top</a><br><br>
 <h2><p id="String">String</p></h2>
 
 cause</br><h3>Vanilla entities that use this</h3>
-<br / ><textarea readonly="true" cols="5" rows="2">
+<br / ><pre class="language-json">
 none
-</textarea> </br>
+</pre> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h2><p id="damage_per_tick">damage_per_tick</p></h2>
@@ -15329,17 +15328,17 @@ These properties are part of the Entity Definition as a whole and go before the 
 Specifies the version of the game this entity was made in. If the version is lower than the current version, any changes made to the entity in the vanilla version will be applied to it.</br><a href="#Index">Back to top</a><br><br>
 
 <h2>Code Example</h2>
-Example<br / ><textarea readonly="true" cols="29" rows="10">
-{
-  "format_version": "1.8.0",
-  "minecraft:entity": {
-    "component_groups": {
+Example<br / ><pre class="language-json">
+<span class="token punctuation">{</span>
+  <span class="token property">"format_version"</span><span class="token operator">:</span> <span class="token string">"1.8.0"</span><span class="token punctuation">,</span>
+  <span class="token property">"minecraft:entity"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"component_groups"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       ...
-    }
+    <span class="token punctuation">}</span>
     ...
-  }
-}
-</textarea> </br>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> </br>
 <br><br>
 
 <h1><p id="Entity Description Properties">Entity Description Properties</p></h1>
