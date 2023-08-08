@@ -1,4 +1,4 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.14.0.1</h1>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.14.0.2</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -1383,10 +1383,16 @@ Allows the mob to move back to the position they were spawned.</br><h2>Parameter
 <td style="border-style:solid; border-width:3; padding:7px">A random value to determine when to randomly move somewhere. This has a 1/interval chance to choose this goal</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">on_home</td>
-<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px">on_failed</td>
+<td style="border-style:solid; border-width:3; padding:7px">Trigger</td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
-<td style="border-style:solid; border-width:3; padding:7px">Event to run when this mob gets home.</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">Event to run when the mob is unable to get home due to the home position being too far away or if the mob is in a different dimension.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">on_home</td>
+<td style="border-style:solid; border-width:3; padding:7px">Trigger</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">Event to run when this mob arrives at home.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">speed_multiplier</td>
@@ -2069,12 +2075,6 @@ Allow the mob to move towards selected types of blocks. The goal will activate i
 <td style="border-style:solid; border-width:3; padding:7px">Trigger or list of triggers to trigger when the Mob has stayed at the target block for 'stay_duration' time.</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">search_count</td>
-<td style="border-style:solid; border-width:3; padding:7px">Integer</td>
-<td style="border-style:solid; border-width:3; padding:7px">10</td>
-<td style="border-style:solid; border-width:3; padding:7px">The maximum number of blocks the Mob will consider per tick. 0 means all blocks within search range and height.</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:3; padding:7px">search_height</td>
 <td style="border-style:solid; border-width:3; padding:7px">Integer</td>
 <td style="border-style:solid; border-width:3; padding:7px">1</td>
@@ -2107,8 +2107,8 @@ Allow the mob to move towards selected types of blocks. The goal will activate i
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">target_offset</td>
 <td style="border-style:solid; border-width:3; padding:7px">Vector [a, b, c]</td>
-<td style="border-style:solid; border-width:3; padding:7px">[0, 1, 0]</td>
-<td style="border-style:solid; border-width:3; padding:7px">The offset is added to the target blocks position where [0.0, 0.0, 0.0] means the bottom center of the block. [0.0, 1.0, 0.0] is the top center and [-0.5, 0.0, -0.5] is the lower North-West facing corner.</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">[0.0, 0.0, 0.0]</td>
+<td style="border-style:solid; border-width:3; padding:7px">The offset is added to the target blocks position where [0.0, 0.0, 0.0] means the center of the block.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">target_selection_method</td>
@@ -12784,18 +12784,6 @@ Defines how the entity explodes.</br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">allow_breaking_underwater</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Whether the explosion breaks blocks while submerged in water.</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">allow_damage_underwater</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">true</td>
-<td style="border-style:solid; border-width:2; padding:8px">Whether the explosion deals damage while submerged in water.</br></td>
-</tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">breaks_blocks</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
