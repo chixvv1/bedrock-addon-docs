@@ -1,4 +1,4 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.12.0.3</h1>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.12.0.4</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -21,6 +21,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#Entity Ticking Area JS API Object"> Entity Ticking Area JS API Object</a> </tr> </td>
 <tr> <td> <a href="#Level Ticking Area JS API Object"> Level Ticking Area JS API Object</a> </tr> </td>
 <tr> <th><a href="#Script Bindings">Script Bindings</a></th> </tr>
+<tr> <td> <a href="#Logging Bindings"> Logging Bindings</a> </tr> </td>
 <tr> <td> <a href="#Entity Bindings"> Entity Bindings</a> </tr> </td>
 <tr> <td> <a href="#Component Bindings"> Component Bindings</a> </tr> </td>
 <tr> <td> <a href="#Event Bindings"> Event Bindings</a> </tr> </td>
@@ -489,7 +490,39 @@ There are two types of ticking area objects. Entity and Level. When a function c
 
 <h1><p id="Script Bindings">Script Bindings</p></h1>
 
-Bindings are the capabilities of the Minecraft Script Engine to change or modify things in the game.</br><h1><p id="Entity Bindings">Entity Bindings</p></h1>
+Bindings are the capabilities of the Minecraft Script Engine to change or modify things in the game.</br><h1><p id="Logging Bindings">Logging Bindings</p></h1>
+
+<h2></h2>
+
+<h2><p id="log(Message)">log(Message)</p></h2>
+
+The log function is accessed through the server or client objects and allows for logging a message to the ContentLog file. On Windows 10 devices it is located at ' %APPDATA%\..\Local\Packages\Microsoft.MinecraftUWP_8wekyb3d8bbwe\LocalState\logs '</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Message</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The message that you want to send to the log file</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3>Code Example:</h3>
+Log<br / ><textarea readonly="true" cols="38" rows="4">
+system.exampleFunction = function() {
+  client.log("example log message") 
+}; 
+</textarea> </br>
+<br><br>
+
+<br><br>
+
+<h1><p id="Entity Bindings">Entity Bindings</p></h1>
 
 <h2></h2>
 

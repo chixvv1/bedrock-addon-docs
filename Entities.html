@@ -1,4 +1,4 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.12.0.3</h1>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.12.0.4</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -9126,16 +9126,22 @@ Sets the entity's delay between playing its ambient sound.</br><h3>Parameters</h
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">value</td>
+<td style="border-style:solid; border-width:2; padding:8px">min</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">8.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">8.000000</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minimum time in seconds before the entity plays its ambient sound again</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">range</td>
+<td style="border-style:solid; border-width:2; padding:8px">max</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">16.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum time is seconds to randomly add to the ambient sound delay time.</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">16.000000</td>
+<td style="border-style:solid; border-width:2; padding:8px">Maximum time in seconds to randomly add to the ambient sound delay time.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">event_name</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px">ambient</td>
+<td style="border-style:solid; border-width:2; padding:8px">Level sound event to be played as the ambient sound.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
