@@ -1,4 +1,4 @@
-<h1>Version: 1.6.0.13</h1>
+<h1>Version: 1.7.0.12</h1>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#[01]Entity Definition Properties">Entity Definition Properties</a></th> </tr>
@@ -257,6 +257,8 @@
 <tr> <td> <a href="#minecraft:on_prime"> minecraft:on_prime</a> </tr> </td>
 <tr> <th><a href="#[10]Entities">Entities</a></th> </tr>
 <tr> <th><a href="#[11]Blocks">Blocks</a></th> </tr>
+<tr> <th><a href="#[13]Geometry">Geometry</a></th> </tr>
+<tr> <td> <a href="#Blocks"> Blocks</a> </tr> </td>
 </table>
 <a href="#Index">Back to top</a>
 <h3><p id="[01]Entity Definition Properties">Entity Definition Properties</p></h3>
@@ -2743,12 +2745,6 @@ Allows this entity to generate paths that include vertical walls like the vanill
 <td>Tells the pathfinder to avoid water when creating a path</br></td>
 </tr>
 <tr>
-<td>can_float</td>
-<td>Boolean</td>
-<td>false</td>
-<td>Tells the pathfinder whether or not it can float in water</br></td>
-</tr>
-<tr>
 <td>can_open_doors</td>
 <td>Boolean</td>
 <td>false</td>
@@ -2759,6 +2755,12 @@ Allows this entity to generate paths that include vertical walls like the vanill
 <td>Boolean</td>
 <td>true</td>
 <td>Whether a path can be created through a door</br></td>
+</tr>
+<tr>
+<td>can_path_over_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells the pathfinder whether or not it can travel on the surface of the water</br></td>
 </tr>
 <tr>
 <td>can_sink</td>
@@ -2796,12 +2798,6 @@ Allows this entity to generate paths by flying around the air like the regular G
 <td>Tells the pathfinder to avoid water when creating a path</br></td>
 </tr>
 <tr>
-<td>can_float</td>
-<td>Boolean</td>
-<td>false</td>
-<td>Tells the pathfinder whether or not it can float in water</br></td>
-</tr>
-<tr>
 <td>can_open_doors</td>
 <td>Boolean</td>
 <td>false</td>
@@ -2812,6 +2808,12 @@ Allows this entity to generate paths by flying around the air like the regular G
 <td>Boolean</td>
 <td>true</td>
 <td>Whether a path can be created through a door</br></td>
+</tr>
+<tr>
+<td>can_path_over_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells the pathfinder whether or not it can travel on the surface of the water</br></td>
 </tr>
 <tr>
 <td>can_sink</td>
@@ -2849,12 +2851,6 @@ Allows this entity to generate paths in the air like the vanilla Parrots do.</br
 <td>Tells the pathfinder to avoid water when creating a path</br></td>
 </tr>
 <tr>
-<td>can_float</td>
-<td>Boolean</td>
-<td>false</td>
-<td>Tells the pathfinder whether or not it can float in water</br></td>
-</tr>
-<tr>
 <td>can_open_doors</td>
 <td>Boolean</td>
 <td>false</td>
@@ -2865,6 +2861,12 @@ Allows this entity to generate paths in the air like the vanilla Parrots do.</br
 <td>Boolean</td>
 <td>true</td>
 <td>Whether a path can be created through a door</br></td>
+</tr>
+<tr>
+<td>can_path_over_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells the pathfinder whether or not it can travel on the surface of the water</br></td>
 </tr>
 <tr>
 <td>can_sink</td>
@@ -2902,12 +2904,6 @@ Allows this entity to generate paths by walking, swimming, flying and/or climbin
 <td>Tells the pathfinder to avoid water when creating a path</br></td>
 </tr>
 <tr>
-<td>can_float</td>
-<td>Boolean</td>
-<td>false</td>
-<td>Tells the pathfinder whether or not it can float in water</br></td>
-</tr>
-<tr>
 <td>can_open_doors</td>
 <td>Boolean</td>
 <td>false</td>
@@ -2918,6 +2914,12 @@ Allows this entity to generate paths by walking, swimming, flying and/or climbin
 <td>Boolean</td>
 <td>true</td>
 <td>Whether a path can be created through a door</br></td>
+</tr>
+<tr>
+<td>can_path_over_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells the pathfinder whether or not it can travel on the surface of the water</br></td>
 </tr>
 <tr>
 <td>can_sink</td>
@@ -2955,12 +2957,6 @@ Allows this entity to generate paths that include water.</br><h4>Parameters</h4>
 <td>Tells the pathfinder to avoid water when creating a path</br></td>
 </tr>
 <tr>
-<td>can_float</td>
-<td>Boolean</td>
-<td>false</td>
-<td>Tells the pathfinder whether or not it can float in water</br></td>
-</tr>
-<tr>
 <td>can_open_doors</td>
 <td>Boolean</td>
 <td>false</td>
@@ -2971,6 +2967,12 @@ Allows this entity to generate paths that include water.</br><h4>Parameters</h4>
 <td>Boolean</td>
 <td>true</td>
 <td>Whether a path can be created through a door</br></td>
+</tr>
+<tr>
+<td>can_path_over_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells the pathfinder whether or not it can travel on the surface of the water</br></td>
 </tr>
 <tr>
 <td>can_sink</td>
@@ -3008,12 +3010,6 @@ Allows this entity to generate paths by walking around and jumping up and down a
 <td>Tells the pathfinder to avoid water when creating a path</br></td>
 </tr>
 <tr>
-<td>can_float</td>
-<td>Boolean</td>
-<td>false</td>
-<td>Tells the pathfinder whether or not it can float in water</br></td>
-</tr>
-<tr>
 <td>can_open_doors</td>
 <td>Boolean</td>
 <td>false</td>
@@ -3024,6 +3020,12 @@ Allows this entity to generate paths by walking around and jumping up and down a
 <td>Boolean</td>
 <td>true</td>
 <td>Whether a path can be created through a door</br></td>
+</tr>
+<tr>
+<td>can_path_over_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Tells the pathfinder whether or not it can travel on the surface of the water</br></td>
 </tr>
 <tr>
 <td>can_sink</td>
@@ -12410,3 +12412,123 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
+
+<h3><p id="[13]Geometry">Geometry</p></h3>
+
+<h3><p id="Blocks">Blocks</p></h3>
+
+<h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>elements</td>
+<td>List</td>
+<td></td>
+<td>List of elements that make up the geometry of this block</br><h3><p id="boxes">boxes</p></h3>
+
+<h4>Description</h4>
+
+List of cubes that make up the geometry of this element</br><h4>Parameters</h4>
+
+<h3><p id="faces">faces</p></h3>
+
+<h4>Description</h4>
+
+List of the 6 faces of the box. If specified, there MUST be 6 faces (front, back, left side, right side, top, bottom)</br><h4>Parameters</h4>
+
+<h3><p id="material">material</p></h3>
+
+<h4>Description</h4>
+
+The material of this face if different from the box's</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="rotation">rotation</p></h3>
+
+<h4>Description</h4>
+
+UV Rotation of this face. Only acceptable values are 0, 90 and 270 degrees. This allows reusing a texture and just rotating it for different faces</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="uv">uv</p></h3>
+
+<h4>Description</h4>
+
+Texture coordinates of this face, given as min x, min y, max x, max y withg values between 0.0 and 1.0</br><a href="#Index">Back to top</a><br><br>
+
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="material">material</p></h3>
+
+<h4>Description</h4>
+
+The material of this box if different from the element's</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="origin">origin</p></h3>
+
+<h4>Description</h4>
+
+The position of the center of the box relative to the geometry</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="size">size</p></h3>
+
+<h4>Description</h4>
+
+Scale of the box in the x, y and z coordinates. A typical block is of scale 1, 1, 1</br><a href="#Index">Back to top</a><br><br>
+
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="material">material</p></h3>
+
+<h4>Description</h4>
+
+The material of this element if different from the block's</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="name">name</p></h3>
+
+<h4>Description</h4>
+
+Name of the element</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="parent">parent</p></h3>
+
+<h4>Description</h4>
+
+Name of the parent element of this element. Pivot and box positions are made relative to the parent element's pivot</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="pivot">pivot</p></h3>
+
+<h4>Description</h4>
+
+Position in model space of the pivot point of the element. This is used as the "center" position of the element, as well as the point around which to rotate</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="rotation">rotation</p></h3>
+
+<h4>Description</h4>
+
+The rotation of this element about its pivot</br><a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+<tr>
+<td>format_version</td>
+<td>String</td>
+<td>0.0.0.0</td>
+<td>Version of the block geometry being used. This is used to determine if backwards compatibility is needed</br></td>
+</tr>
+<tr>
+<td>materials</td>
+<td>List</td>
+<td>#0</td>
+<td>List of materials used by this model</br></td>
+</tr>
+<tr>
+<td>parent</td>
+<td>String</td>
+<td></td>
+<td>Parent model of this model</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
