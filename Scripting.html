@@ -1,4 +1,4 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.12.0.2</h1>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.12.0.3</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -1594,7 +1594,7 @@ Allows you to get an array of blocks from the world when provided a minimum and 
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">Array</td>
 <td style="border-style:solid; border-width:1; padding:9px">array</td>
-<td style="border-style:solid; border-width:1; padding:9px">An array of block objects</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">A 3D array of block objects. Indexs are the blocks positions relative to the min position given</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -1691,7 +1691,7 @@ Allows you to get an array of blocks from the world when provided a minimum and 
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">Array</td>
 <td style="border-style:solid; border-width:1; padding:9px">array</td>
-<td style="border-style:solid; border-width:1; padding:9px">An array of block objects</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">A 3D array of block objects. Indexs are the blocks positions relative to the min position given</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -2580,6 +2580,35 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:tick_world">minecraft:tick_world</p></h2>
+
+The tick world component is a read-only component that allows users to access the ticking areas on entities as well as the ticking area's data.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">radius</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">The radius in chunks of the ticking area</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">distance_to_players</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">distance_to_players</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">never_despawn</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">Whether or not this ticking area will despawn when a player is out of range</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">ticking_area</td>
+<td style="border-style:solid; border-width:2; padding:8px">Entity Ticking Area JS API Object</td>
+<td style="border-style:solid; border-width:2; padding:8px">The ticking area entity that is attached to this entity</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <br><br>
 
 <h1><p id="Client Components">Client Components</p></h1>
@@ -3157,9 +3186,33 @@ This event is triggered whenever an entity is ticked. This event will not fire w
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:entity_use_item">minecraft:entity_use_item</p></h3>
+
+This event is triggered whenever an entity uses an item.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity who is using the item</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">item_stack</td>
+<td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The item that is being used</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">use_method</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The way the entity used the item</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:block_destruction_started">minecraft:block_destruction_started</p></h3>
 
-This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+This event is triggered whenever a player starts to destroy a block.</br><h4>Parameters</h4>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
@@ -3178,7 +3231,7 @@ This event is triggered whenever a player places a block.</br><h4>Parameters</h4
 
 <h3><p id="minecraft:block_destruction_stopped">minecraft:block_destruction_stopped</p></h3>
 
-This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+This event is triggered whenever a player stops destroying a block.</br><h4>Parameters</h4>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
@@ -3196,6 +3249,25 @@ This event is triggered whenever a player places a block.</br><h4>Parameters</h4
 <td style="border-style:solid; border-width:1; padding:9px">destruction_progress</td>
 <td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
 <td style="border-style:solid; border-width:1; padding:9px">How far along the destruction was before it was stopped (0 - 1 range)</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:block_interacted_with">minecraft:block_interacted_with</p></h3>
+
+This event is triggered whenever a player interacts with a block.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">player</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The player that interacted with the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that is being interacted with</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3226,7 +3298,7 @@ This event is triggered whenever a piston moves a block.</br><h4>Parameters</h4>
 
 <h3><p id="minecraft:player_destroyed_block">minecraft:player_destroyed_block</p></h3>
 
-This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+This event is triggered whenever a player destroys a block.</br><h4>Parameters</h4>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
