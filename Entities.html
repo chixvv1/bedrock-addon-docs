@@ -1,4 +1,4 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.13.0.2</h1>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.13.0.4</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -29,6 +29,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.move_to_land"> minecraft:behavior.move_to_land</a> </tr> </td>
 <tr> <td> <a href="#minecraft.behavior.move_to_poi"> minecraft.behavior.move_to_poi</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_to_village"> minecraft:behavior.move_to_village</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.stroll_towards_village"> minecraft:behavior.stroll_towards_village</a> </tr> </td>
 <tr> <td> <a href="#minecraft.behavior.hide"> minecraft.behavior.hide</a> </tr> </td>
 <tr> <td> <a href="#minecraft.behavior.work"> minecraft.behavior.work</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_breach"> minecraft:behavior.random_breach</a> </tr> </td>
@@ -972,6 +973,45 @@ Allows the mob to move into a random location within a village.</br><h2>Paramete
 <td style="border-style:solid; border-width:3; padding:7px">Integer</td>
 <td style="border-style:solid; border-width:3; padding:7px">0</td>
 <td style="border-style:solid; border-width:3; padding:7px">The distance in blocks to search for villages. If <= 0, find the closest village regardless of distance.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="minecraft:behavior.stroll_towards_village">minecraft:behavior.stroll_towards_village</p></h1>
+
+Allows the mob to move into a random location within a village within the search range.</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Default Value</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">speed_multiplier</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">goal_radius</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">0.5</td>
+<td style="border-style:solid; border-width:3; padding:7px">Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">cooldown_time</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">0.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Time in seconds the mob has to wait before using the goal again</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">search_range</td>
+<td style="border-style:solid; border-width:3; padding:7px">Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px">0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The distance in blocks to search for points inside villages. If <= 0, find the closest village regardless of distance.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">start_chance</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">0.1</td>
+<td style="border-style:solid; border-width:3; padding:7px">This is the chance that the mob will start this goal, from 0 to 1</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2145,13 +2185,13 @@ Allows the mob to randomly sit for a duration.</br><h2>Parameters</h2>
 <td style="border-style:solid; border-width:3; padding:7px">start_chance</td>
 <td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
 <td style="border-style:solid; border-width:3; padding:7px">0.1</td>
-<td style="border-style:solid; border-width:3; padding:7px">This is the chance that the mob will start sitting, from 0 to 1</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">This is the chance that the mob will start this goal, from 0 to 1</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">stop_chance</td>
 <td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
 <td style="border-style:solid; border-width:3; padding:7px">0.3</td>
-<td style="border-style:solid; border-width:3; padding:7px">This is the chance that the mob will stop sitting, from 0 to 1</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">This is the chance that the mob will stop this goal, from 0 to 1</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">cooldown_time</td>
@@ -13323,6 +13363,12 @@ Defines the entity's range within which it can see or sense other entities to ta
 <td style="border-style:solid; border-width:2; padding:8px">Maximum distance in blocks that another entity will be considered in the 'outside' range</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">must_see</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">Whether the other entity needs to be visible to trigger 'inside' events</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">on_inside_range</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
@@ -13333,6 +13379,12 @@ Defines the entity's range within which it can see or sense other entities to ta
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
 <td style="border-style:solid; border-width:2; padding:8px">Event to call when an entity gets in the outside range. Can specify 'event' for the name of the event and 'target' for the target of the event</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">on_vision_lost_inside_range</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Event to call when an entity exits visual range. Can specify 'event' for the name of the event and 'target' for the target of the event</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -15301,6 +15353,12 @@ Example Spawn Rules for the zombie<br / ><textarea readonly="true" cols="72" row
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px">-805189394</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">minecraft:behavior.stroll_towards_village</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">-1563831906</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">minecraft.behavior.hide</td>
