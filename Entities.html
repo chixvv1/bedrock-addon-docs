@@ -1,4 +1,5 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.10.0.7</h1>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.11.0.1</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#AI Goals">AI Goals</a></th> </tr>
@@ -19,6 +20,7 @@
 <tr> <td> <a href="#minecraft:behavior.follow_caravan"> minecraft:behavior.follow_caravan</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.follow_mob"> minecraft:behavior.follow_mob</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.go_home"> minecraft:behavior.go_home</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.knockback_roar"> minecraft:behavior.knockback_roar</a> </tr> </td>
 <tr> <td> <a href="#minecraft.behavior.scared"> minecraft.behavior.scared</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_to_water"> minecraft:behavior.move_to_water</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_to_land"> minecraft:behavior.move_to_land</a> </tr> </td>
@@ -57,6 +59,7 @@
 <tr> <td> <a href="#minecraft:behavior.random_sitting"> minecraft:behavior.random_sitting</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.melee_attack"> minecraft:behavior.melee_attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.stomp_attack"> minecraft:behavior.stomp_attack</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.delayed_attack"> minecraft:behavior.delayed_attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.ranged_attack"> minecraft:behavior.ranged_attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_stroll"> minecraft:behavior.random_stroll</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_swim"> minecraft:behavior.random_swim</a> </tr> </td>
@@ -669,6 +672,57 @@ Allows the mob to move back to the position they were spawned.</br><h2>Parameter
 <td style="border-style:solid; border-width:3; padding:7px">String</td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px">Event to run when this mob gets home.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="minecraft:behavior.knockback_roar">minecraft:behavior.knockback_roar</p></h1>
+
+Allows the mob to perform a damaging knockback that affects all nearby entities.</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Default Value</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The duration of the roar (in seconds).</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">attack_time</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">0.5</td>
+<td style="border-style:solid; border-width:3; padding:7px">The delay after which the knockback occurs (in seconds).</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">knockback_damage</td>
+<td style="border-style:solid; border-width:3; padding:7px">Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px">6</td>
+<td style="border-style:solid; border-width:3; padding:7px">The damage dealt by the knockback roar.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">knockback_strength</td>
+<td style="border-style:solid; border-width:3; padding:7px">Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px">4</td>
+<td style="border-style:solid; border-width:3; padding:7px">The strength of the knockback.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">knockback_range</td>
+<td style="border-style:solid; border-width:3; padding:7px">Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px">4</td>
+<td style="border-style:solid; border-width:3; padding:7px">The radius (in blocks) of the knockback effect.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Trigger</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">on_roar_end</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">cooldown_time</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">0.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Time in seconds the mob has to wait before using the goal again</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1393,6 +1447,12 @@ Can only be used by Villagers. Allows them to seek shelter indoors.</br><h2>Para
 <td style="border-style:solid; border-width:3; padding:7px">1.0</td>
 <td style="border-style:solid; border-width:3; padding:7px">Movement speed multiplier of the mob when using this AI Goal</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">timeout_cooldown</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">8.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The cooldown time in seconds before the goal can be reused after a internal failure or timeout condition</br></td>
+</tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
@@ -1790,6 +1850,69 @@ Allows the mob to use the polar bear's melee attack.</br><h2>Parameters</h2>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h1><p id="minecraft:behavior.delayed_attack">minecraft:behavior.delayed_attack</p></h1>
+
+Allows the mob to an attack where the hit is delayed.</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Default Value</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">attack_duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The duration of the attack animation in seconds</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">hit_delay_pct</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The percentage of the attack_duration that must pass before the hit is made</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">sound_event</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">The sound event to play when the attack starts</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">speed_multiplier</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">track_target</td>
+<td style="border-style:solid; border-width:3; padding:7px">Boolean</td>
+<td style="border-style:solid; border-width:3; padding:7px">false</td>
+<td style="border-style:solid; border-width:3; padding:7px">If true, this mob will chase after the target as long as it's a valid target</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">attack_types</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">Defines the entity types this mob will attack</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">random_stop_interval</td>
+<td style="border-style:solid; border-width:3; padding:7px">Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px">0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Defines the probability the mob will stop fighting. A value of 0 disables randomly stopping, while a value of 1 defines a 50% chance</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">reach_multiplier</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">2.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Multiplier for how far outside its box the mob can reach its target (this can be used to simulate a mob with longer arms by making this bigger)</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">attack_once</td>
+<td style="border-style:solid; border-width:3; padding:7px">Boolean</td>
+<td style="border-style:solid; border-width:3; padding:7px">false</td>
+<td style="border-style:solid; border-width:3; padding:7px">If true, this mob will attack only one time.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h1><p id="minecraft:behavior.ranged_attack">minecraft:behavior.ranged_attack</p></h1>
 
 Allows the mob to use ranged attacks like shooting arrows.</br><h2>Parameters</h2>
@@ -2151,6 +2274,12 @@ Allows mobs that own a bed to in a village to move to and sleep in it.</br><h2>P
 <td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
 <td style="border-style:solid; border-width:3; padding:7px">1.0</td>
 <td style="border-style:solid; border-width:3; padding:7px">The y offset of the mob's collider while sleeping</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">timeout_cooldown</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">8.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The cooldown time in seconds before the goal can be reused after a internal failure or timeout condition</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -7898,8 +8027,7 @@ Locator offsets are specified in model space. An example of a locator is the "le
 
 <h2></h2>
 Example client entity definitions JSON for the pig<br / ><textarea readonly="true" cols="62" rows="32">
-"format_version": "1.8.0",
-  "minecraft:client_entity": {
+"format_version": "1.8.0",   "minecraft:client_entity": {
      "description": {
        "identifier": "minecraft:pig",
        "min_engine_version": "1.8.0",
@@ -7985,10 +8113,10 @@ Disables all current and future backwards compatibility for this entity. If new 
 Specifies the version of the game this entity was made in. If the version is lower than the current version, any changes made to the entity in the vanilla version will be applied to it.</br><a href="#Index">Back to top</a><br><br>
 
 <h2>Code Example</h2>
-Example<br / ><textarea readonly="true" cols="29" rows="11">
+Example<br / ><textarea readonly="true" cols="31" rows="11">
 {
-  "format_version": "1.8.0",
   "minecraft:entity": {
+    "format_version": "1.2.0",
     "do_not_upgrade": {},
     "component_groups": {
       ...
@@ -8465,6 +8593,14 @@ Sets that this entity is currently shaking.</br><a href="#Index">Back to top</a>
 
 Sets that this entity is currently sheared.</br><a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:is_illager_captain">minecraft:is_illager_captain</p></h2>
+
+Sets that this entity is an illager captain.</br><a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:is_stunned">minecraft:is_stunned</p></h2>
+
+Sets that this entity is currently stunned.</br><a href="#Index">Back to top</a><br><br>
+
 <h2><p id="minecraft:is_stackable">minecraft:is_stackable</p></h2>
 
 Sets that this entity can be stacked.</br><a href="#Index">Back to top</a><br><br>
@@ -8618,6 +8754,12 @@ Adds a rider to the entity. Requires minecraft:rideable.</br><h3>Parameters</h3>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
 <td style="border-style:solid; border-width:2; padding:8px">The entity type that will be riding this entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">spawn_event</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">The spawn event that will be used when the riding entity is created</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -9403,6 +9545,27 @@ Defines the interactions with this entity for healing it.</br><h3>Parameters</h3
 <h2><p id="minecraft:hurt_when_wet">minecraft:hurt_when_wet</p></h2>
 
 Specifies if an actor is hurt when wet.</br><a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:ravager_blocked">minecraft:ravager_blocked</p></h2>
+
+Defines the ravager's response to their melee attack being blocked.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">reaction_choices</td>
+<td style="border-style:solid; border-width:2; padding:8px">List</td>
+<td style="border-style:solid; border-width:2; padding:8px">[ ]</td>
+<td style="border-style:solid; border-width:2; padding:8px">A list of weighted responses to the melee attack being blocked</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">knockback_strength</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">3.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">The strength with which blocking entities should be knocked back</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:insomnia">minecraft:insomnia</p></h2>
 
@@ -10789,6 +10952,27 @@ Adds a timer after which an event will fire.</br><h3>Parameters</h3>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:economy_trade_table">minecraft:economy_trade_table</p></h2>
+
+Defines this entity's ability to trade with players.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">display_name</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Name to be displayed while trading with this entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">table</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">File path relative to the resource pack root for this entity's trades</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h2><p id="minecraft:trade_table">minecraft:trade_table</p></h2>
 
 Defines this entity's ability to trade with players.</br><h3>Parameters</h3>
@@ -10902,6 +11086,12 @@ Defines an entity's transformation from the current definition into another</br>
 <td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
 <td style="border-style:solid; border-width:1; padding:9px">If this entity is owned by another entity, it should remain owned after transformation.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">keep_level</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">If this entity has trades and has leveled up, it should maintain that level after transformation.</br></td>
 </tr>
 </table>
 </td>
@@ -11154,6 +11344,25 @@ fires off scheduled mob events at time of day events.</br><h3>Parameters</h3>
 <h2><p id="minecraft:annotation.open_door">minecraft:annotation.open_door</p></h2>
 
 Allows the actor to open doors assuming that that flags set up for the component to use in navigation</br><a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:is_illager_captain">minecraft:is_illager_captain</p></h2>
+
+Sets that this entity is an illager captain.</br><a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:break_blocks">minecraft:break_blocks</p></h2>
+
+Specifies the blocks that this entity can break as it moves around.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">breakable_blocks</td>
+<td style="border-style:solid; border-width:2; padding:8px">List</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">A list of the blocks that can be broken as this entity moves around</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <br><br>
 
@@ -11607,6 +11816,14 @@ Adds a trigger to call when this pet's owner awakes after sleeping with the pet.
 <td style="border-style:solid; border-width:2; padding:8px">1154836813</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:is_illager_captain</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:is_stunned</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:is_stackable</td>
 <td style="border-style:solid; border-width:2; padding:8px">1184456737</br></td>
 </tr>
@@ -11653,6 +11870,10 @@ Adds a trigger to call when this pet's owner awakes after sleeping with the pet.
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:input_ground_controlled</td>
 <td style="border-style:solid; border-width:2; padding:8px">-646415617</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:is_illager_captain</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -11754,6 +11975,10 @@ Adds a trigger to call when this pet's owner awakes after sleeping with the pet.
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:hurt_when_wet</td>
 <td style="border-style:solid; border-width:2; padding:8px">237531867</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:ravager_blocked</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:insomnia</td>
@@ -11888,6 +12113,10 @@ Adds a trigger to call when this pet's owner awakes after sleeping with the pet.
 <td style="border-style:solid; border-width:2; padding:8px">1862095863</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:economy_trade_table</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:trade_table</td>
 <td style="border-style:solid; border-width:2; padding:8px">50480315</br></td>
 </tr>
@@ -11937,6 +12166,10 @@ Adds a trigger to call when this pet's owner awakes after sleeping with the pet.
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:annotation.open_door</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:break_blocks</td>
 <td style="border-style:solid; border-width:2; padding:8px">0</br></td>
 </tr>
 </table>
@@ -12683,6 +12916,12 @@ Example Spawn Rules for the zombie<br / ><textarea readonly="true" cols="72" row
 <td style="border-style:solid; border-width:3; padding:7px">-1579225026</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">minecraft:behavior.knockback_roar</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">-1304117826</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">minecraft.behavior.scared</td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
@@ -12909,6 +13148,12 @@ Example Spawn Rules for the zombie<br / ><textarea readonly="true" cols="72" row
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px">-1851446496</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">minecraft:behavior.delayed_attack</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">943514889</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">minecraft:behavior.ranged_attack</td>

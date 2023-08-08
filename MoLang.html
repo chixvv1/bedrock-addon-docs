@@ -1,4 +1,5 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.10.0.7</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.11.0.1</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Why Does MoLang Exist?">Why Does MoLang Exist?</a></th> </tr>
@@ -501,6 +502,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is dancing, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_delayed_attacking</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is attacking using the delayed attack, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_eating</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is eating, else it returns 0.0</br></td>
 </tr>
@@ -531,6 +536,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_ignited</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is ignited, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_illager_captain</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is an illager captain, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_in_love</td>
@@ -605,6 +614,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is riding, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_roaring</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is currently roaring, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_rolling</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is rolling, else it returns 0.0</br></td>
 </tr>
@@ -655,6 +668,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_standing</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is standing, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_stunned</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is currently stunned, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_swimming</td>
@@ -763,6 +780,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.time_stamp</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the current time stamp of the level</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.trade_experience</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the current trade experience of the entity if it makes sense, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.trade_tier</td>
