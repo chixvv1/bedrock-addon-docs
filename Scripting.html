@@ -1,4 +1,5 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.9.0.10</h1>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.10.0.3</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Scripting System">Scripting System</a></th> </tr>
@@ -8,14 +9,19 @@
 <tr> <td> <a href="#Getting Started"> Getting Started</a> </tr> </td>
 <tr> <td> <a href="#Structure of a Script"> Structure of a Script</a> </tr> </td>
 <tr> <td> <a href="#Debugging"> Debugging</a> </tr> </td>
+<tr> <th><a href="#Script API Objects">Script API Objects</a></th> </tr>
+<tr> <td> <a href="#Entity JS API Object"> Entity JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Level JS API Object"> Level JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Component JS API Object"> Component JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Query JS API Object"> Query JS API Object</a> </tr> </td>
 <tr> <th><a href="#Script Bindings">Script Bindings</a></th> </tr>
 <tr> <td> <a href="#Entity Bindings"> Entity Bindings</a> </tr> </td>
 <tr> <td> <a href="#Component Bindings"> Component Bindings</a> </tr> </td>
 <tr> <td> <a href="#Event Bindings"> Event Bindings</a> </tr> </td>
 <tr> <td> <a href="#Entity Queries"> Entity Queries</a> </tr> </td>
 <tr> <th><a href="#Script Components">Script Components</a></th> </tr>
-<tr> <td> <a href="#Client Components"> Client Components</a> </tr> </td>
 <tr> <td> <a href="#Server Components"> Server Components</a> </tr> </td>
+<tr> <td> <a href="#Client Components"> Client Components</a> </tr> </td>
 <tr> <th><a href="#User-Defined Components">User-Defined Components</a></th> </tr>
 <tr> <th><a href="#Script Events">Script Events</a></th> </tr>
 <tr> <td> <a href="#Client Events"> Client Events</a> </tr> </td>
@@ -31,14 +37,14 @@ Here are some demos from your friends at Minecraft to help you get started with 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
 <tr> <th style="border-style:solid; border-width:3;">Demo</th> <th style="border-style:solid; border-width:3;">Last Updated</th> <th style="border-style:solid; border-width:3;">Download Link</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">Mob Arena</td>
-<td style="border-style:solid; border-width:3; padding:7px">10/24/2018</td>
-<td style="border-style:solid; border-width:3; padding:7px">https://aka.ms/minecraftscripting_mobarena</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:3; padding:7px">Turn-Based RPG</td>
 <td style="border-style:solid; border-width:3; padding:7px">10/24/2018</td>
 <td style="border-style:solid; border-width:3; padding:7px">https://aka.ms/minecraftscripting_turnbased</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Mob Arena</td>
+<td style="border-style:solid; border-width:3; padding:7px">10/24/2018</td>
+<td style="border-style:solid; border-width:3; padding:7px">https://aka.ms/minecraftscripting_mobarena</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -50,32 +56,32 @@ This is the list of currently known issues with the Minecraft Script Engine</br>
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
 <tr> <th style="border-style:solid; border-width:3;">Issue</th> <th style="border-style:solid; border-width:3;">Workaround</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">Custom UI doesn't retain state upon suspend and resume</td>
-<td style="border-style:solid; border-width:3; padding:7px">Currently there's no workaround for this issue</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">Scripts are not loaded properly from archived packs</td>
+<td style="border-style:solid; border-width:3; padding:7px">Unzip script packs before applying them to a world. If you import a script pack with the .mcpack extension, it will unzip it for you</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">Custom UI doesn't work in VR or MR mode</td>
 <td style="border-style:solid; border-width:3; padding:7px">Currently you will only be able to use custom UI when running the game in regular mode</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">Custom UI draws on top of the chat screen and chat pop-ups</td>
-<td style="border-style:solid; border-width:3; padding:7px">If you are using custom UI we recommend using Visual Studio to debug your scripts. Script errors are printed out to the chat but they won't be visible if you have a custom UI due to this bug</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">Custom UI resets after the application is suspended</td>
+<td style="border-style:solid; border-width:3; padding:7px">Currently there's no workaround for this issue</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">Custom UI prevents menus (such as the pause menu) from displaying</td>
 <td style="border-style:solid; border-width:3; padding:7px">You need to close and re-open Minecraft to exit out of a world that uses custom UI</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">Custom UI resets after the application is suspended</td>
+<td style="border-style:solid; border-width:3; padding:7px">Custom UI draws on top of the chat screen and chat pop-ups</td>
+<td style="border-style:solid; border-width:3; padding:7px">If you are using custom UI we recommend using Visual Studio to debug your scripts. Script errors are printed out to the chat but they won't be visible if you have a custom UI due to this bug</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Custom UI doesn't retain state upon suspend and resume</td>
 <td style="border-style:solid; border-width:3; padding:7px">Currently there's no workaround for this issue</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">Exiting a world without scripts and entering one that has scripts might cause the wrong world to load</td>
 <td style="border-style:solid; border-width:3; padding:7px">Restart Minecraft before loading a new world with scripts</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">Scripts are not loaded properly from archived packs</td>
-<td style="border-style:solid; border-width:3; padding:7px">Unzip script packs before applying them to a world. If you import a script pack with the .mcpack extension, it will unzip it for you</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px"> Pressing the Leave button at the end of the demo will display some errors</td>
@@ -95,6 +101,11 @@ So you want to make your own Scripts? That's awesome! In this section you will f
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
 <tr> <th style="border-style:solid; border-width:3;">Software</th> <th style="border-style:solid; border-width:3;">Minimum</th> <th style="border-style:solid; border-width:3;">Recommended</th> </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">Minecraft</td>
+<td style="border-style:solid; border-width:3; padding:7px">Minecraft  on your Windows 10 device</td>
+<td style="border-style:solid; border-width:3; padding:7px">Minecraft  on your Windows 10 device</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">Code Editor</td>
 <td style="border-style:solid; border-width:3; padding:7px">Visual Studio Code or any plain-text editor</td>
 <td style="border-style:solid; border-width:3; padding:7px">Visual Studio Community 2017 with the following components installed: 'JavaScript diagnostics', 'JavaScript and TypeScript language support', 'Just-In-Time debugger'</br></td>
@@ -103,11 +114,6 @@ So you want to make your own Scripts? That's awesome! In this section you will f
 <td style="border-style:solid; border-width:3; padding:7px">Debugger</td>
 <td style="border-style:solid; border-width:3; padding:7px">N/A</td>
 <td style="border-style:solid; border-width:3; padding:7px">Visual Studio Community 2017</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">Minecraft</td>
-<td style="border-style:solid; border-width:3; padding:7px">Minecraft  on your Windows 10 device</td>
-<td style="border-style:solid; border-width:3; padding:7px">Minecraft  on your Windows 10 device</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">Other</td>
@@ -214,6 +220,100 @@ If you have a Windows 10 PC with Visual Studio installed, you can attach the Vis
 
 <br><br>
 
+<h1><p id="Script API Objects">Script API Objects</p></h1>
+
+Here you can find the definition of some objects returned by the script API.</br><h1><p id="Entity JS API Object">Entity JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Entity JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Can be: "entity" or "item_entity".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__identifier__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">id</td>
+<td style="border-style:solid; border-width:3; padding:7px">Positive Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the unique identifier of the entity.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Level JS API Object">Level JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Level JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "level".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">level_id</td>
+<td style="border-style:solid; border-width:3; padding:7px">Positive Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the unique identifier of the level.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Component JS API Object">Component JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Component JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "component".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">data</td>
+<td style="border-style:solid; border-width:3; padding:7px">JavaScript Object</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the content of the component.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Query JS API Object">Query JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Query JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "query".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query_id</td>
+<td style="border-style:solid; border-width:3; padding:7px">Positive Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the unique identifier of the query.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
 <h1><p id="Script Bindings">Script Bindings</p></h1>
 
 Bindings are the capabilities of the Minecraft Script Engine to change or modify things in the game.</br><h1><p id="Entity Bindings">Entity Bindings</p></h1>
@@ -231,27 +331,9 @@ Creates an empty entity with no components and does not place it in the world.</
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An EntityObject representing the newly created entity</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__identifier__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__type__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object we are using. Can be: entity, item_entity, level, component, query</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">id</td>
-<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the unique identifier of the entity in the world</br></td>
-</tr>
-</table>
-</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object representing the newly created entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -293,27 +375,9 @@ Creates an entity and applies the specified template as defined in JSON. This al
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An EntityObject representing the newly created entity</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__identifier__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__type__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object we are using. Can be: entity, item_entity, level, component, query</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">id</td>
-<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the unique identifier of the entity in the world</br></td>
-</tr>
-</table>
-</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object representing the newly created entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -337,8 +401,8 @@ Destroys an entity identified by the EntityObject. If the entity exists in the w
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The EntityObject that was retrieved from a call to createEntity() or retrieved from an event</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The object that was retrieved from a call to createEntity() or retrieved from an entity event</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -376,8 +440,8 @@ Checks if the given EntityObject corresponds to a valid entity.</br><h3></h3>
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The EntityObject that was retrieved from a call to createEntity() or retrieved from an event</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The object that was retrieved from a call to createEntity() or retrieved from an entity event</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -470,7 +534,7 @@ Creates the specified component and adds it to the entity. This should only be u
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The EntityObject that was retrieved from a call to createEntity() or retrieved from an event</br></td>
 </tr>
 <tr>
@@ -488,22 +552,9 @@ Creates the specified component and adds it to the entity. This should only be u
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Component JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An object with the following fields, and additionally, all the fields as defined in the component</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__identifier__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__type__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object we are using. Can be: entity, item_entity, level, component, query</br></td>
-</tr>
-</table>
-</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object with the following fields, and additionally, all the fields as defined in the component</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -527,7 +578,7 @@ Checks if the given entity has the specified component.</br><h3></h3>
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The EntityObject that was retrieved from a call to createEntity() or retrieved from an event</br></td>
 </tr>
 <tr>
@@ -576,7 +627,7 @@ Looks for the specified component in the entity. If it exists, retrieves the dat
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The EntityObject that was retrieved from a call to createEntity() or retrieved from an event</br></td>
 </tr>
 <tr>
@@ -594,21 +645,29 @@ Looks for the specified component in the entity. If it exists, retrieves the dat
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Component JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An object with the following fields, and additionally, all the fields as defined in the component</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__identifier__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
-</tr>
+<td style="border-style:solid; border-width:1; padding:9px">An object with the following fields, and additionally, all the fields as defined in the component</br><h5><p id="Component JS API Object">Component JS API Object</p></h5>
+
+<h6></h6>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Component JS API Object</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:10px">__type__</td>
 <td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object we are using. Can be: entity, item_entity, level, component, query</br></td>
+<td style="border-style:solid; border-width:1; padding:10px"></td>
+<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object. Will be: "component".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">data</td>
+<td style="border-style:solid; border-width:1; padding:10px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:10px"></td>
+<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the content of the component.</br></td>
 </tr>
 </table>
+<a href="#Index">Back to top</a><br><br>
+
 </td>
 </tr>
 <tr>
@@ -621,7 +680,7 @@ Looks for the specified component in the entity. If it exists, retrieves the dat
 
 <br><br>
 
-<h2><p id="applyComponentChanges(entityObject, componentObject)">applyComponentChanges(entityObject, componentObject)</p></h2>
+<h2><p id="applyComponentChanges(EntityObject, ComponentObject)">applyComponentChanges(EntityObject, ComponentObject)</p></h2>
 
 Applies the component and any changes made to it in script back to the entity. What this means for each component can be slightly different: it makes the component reload on the entity with the new data as if it had just been added to the entity.</br><h3></h3>
 
@@ -632,13 +691,13 @@ Applies the component and any changes made to it in script back to the entity. W
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">entityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity object that we are applying the component changes to</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">componentObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">ComponentObject</td>
+<td style="border-style:solid; border-width:1; padding:9px">Component JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The component object retrieved from the entity that was returned by either createComponent() or getComponent()</br></td>
 </tr>
 </table>
@@ -677,7 +736,7 @@ Removes the specified component from the given entity. If the entity has the com
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">EntityObject</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The EntityObject that was retrieved from a call to createEntity() or retrieved from an event</br></td>
 </tr>
 <tr>
@@ -714,50 +773,6 @@ Removes the specified component from the given entity. If the entity has the com
 <h1><p id="Event Bindings">Event Bindings</p></h1>
 
 These are the bindings used to handle events. For a list of events you can react to or trigger, check the Events section of this document.</br><h2></h2>
-
-<h2><p id="broadcastEvent(EventIdentifier, EventData)">broadcastEvent(EventIdentifier, EventData)</p></h2>
-
-Allows you to trigger an event with the desired data from script. Anything that signed up to listen for the event will be notified and the given data delivered to them.</br><h3></h3>
-
-<h3><p id="Parameters">Parameters</p></h3>
-
-<h4></h4>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">EventIdentifier</td>
-<td style="border-style:solid; border-width:1; padding:9px">String</td>
-<td style="border-style:solid; border-width:1; padding:9px">This is the identifier of the event we want to react to. Can be the identifier of a built-in event or a custom one from script</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">EventData</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The data for the event. You can create a new JavaScript Object with the parameters you want to pass in to the listener and the engine will take care of delivering the data to them</br></td>
-</tr>
-</table>
-<a href="#Index">Back to top</a><br><br>
-
-<h3><p id="Return Value">Return Value</p></h3>
-
-<h4></h4>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
-<td style="border-style:solid; border-width:1; padding:9px">true</td>
-<td style="border-style:solid; border-width:1; padding:9px">Successfully broadcasted the event</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">null</td>
-<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when broadcasting the event</br></td>
-</tr>
-</table>
-<a href="#Index">Back to top</a><br><br>
-
-<br><br>
 
 <h2><p id="listenForEvent(EventIdentifier, CallbackObject)">listenForEvent(EventIdentifier, CallbackObject)</p></h2>
 
@@ -803,6 +818,50 @@ Allows you to register a JavaScript object that gets called whenever the specifi
 
 <br><br>
 
+<h2><p id="broadcastEvent(EventIdentifier, EventData)">broadcastEvent(EventIdentifier, EventData)</p></h2>
+
+Allows you to trigger an event with the desired data from script. Anything that signed up to listen for the event will be notified and the given data delivered to them.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">EventIdentifier</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the identifier of the event we want to react to. Can be the identifier of a built-in event or a custom one from script</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">EventData</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The data for the event. You can create a new JavaScript Object with the parameters you want to pass in to the listener and the engine will take care of delivering the data to them</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">true</td>
+<td style="border-style:solid; border-width:1; padding:9px">Successfully broadcasted the event</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when broadcasting the event</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
 <br><br>
 
 <h1><p id="Entity Queries">Entity Queries</p></h1>
@@ -820,27 +879,9 @@ Allows you to register a query. A query will contain all entities that meet the 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Query JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An object containing the ID of the query</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__identifier__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__type__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object we are using. Can be: entity, item_entity, level, component, query</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">id</td>
-<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the unique identifier of the query</br></td>
-</tr>
-</table>
-</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object containing the ID of the query</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -896,27 +937,9 @@ Allows you to register a query that will only show entities that have the given 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Query JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">object</td>
-<td style="border-style:solid; border-width:1; padding:9px">An object containing the ID of the query</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__identifier__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">__type__</td>
-<td style="border-style:solid; border-width:1; padding:10px">String</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This defines the type of object we are using. Can be: entity, item_entity, level, component, query</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:10px">id</td>
-<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the unique identifier of the query</br></td>
-</tr>
-</table>
-</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object containing the ID of the query</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
@@ -936,7 +959,7 @@ By default no filters are added. This will allow queries to capture all entities
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">Query</td>
-<td style="border-style:solid; border-width:2; padding:8px">JavaScript Object</td>
+<td style="border-style:solid; border-width:2; padding:8px">Query JS API Object</td>
 <td style="border-style:solid; border-width:2; padding:8px">The object containing the ID of the query that you want to apply the filter to</br></td>
 </tr>
 <tr>
@@ -959,7 +982,7 @@ Allows you to fetch the entities captured by a query.</br><h3></h3>
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">Query</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Query JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">This is the query you registered earlier using registerQuery()</br></td>
 </tr>
 </table>
@@ -998,7 +1021,7 @@ Allows you to fetch the entities captured by a query that was created with a com
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">Query</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Query JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">This is the query you created earlier using registerQuery(...)</br></td>
 </tr>
 <tr>
@@ -1061,24 +1084,7 @@ Allows you to fetch the entities captured by a query that was created with a com
 
 <h1><p id="Script Components">Script Components</p></h1>
 
-This is the documentation for the attributes, properties, and components available from the Minecraft Script Engine.</br>There are two kinds of components: server components and client components. We will go into a bit more detail on what they are in their respective sections below.</br>Components can be added, retrieved, updated, and removed from entities. They do not exist on their own. Currently only user-defined components can be added and removed from entities. A component must be in an entity in order to retrieve or update it.</br>Check the Script Engine Bindings section to see how to add, remove, retrieve, and update components. This section deals with the specific API of each component.</br><h1><p id="Client Components">Client Components</p></h1>
-
-These components only run on the client where the script ran and can only be used from client scripts.</br><h2></h2>
-
-<h2><p id="minecraft:molang">minecraft:molang</p></h2>
-
-The MoLang component gives access to the MoLang variables in an entity. To learn more about MoLang varibles review the add-on documentation. In scripts, you can get and set these varibles that are defined in the entity's JSON files. Because of how the MoLang variables are formatted (variable.isgrazing for example) you must use the [] operator on the object to access the variable. The example below shows how to use the [] operator to access the variable.</br><h3>Code Example:</h3>
-<br / ><textarea readonly="true" cols="73" rows="5">
-let molangComponent = this.createComponent(entity, "minecraft:molang"); 
-molangComponent["variable.molangexample"] = 1.0; 
-this.applyComponentChanges(molangComponent); 
-
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
-
-<br><br>
-
-<h1><p id="Server Components">Server Components</p></h1>
+This is the documentation for the attributes, properties, and components available from the Minecraft Script Engine.</br>There are two kinds of components: server components and client components. We will go into a bit more detail on what they are in their respective sections below.</br>Components can be added, retrieved, updated, and removed from entities. They do not exist on their own. Currently only user-defined components can be added and removed from entities. A component must be in an entity in order to retrieve or update it.</br>Check the Script Engine Bindings section to see how to add, remove, retrieve, and update components. This section deals with the specific API of each component.</br><h1><p id="Server Components">Server Components</p></h1>
 
 These are the components that run on the server and are synced with all the clients (players) in the world.</br>As much as possible, the API of each component matches its JSON counterpart (with some differences noted).</br><h2></h2>
 
@@ -1155,6 +1161,16 @@ Defines an array of damages and how the entity reacts to them - including whethe
 <td style="border-style:solid; border-width:2; padding:8px">Type of damage that triggers this set of events</br></td>
 </tr>
 </table>
+<h3></h3>
+<br / ><textarea readonly="true" cols="161" rows="8">
+// This example will cause an entity (in this case, a creeper) to start exploding when the player attacks it.
+// Note: the entity must have the damage_sensor component and the associated events defined in their JSON description.
+this.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
+	let damageSensorComponent = serverSystem.getComponent(eventData.attacked_entity, "minecraft:damage_sensor");
+	damageSensorComponent.data[0].on_damage = { event:"minecraft:start_exploding", filters:[{test:"has_component", operator:"==", value:"minecraft:breathable"}] };
+	serverSystem.applyComponentChanges(eventData.attacked_entity, damageSensorComponent);
+});
+</textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:equipment">minecraft:equipment</p></h2>
@@ -1189,22 +1205,28 @@ List of slots and the item that can be equipped</br><h4>Parameters</h4>
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
+<td style="border-style:solid; border-width:1; padding:9px">slot</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The slot number of this slot</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:1; padding:9px">accepted_items</td>
 <td style="border-style:solid; border-width:1; padding:9px">List</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
 <td style="border-style:solid; border-width:1; padding:9px">The list of items that can go in this slot</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">interact_text</td>
-<td style="border-style:solid; border-width:1; padding:9px">String</td>
-<td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">Text to be displayed when the entity can be equipped with this item when playing with Touch-screen controls</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:1; padding:9px">item</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
 <td style="border-style:solid; border-width:1; padding:9px">Identifier of the item that can be equipped for this slot</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">interact_text</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">Text to be displayed when the entity can be equipped with this item when playing with Touch-screen controls</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">on_equip</td>
@@ -1217,12 +1239,6 @@ List of slots and the item that can be equipped</br><h4>Parameters</h4>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
 <td style="border-style:solid; border-width:1; padding:9px">Event to trigger when this item is removed from this entity</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">slot</td>
-<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:9px">0</td>
-<td style="border-style:solid; border-width:1; padding:9px">The slot number of this slot</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1293,18 +1309,6 @@ Defines how the entity can be healed by the player. This doesn't control how muc
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">force_use</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Determines if item can be used regardless of entity being at full health</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">filters</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">The filter group that defines the conditions for this trigger</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">items</td>
 <td style="border-style:solid; border-width:2; padding:8px">Array</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
@@ -1330,6 +1334,18 @@ Defines how the entity can be healed by the player. This doesn't control how muc
 </tr>
 </table>
 </td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">force_use</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">Determines if item can be used regardless of entity being at full health</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">filters</td>
+<td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">The filter group that defines the conditions for this trigger</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1527,28 +1543,10 @@ Makes the entity look at another entity. Once applied, if an entity of the speci
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">filters</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
-<td style="border-style:solid; border-width:2; padding:8px">player</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the entities that can trigger this component</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">look_cooldown</td>
-<td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
-<td style="border-style:solid; border-width:2; padding:8px">[0.0, 0.0]</td>
-<td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time during which the entity is 'cooling down' and won't get angered or look for a target</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">look_event</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">The event identifier to run when the entities specified in filters look at this entity</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">mAllowInvulnerable</td>
+<td style="border-style:solid; border-width:2; padding:8px">setTarget</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, invulnerable entities (e.g. Players in creative mode) are considered valid targets</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this entity will set the attack target as the entity that looked at it</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">searchRadius</td>
@@ -1557,10 +1555,28 @@ Makes the entity look at another entity. Once applied, if an entity of the speci
 <td style="border-style:solid; border-width:2; padding:8px">Maximum distance this entity will look for another entity looking at it</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">setTarget</td>
+<td style="border-style:solid; border-width:2; padding:8px">mAllowInvulnerable</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">true</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, this entity will set the attack target as the entity that looked at it</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, invulnerable entities (e.g. Players in creative mode) are considered valid targets</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">look_cooldown</td>
+<td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
+<td style="border-style:solid; border-width:2; padding:8px">[0.0, 0.0]</td>
+<td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time during which the entity is 'cooling down' and won't get angered or look for a target</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">filters</td>
+<td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
+<td style="border-style:solid; border-width:2; padding:8px">player</td>
+<td style="border-style:solid; border-width:2; padding:8px">Defines the entities that can trigger this component</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">look_event</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">The event identifier to run when the entities specified in filters look at this entity</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1695,6 +1711,18 @@ Controls the entity's ability to spawn an entity or an item. This is similar to 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">should_leash</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this the spawned entity will be leashed to the parent</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">num_to_spawn</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">1</td>
+<td style="border-style:solid; border-width:2; padding:8px">The number of entities of this type to spawn each time that this triggers</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">min_wait_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Integer</td>
 <td style="border-style:solid; border-width:2; padding:8px">300</td>
@@ -1736,6 +1764,18 @@ Controls the entity's ability to spawn an entity or an item. This is similar to 
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:entity_born</td>
 <td style="border-style:solid; border-width:2; padding:8px">Event to call when the entity is spawned</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">filters</td>
+<td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">If present, the specified entity will only spawn if the filter evaluates to true</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">single_use</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this component will only ever spawn the specified entity once</br></td>
+</tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
@@ -1746,22 +1786,10 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">darkTeleportChance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.01</td>
-<td style="border-style:solid; border-width:2; padding:8px">Modifies the chance that the entity will teleport if the entity is in darkness</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">lightTeleportChance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.01</td>
-<td style="border-style:solid; border-width:2; padding:8px">Modifies the chance that the entity will teleport if the entity is in daylight</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">maxRandomTeleportTime</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">20.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum amount of time in seconds between random teleports</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">randomTeleports</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, the entity will teleport randomly</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minRandomTeleportTime</td>
@@ -1770,16 +1798,16 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <td style="border-style:solid; border-width:2; padding:8px">Minimum amount of time in seconds between random teleports</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">maxRandomTeleportTime</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">20.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">Maximum amount of time in seconds between random teleports</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">randomTeleportCube</td>
 <td style="border-style:solid; border-width:2; padding:8px">Vector [a, b, c]</td>
 <td style="border-style:solid; border-width:2; padding:8px">[32.0, 16.0, 32.0]</td>
 <td style="border-style:solid; border-width:2; padding:8px">Entity will teleport to a random position within the area defined by this cube</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">randomTeleports</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">true</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, the entity will teleport randomly</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">targetDistance</td>
@@ -1793,7 +1821,36 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <td style="border-style:solid; border-width:2; padding:8px">1.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">The chance that the entity will teleport between 0.0 and 1.0. 1.0 means 100%</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">lightTeleportChance</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.01</td>
+<td style="border-style:solid; border-width:2; padding:8px">Modifies the chance that the entity will teleport if the entity is in daylight</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">darkTeleportChance</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">0.01</td>
+<td style="border-style:solid; border-width:2; padding:8px">Modifies the chance that the entity will teleport if the entity is in darkness</br></td>
+</tr>
 </table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h1><p id="Client Components">Client Components</p></h1>
+
+These components only run on the client where the script ran and can only be used from client scripts.</br><h2></h2>
+
+<h2><p id="minecraft:molang">minecraft:molang</p></h2>
+
+The MoLang component gives access to the MoLang variables in an entity. To learn more about MoLang varibles review the add-on documentation. In scripts, you can get and set these varibles that are defined in the entity's JSON files. Because of how the MoLang variables are formatted (variable.isgrazing for example) you must use the [] operator on the object to access the variable. The example below shows how to use the [] operator to access the variable.</br><h3>Code Example:</h3>
+<br / ><textarea readonly="true" cols="73" rows="5">
+let molangComponent = this.createComponent(entity, "minecraft:molang"); 
+molangComponent["variable.molangexample"] = 1.0; 
+this.applyComponentChanges(molangComponent); 
+
+</textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <br><br>
@@ -1830,13 +1887,13 @@ This event is triggered whenever the reticle changes from pointing at a block or
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The enity that was hit or null if it fired when moving off of an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was hit or null if it fired when moving off of an entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">position</td>
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
-<td style="border-style:solid; border-width:1; padding:9px">The position of the enity that was hit or null if it fired when moving off an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the entity that was hit or null if it fired when moving off an entity</br></td>
 </tr>
 </table>
 <h4>Code Example:</h4>
@@ -1863,13 +1920,13 @@ This event is triggered every update and tells you what entity the reticle is po
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The enity that was hit or null if it not pointing at an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was hit or null if it not pointing at an entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">position</td>
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
-<td style="border-style:solid; border-width:1; padding:9px">The position of the enity that was hit or block that was hit</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the entity that was hit or block that was hit</br></td>
 </tr>
 </table>
 <h4>Code Example:</h4>
@@ -1896,13 +1953,13 @@ This event is triggered whenever the mouse pointer changes from pointing at a bl
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The enity that was hit or null if it fired when moving off of an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was hit or null if it fired when moving off of an entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">position</td>
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
-<td style="border-style:solid; border-width:1; padding:9px">The position of the enity that was hit or null if it fired when moving off an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the entity that was hit or null if it fired when moving off an entity</br></td>
 </tr>
 </table>
 <h4>Code Example:</h4>
@@ -1929,13 +1986,13 @@ This event is triggered every update and tells you what entity the mouse pointer
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The enity that was hit or null if it not pointing at an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was hit or null if it not pointing at an entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">position</td>
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
-<td style="border-style:solid; border-width:1; padding:9px">The position of the enity that was hit or block that was hit</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the entity that was hit or block that was hit</br></td>
 </tr>
 </table>
 <h4>Code Example:</h4>
@@ -1970,7 +2027,52 @@ This event is used to run a slash command from the specific player running the c
 
 <h3><p id="minecraft:load_ui">minecraft:load_ui</p></h3>
 
-This event is used to show a UI screen to the specific player running the client script. This event will add the UI screen to the top of the UI screen stack. The event data contains the file path to the screen's HTML file as a string. The screen will be shown immediately after the event is triggered. Only screens defined in a HTML file can be shown using this event.</br><a href="#Index">Back to top</a><br><br>
+This event is used to show a UI screen to the specific player running the client script. This event will add the UI screen to the top of the UI screen stack. The screen will be shown immediately after the event is triggered. Only screens defined in a HTML file can be shown using this event.</br><h4>Event Data Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">path</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The file path to the screen's HTML file</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">options</td>
+<td style="border-style:solid; border-width:1; padding:9px">JSON Object</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">You can define the following options for the screen by setting their value to true or false:</br><h5><p id="always_accepts_input">always_accepts_input</p></h5>
+
+If true, the screen will always accept and process input for as long as it is in the stack, even if other custom UI screens appear on top of it</br><a href="#Index">Back to top</a><br><br>
+
+<h5><p id="render_game_behind">render_game_behind</p></h5>
+
+If true, the game will continue to be rendered underneath this screen</br><a href="#Index">Back to top</a><br><br>
+
+<h5><p id="absorbs_input">absorbs_input</p></h5>
+
+If true, input will not be passed down to any other screens underneath</br><a href="#Index">Back to top</a><br><br>
+
+<h5><p id="is_showing_menu">is_showing_menu</p></h5>
+
+If true, the screen will be treated as the pause menu and the pause menu won't be allowed to show on top of this screen</br><a href="#Index">Back to top</a><br><br>
+
+<h5><p id="should_steal_mouse">should_steal_mouse</p></h5>
+
+If true, the screen will capture the mouse pointer and limit its movement to the UI screen</br><a href="#Index">Back to top</a><br><br>
+
+<h5><p id="force_render_below">force_render_below</p></h5>
+
+If true, this screen will be rendered even if another screen is on top of it and will render over them, including the HUD</br><a href="#Index">Back to top</a><br><br>
+
+<h5><p id="render_only_when_topmost">render_only_when_topmost</p></h5>
+
+If true, this screen will only be rendered if it is the screen at the top of the stack</br><a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:send_ui_event">minecraft:send_ui_event</p></h3>
 
@@ -2004,16 +2106,16 @@ This event is used to create a particle effect that will follow an entity around
 <td style="border-style:solid; border-width:1; padding:9px">The identifier of the particle effect you want to attach to the entity. This is the same name you gave the effect in its JSON file</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">The entity object you want to attach the effect to</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:1; padding:9px">offset</td>
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
 <td style="border-style:solid; border-width:1; padding:9px">[0, 0, 0]</td>
 <td style="border-style:solid; border-width:1; padding:9px">The offset from the entity's "center" where you want to spawn the effect</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity object you want to attach the effect to</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2055,6 +2157,25 @@ This event is used to remove a UI screen from the stack of the specific player r
 
 The following Minecraft events are events the Script Engine is listening for and to which you can react in scripts.</br><h3></h3>
 
+<h3><p id="minecraft:player_attacked_entity">minecraft:player_attacked_entity</p></h3>
+
+This event is triggered whenever a player attacks an entity.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">player</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The player that attacked an entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">attacked_entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was attacked by the player</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:entity_created">minecraft:entity_created</p></h3>
 
 This event is triggered whenever an entity is added to the world.</br><h4>Parameters</h4>
@@ -2063,7 +2184,7 @@ This event is triggered whenever an entity is added to the world.</br><h4>Parame
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that was just created</br></td>
 </tr>
 </table>
@@ -2077,7 +2198,7 @@ This event is triggered whenever an entity dies. This won't be triggered when an
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that died</br></td>
 </tr>
 </table>
@@ -2091,12 +2212,12 @@ This event is triggered whenever an entity becomes a rider on another entity.</b
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The rider</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">ride</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity being ridden</br></td>
 </tr>
 </table>
@@ -2110,7 +2231,7 @@ This event is triggered whenever an entity stops riding another entity.</br><h4>
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that was riding another entity</br></td>
 </tr>
 <tr>
@@ -2139,27 +2260,32 @@ This event is triggered whenever an entity is ticked. This event will not fire w
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that was ticked</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
-<h3><p id="minecraft:player_attacked_actor">minecraft:player_attacked_actor</p></h3>
+<h3><p id="minecraft:weather_changed">minecraft:weather_changed</p></h3>
 
-This event is triggered whenever a player attacks an entity.</br><h4>Parameters</h4>
+This event is triggered whenever the weather changes. It contains information about the weather it is changing to.</br><h4>Parameters</h4>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">player</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The player that attacked an entity</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">dimension</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The name of the dimension where the weather change happened</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">attacked_entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px">The entity that was attacked by the player</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">raining</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">Tells if the new weather has rain</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">lightning</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">Tells if the new weather has lightning</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2188,19 +2314,19 @@ This event is used to create a particle effect that will follow an entity around
 <td style="border-style:solid; border-width:1; padding:9px">effect</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">The identifier of the particle effect you want to attach to the entity. This is the same name you gave the effect in its JSON file</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:1; padding:9px">entity</td>
-<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
-<td style="border-style:solid; border-width:1; padding:9px"></td>
-<td style="border-style:solid; border-width:1; padding:9px">The entity object you want to attach the effect to</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">The identifier of the particle effect you want to attach to the entity. This is the same identifier you gave the effect in its JSON file</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">offset</td>
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
 <td style="border-style:solid; border-width:1; padding:9px">[0, 0, 0]</td>
 <td style="border-style:solid; border-width:1; padding:9px">The offset from the entity's "center" where you want to spawn the effect</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity object you want to attach the effect to</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2212,12 +2338,6 @@ This event is used to create a static particle effect in the world. This particl
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">dimension</td>
-<td style="border-style:solid; border-width:1; padding:9px">String</td>
-<td style="border-style:solid; border-width:1; padding:9px">overworld</td>
-<td style="border-style:solid; border-width:1; padding:9px">The dimension in which you want to spawn the effect. Can be "overworld", "nether", or "the end"</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:1; padding:9px">effect</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px"></td>
@@ -2228,6 +2348,12 @@ This event is used to create a static particle effect in the world. This particl
 <td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
 <td style="border-style:solid; border-width:1; padding:9px">[0, 0, 0]</td>
 <td style="border-style:solid; border-width:1; padding:9px">The position in the world where you want to spawn the effect</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">dimension</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">overworld</td>
+<td style="border-style:solid; border-width:1; padding:9px">The dimension in which you want to spawn the effect. Can be "overworld", "nether", or "the end"</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>

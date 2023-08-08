@@ -1,15 +1,27 @@
-<h1>UI DOCUMENTATION </br>Version: 1.9.0.10</h1>
+<h1>UI DOCUMENTATION </br>Version: 1.10.0.3</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Scripting System">Scripting System</a></th> </tr>
-<tr> <td> <a href="#Engine Bindings"> Engine Bindings</a> </tr> </td>
 <tr> <td> <a href="#Getting The Script Engine"> Getting The Script Engine</a> </tr> </td>
+<tr> <td> <a href="#Engine Bindings"> Engine Bindings</a> </tr> </td>
 <tr> <td> <a href="#Script Bindings"> Script Bindings</a> </tr> </td>
 </table>
 <a href="#Index">Back to top</a>
 <h1><p id="Scripting System">Scripting System</p></h1>
 
-The custom UI for Minecraft is based on HTML 5.</br>You can write JavaScript within the HTML file to listen and respond to events from the UI Engine. These events can be triggered by the UI Engine itself or you can trigger them from your scripts.</br>In order to use custom UI, the resource pack containing the custom UI needs to have the custom UI capabilities enabled. To do this, simply add "experimental_custom_ui" to the capabilities array in the pack's manifest. You can check the Turn-Based RPG demo for an example of how to do this.</br><h1><p id="Engine Bindings">Engine Bindings</p></h1>
+The custom UI for Minecraft is based on HTML 5.</br>You can write JavaScript within the HTML file to listen and respond to events from the UI Engine. These events can be triggered by the UI Engine itself or you can trigger them from your scripts.</br>In order to use custom UI, the resource pack containing the custom UI needs to have the custom UI capabilities enabled. To do this, simply add "experimental_custom_ui" to the capabilities array in the pack's manifest. You can check the Turn-Based RPG demo for an example of how to do this.</br><h1><p id="Getting The Script Engine">Getting The Script Engine</p></h1>
+
+In order to create a link between the UI Engine and the Script Engine you need to capture the instance of the Script Engine.</br>The engine.on() function needs to listen for the event "scriptEngine:created" and you need to store the return value.</br><h2>Example of how to capture the Script Engine:</h2>
+<br / ><textarea readonly="true" cols="57" rows="5">
+let scriptInterface = undefined; 
+engine.on("scriptEngine:created", function(interface) { 
+	scriptInterface = interface; 
+}); 
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Engine Bindings">Engine Bindings</p></h1>
 
 <h2></h2>
 
@@ -39,17 +51,6 @@ engine.on("exampleEventIdentifier", function (exampleData) {
 <br><br>
 
 <br><br>
-
-<h1><p id="Getting The Script Engine">Getting The Script Engine</p></h1>
-
-In order to create a link between the UI Engine and the Script Engine you need to capture the instance of the Script Engine.</br>The engine.on() function needs to listen for the event "scriptEngine:created" and you need to store the return value.</br><h2>Example of how to capture the Script Engine:</h2>
-<br / ><textarea readonly="true" cols="57" rows="5">
-let scriptInterface = undefined; 
-engine.on("scriptEngine:created", function(interface) { 
-	scriptInterface = interface; 
-}); 
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
 
 <h1><p id="Script Bindings">Script Bindings</p></h1>
 
