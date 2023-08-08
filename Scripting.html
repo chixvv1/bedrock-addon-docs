@@ -1,5 +1,4 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.10.0.3</h1>
-This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.10.0.7</h1>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Scripting System">Scripting System</a></th> </tr>
@@ -20,6 +19,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#Event Bindings"> Event Bindings</a> </tr> </td>
 <tr> <td> <a href="#Entity Queries"> Entity Queries</a> </tr> </td>
 <tr> <th><a href="#Script Components">Script Components</a></th> </tr>
+<tr> <td> <a href="#Level Components"> Level Components</a> </tr> </td>
 <tr> <td> <a href="#Server Components"> Server Components</a> </tr> </td>
 <tr> <td> <a href="#Client Components"> Client Components</a> </tr> </td>
 <tr> <th><a href="#User-Defined Components">User-Defined Components</a></th> </tr>
@@ -174,10 +174,10 @@ let sampleServerSystem = server.registerSystem(0, 0);
 
 <h2><p id="2. System Initialization">2. System Initialization</p></h2>
 
-This is the first method that gets called immediately after the system is registered. It will run as soon as the script loads at world start.</br>You can use this to set up the environment for your script: register custom components and events, sign up event listeners, etc. This will run BEFORE the world is ready and the player has been added to it, so you shouldn't try to spawn any entities here!</br><h3>Code Example:</h3>
+This is the first method that gets called immediately after the system is registered. It will run as soon as the script loads at world start.</br>You can use this to set up the environment for your script: register custom components and events, sign up event listeners, etc. This will run BEFORE the world is ready and the player has been added to it. This function should be used to initialize variables and setup event listeners. 					You shouldn't try to spawn or interact with any entities at this point! You should also avoid interaction with UI elements or sending messages to the chat window since this is called before the player is ready.</br><h3>Code Example:</h3>
 <br / ><textarea readonly="true" cols="39" rows="4">
 sampleSystem.initialize = function() {
-	//Initialize all the things
+  //Initialize all the things
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -187,7 +187,7 @@ sampleSystem.initialize = function() {
 This method gets called once every game tick. The server and client tick at 20 times per second. This is a good place to get, check, and react to component changes.</br><h3>Code Example:</h3>
 <br / ><textarea readonly="true" cols="35" rows="4">
 sampleSystem.update = function() {
-	//Update all the things
+  //Update all the things
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -197,7 +197,7 @@ sampleSystem.update = function() {
 This method gets called when the Minecraft Script Engine is shutting down. For the client this is when they leave the world; for the server this is after the last player has exited the world.</br><h3>Code Example:</h3>
 <br / ><textarea readonly="true" cols="37" rows="4">
 sampleSystem.shutdown = function() {
-	//Cleanup all the things
+  //Cleanup all the things
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -322,7 +322,7 @@ Bindings are the capabilities of the Minecraft Script Engine to change or modify
 
 <h2><p id="createEntity()">createEntity()</p></h2>
 
-Creates an empty entity with no components and does not place it in the world.</br><h3></h3>
+Creates an empty entity with no components and does not place it in the world. The empty entity will be of type custom and have a blank identifier. This is NOT a valid entity that exists in the world, just an empty one that only scripts know about.</br><h3></h3>
 
 <h3><p id="Return Value">Return Value</p></h3>
 
@@ -895,7 +895,7 @@ Allows you to register a query. A query will contain all entities that meet the 
 
 <h2><p id="registerQuery(Component, ComponentField1, ComponentField2, ComponentField3)">registerQuery(Component, ComponentField1, ComponentField2, ComponentField3)</p></h2>
 
-Allows you to register a query that will only show entities that have the given component and define which fields of that component will be used as a filter when getting the entities from the query.</br><h3></h3>
+Allows you to register a query that will only show entities that have the given component and define which fields of that component will be used as a filter when getting the entities from the query. You can either provide just the component identifier, or the component identifier and the name of 3 properties on that component to be tested (If you do specify property names, you must specify 3).</br><h3></h3>
 
 <h3><p id="Parameters">Parameters</p></h3>
 
@@ -913,19 +913,19 @@ Allows you to register a query that will only show entities that have the given 
 <td style="border-style:solid; border-width:1; padding:9px">ComponentField1</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px">"x"</td>
-<td style="border-style:solid; border-width:1; padding:9px">This is the name of the first field of the component that we want to filter entities by. By default this is set to x. If the component you used doesn't have the field you defined here, the field will be ignored</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the name of the first field of the component that we want to filter entities by. By default this is set to x.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">ComponentField2</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px">"y"</td>
-<td style="border-style:solid; border-width:1; padding:9px">This is the name of the second field of the component that we want to filter entities by. By default this is set to y. If the component you used doesn't have the field you defined here, the field will be ignored</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the name of the second field of the component that we want to filter entities by. By default this is set to y.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:1; padding:9px">ComponentField3</td>
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px">"z"</td>
-<td style="border-style:solid; border-width:1; padding:9px">This is the name of the third field of the component that we want to filter entities by. By default this is set to z. If the component you used doesn't have the field you defined here, the field will be ignored</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the name of the third field of the component that we want to filter entities by. By default this is set to z.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1084,7 +1084,57 @@ Allows you to fetch the entities captured by a query that was created with a com
 
 <h1><p id="Script Components">Script Components</p></h1>
 
-This is the documentation for the attributes, properties, and components available from the Minecraft Script Engine.</br>There are two kinds of components: server components and client components. We will go into a bit more detail on what they are in their respective sections below.</br>Components can be added, retrieved, updated, and removed from entities. They do not exist on their own. Currently only user-defined components can be added and removed from entities. A component must be in an entity in order to retrieve or update it.</br>Check the Script Engine Bindings section to see how to add, remove, retrieve, and update components. This section deals with the specific API of each component.</br><h1><p id="Server Components">Server Components</p></h1>
+This is the documentation for the attributes, properties, and components available from the Minecraft Script Engine.</br>There are two kinds of components: server components and client components. We will go into a bit more detail on what they are in their respective sections below.</br>Components can be added, retrieved, updated, and removed from entities. They do not exist on their own. Currently only user-defined components can be added and removed from entities. A component must be in an entity in order to retrieve or update it.</br>Check the Script Engine Bindings section to see how to add, remove, retrieve, and update components. This section deals with the specific API of each component.</br><h1><p id="Level Components">Level Components</p></h1>
+
+These are the components that belong to the level. They can only belong on the level object and cannot be removed from it. You can get the components and change their data through the global server object.</br><h2></h2>
+
+<h3></h3>
+Getting Level Components<br / ><textarea readonly="true" cols="91" rows="2">
+let levelComponent = this.getComponent(server.level, "minecraft:example_level_component");
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
+<h3>Parameters</h3>
+
+<h3><p id="minecraft:weather">minecraft:weather</p></h3>
+
+The weather component allows users to change the level's weather. Rain and lightning levels can be changed independently and the default weather cycle can be turned off completely.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">do_weather_cycle</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the world option that determines if the vanilla weather cycle will be used</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">rain_level</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">A value between 0 and 1 that determains how heavy the rainfall is</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">rain_time</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">How long, in ticks, it will rain for</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">lightning_level</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">A value between 0 and 1 that determines how much lightning and thunder there is</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">lightning_time</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">How long, in ticks, it will lightning and thunder for</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<br><br>
+
+<h1><p id="Server Components">Server Components</p></h1>
 
 These are the components that run on the server and are synced with all the clients (players) in the world.</br>As much as possible, the API of each component matches its JSON counterpart (with some differences noted).</br><h2></h2>
 
@@ -1162,13 +1212,13 @@ Defines an array of damages and how the entity reacts to them - including whethe
 </tr>
 </table>
 <h3></h3>
-<br / ><textarea readonly="true" cols="161" rows="8">
+<br / ><textarea readonly="true" cols="162" rows="8">
 // This example will cause an entity (in this case, a creeper) to start exploding when the player attacks it.
 // Note: the entity must have the damage_sensor component and the associated events defined in their JSON description.
 this.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
-	let damageSensorComponent = serverSystem.getComponent(eventData.attacked_entity, "minecraft:damage_sensor");
-	damageSensorComponent.data[0].on_damage = { event:"minecraft:start_exploding", filters:[{test:"has_component", operator:"==", value:"minecraft:breathable"}] };
-	serverSystem.applyComponentChanges(eventData.attacked_entity, damageSensorComponent);
+  let damageSensorComponent = serverSystem.getComponent(eventData.attacked_entity, "minecraft:damage_sensor");
+  damageSensorComponent.data[0].on_damage = { event:"minecraft:start_exploding", filters:[{test:"has_component", operator:"==", value:"minecraft:breathable"}] };
+  serverSystem.applyComponentChanges(eventData.attacked_entity, damageSensorComponent);
 });
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -1899,15 +1949,15 @@ This event is triggered whenever the reticle changes from pointing at a block or
 <h4>Code Example:</h4>
 <br / ><textarea readonly="true" cols="95" rows="5">
 system.initialize = function() {
-	this.listenForEvent("minecraft:hit_result_changed", (eventData) = > this.onPick(eventData)); 
+  this.listenForEvent("minecraft:hit_result_changed", (eventData) => this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<br / ><textarea readonly="true" cols="155" rows="6">
+<br / ><textarea readonly="true" cols="157" rows="6">
 system.onPick = function(eventData) { 
-	if (eventData.position !== null) { 
-		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
-	} 
+  if (eventData.position !== null) { 
+    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
+  } 
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -1932,15 +1982,15 @@ This event is triggered every update and tells you what entity the reticle is po
 <h4>Code Example:</h4>
 <br / ><textarea readonly="true" cols="98" rows="5">
 system.initialize = function() {
-	this.listenForEvent("minecraft:hit_result_continuous", (eventData) = > this.onPick(eventData)); 
+  this.listenForEvent("minecraft:hit_result_continuous", (eventData) => this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<br / ><textarea readonly="true" cols="155" rows="6">
+<br / ><textarea readonly="true" cols="157" rows="6">
 system.onPick = function(eventData) { 
-	if (eventData.position !== null) { 
-		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
-	} 
+  if (eventData.position !== null) { 
+    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
+  } 
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -1965,15 +2015,15 @@ This event is triggered whenever the mouse pointer changes from pointing at a bl
 <h4>Code Example:</h4>
 <br / ><textarea readonly="true" cols="100" rows="5">
 system.initialize = function() {
-	this.listenForEvent("minecraft:pick_hit_result_changed", (eventData) = > this.onPick(eventData)); 
+  this.listenForEvent("minecraft:pick_hit_result_changed", (eventData) => this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<br / ><textarea readonly="true" cols="155" rows="6">
+<br / ><textarea readonly="true" cols="157" rows="6">
 system.onPick = function(eventData) { 
-	if (eventData.position !== null) { 
-		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
-	} 
+  if (eventData.position !== null) { 
+    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
+  } 
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -1998,15 +2048,15 @@ This event is triggered every update and tells you what entity the mouse pointer
 <h4>Code Example:</h4>
 <br / ><textarea readonly="true" cols="103" rows="5">
 system.initialize = function() {
-	this.listenForEvent("minecraft:pick_hit_result_continuous", (eventData) = > this.onPick(eventData)); 
+  this.listenForEvent("minecraft:pick_hit_result_continuous", (eventData) => this.onPick(eventData)); 
 }; 
 
 </textarea> </br>
-<br / ><textarea readonly="true" cols="155" rows="6">
+<br / ><textarea readonly="true" cols="157" rows="6">
 system.onPick = function(eventData) { 
-	if (eventData.position !== null) { 
-		this.broadcastEvent("minecraft:display_chat_event", "Pick at X:" + eventData.position.X + " Y:" + eventData.position.Y + " Z:" + eventData.position.Z); 
-	} 
+  if (eventData.position !== null) { 
+    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
+  } 
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -2262,6 +2312,39 @@ This event is triggered whenever an entity is ticked. This event will not fire w
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
 <td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that was ticked</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:play_sound">minecraft:play_sound</p></h3>
+
+This event is used to play a sound effect. Currently, sounds can only be played at a fixed position in the world. Global sounds and sounds played by an entity will be supported in a later update.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">sound</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The identifier of the sound you want to play. Only sounds defined in the applied resource packs can be played</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">volume</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">1.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The volume of the sound effect. A value of 1.0 will play the sound effect at the volume it was recorded at</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">pitch</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">1.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The pitch of the sound effect. A value of 1.0 will play the sound effect with regular pitch</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">position</td>
+<td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:1; padding:9px">[0, 0, 0]</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position in the world we want to play the sound at</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
