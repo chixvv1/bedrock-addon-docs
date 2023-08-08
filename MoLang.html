@@ -1,4 +1,4 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.9</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.13</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -447,15 +447,11 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.get_equipped_item_name</td>
-<td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot as a parameter (0 or 'main_hand' for main hand, 1 or 'off_hand' for off hand), and returns the name of the item in the requested slot (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot as a parameter (0 or 'main_hand' for main hand, 1 or 'off_hand' for off hand), and a second parameter (0=default) if you would like the equipped item or any non-zero number for the currently rendered item, and returns the name of the item in the requested slot (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.get_name</td>
 <td style="border-style:solid; border-width:3; padding:7px">get the name of the mob if there is one, otherwise return ''</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">query.get_rendered_item_name</td>
-<td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot as a parameter (0 or 'main_hand' for main hand, 1 or 'off_hand' for off hand), and returns the name of the item in the requested slot that is currently being rendered (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.ground_speed</td>
@@ -491,7 +487,7 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.head_roll_angle</td>
-<td style="border-style:solid; border-width:3; padding:7px">returns the roll angle of the head of the wolf entity</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the roll angle of the head of the entity if it makes sense, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.head_x_rotation</td>
@@ -707,7 +703,7 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_selected_item</td>
-<td style="border-style:solid; border-width:3; padding:7px">returns true if the player has selected an item in the inventory</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">returns true if the player has selected an item in the inventory, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_shaking</td>
@@ -715,7 +711,7 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_shaking_wetness</td>
-<td style="border-style:solid; border-width:3; padding:7px">returns true if the entity is shaking water off</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is shaking water off, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_sheared</td>
@@ -827,7 +823,7 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.main_hand_item_max_duration</td>
-<td style="border-style:solid; border-width:3; padding:7px">returns the use time maximum duration for the main hand item.</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the use time maximum duration for the main hand item if it makes sense, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.main_hand_item_use_duration</td>
@@ -879,7 +875,7 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.shake_angle</td>
-<td style="border-style:solid; border-width:3; padding:7px">returns the shaking angle of the wolf entity</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the shaking angle of the entity if it makes sense, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.shake_time</td>
@@ -927,7 +923,7 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.tail_angle</td>
-<td style="border-style:solid; border-width:3; padding:7px">returns the angle of the tail of the wolf entity else it returns 0.0</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the angle of the tail of the entity if it makes sense, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.target_x_rotation</td>
