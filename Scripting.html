@@ -1,4 +1,5 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.12.0.28</h1>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.13.0.1</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Scripting System">Scripting System</a></th> </tr>
@@ -725,6 +726,14 @@ Creates a custom component that only exists in script. It can be then added, rem
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Registering a custom component<br / ><textarea readonly="true" cols="125" rows="6">
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  this.registerComponent("myPack:myCustomComponent", { myString: "string", myNumber: 0, myBool: true, myArray: [1, 2, 3] });
+};
+</textarea> </br>
 <br><br>
 
 <h2><p id="createComponent(EntityObject, ComponentIdentifier)">createComponent(EntityObject, ComponentIdentifier)</p></h2>
@@ -769,6 +778,28 @@ Creates the specified component and adds it to the entity. This should only be u
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Creating a custom component<br / ><textarea readonly="true" cols="125" rows="20">
+let globals = {
+  ready: false
+};
+
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  this.registerComponent("myPack:myCustomComponent", { myString: "string", myNumber: 0, myBool: true, myArray: [1, 2, 3] });
+}
+
+mySystem.update = function() {
+  if(globals.ready == false) {
+    globals.ready = true;
+    let myEntity = this.createEntity();
+    if(myEntity != null) {
+      let myComponent = this.createComponent(myEntity, "myPack:myCustomComponent");
+    }
+  }
+};
+</textarea> </br>
 <br><br>
 
 <h2><p id="hasComponent(EntityObject, ComponentIdentifier)">hasComponent(EntityObject, ComponentIdentifier)</p></h2>
@@ -818,6 +849,24 @@ Checks if the given entity has the specified component.</br><h3></h3>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Check whether an entity has specified component<br / ><textarea readonly="true" cols="63" rows="16">
+let globals = {
+  ready: false
+};
+
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.update = function() {
+  if(globals.ready == false) {
+    globals.ready = true;
+    let entity = this.createEntity("entity", "minecraft:pig");
+    if(this.hasComponent(entity, "minecraft:nameable")) {
+      // Do some work
+    }
+  }
+};
+</textarea> </br>
 <br><br>
 
 <h2><p id="getComponent(EntityObject, ComponentIdentifier)">getComponent(EntityObject, ComponentIdentifier)</p></h2>
@@ -883,6 +932,27 @@ Looks for the specified component in the entity. If it exists, retrieves the dat
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Get a specified component from an entity<br / ><textarea readonly="true" cols="77" rows="19">
+let globals = {
+  ready: false
+};
+
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.update = function() {
+  if(globals.ready == false) {
+    globals.ready = true;
+    let entity = this.createEntity("entity", "minecraft:pig");
+    let positionComponent = this.getComponent(entity, "minecraft:position");
+    if (positionComponent != null) {
+      positionComponent.data.x = 0;
+      positionComponent.data.y = 0;
+      positionComponent.data.z = 0;
+    }
+  }
+};
+</textarea> </br>
 <br><br>
 
 <h2><p id="applyComponentChanges(EntityObject, ComponentObject)">applyComponentChanges(EntityObject, ComponentObject)</p></h2>
@@ -927,6 +997,25 @@ Applies the component and any changes made to it in script back to the entity. W
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Apply updates to an entity's component<br / ><textarea readonly="true" cols="82" rows="17">
+let globals = {
+  pig: null
+};
+
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.update = function() {
+  if(globals.pig == null) {
+    globals.pig = this.createEntity("entity", "minecraft:pig");
+  }
+  else {
+    let positionComponent = this.getComponent(globals.pig, "minecraft:position");
+    positionComponent.data.y += 0.1;
+    this.applyComponentChanges(globals.pig, positionComponent);
+  }
+};
+</textarea> </br>
 <br><br>
 
 <h2><p id="destroyComponent(EntityObject, ComponentIdentifier)">destroyComponent(EntityObject, ComponentIdentifier)</p></h2>
@@ -971,6 +1060,32 @@ Removes the specified component from the given entity. If the entity has the com
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Destroy an entity's component<br / ><textarea readonly="true" cols="125" rows="24">
+let globals = {
+  myEntity: null
+};
+
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  this.registerComponent("myPack:myCustomComponent", { myString: "string", myNumber: 0, myBool: true, myArray: [1, 2, 3] });
+};
+
+mySystem.update = function() {
+  if(globals.myEntity == null) {
+    globals.myEntity = this.createEntity();
+  }
+  else {
+    if(this.hasComponent(globals.myEntity, "myPack:myCustomComponent")) {
+      this.destroyComponent(globals.myEntity, "myPack:myCustomComponent");
+    }
+    else {
+      this.createComponent(globals.myEntity, "myPack:myCustomComponent");
+    }
+  }
+};
+</textarea> </br>
 <br><br>
 
 <br><br>
@@ -1104,6 +1219,20 @@ Allows you to register a JavaScript object that gets called whenever the specifi
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Register a callback for a specified event<br / ><textarea readonly="true" cols="110" rows="12">
+const mySystem = client.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  this.listenForEvent("minecraft:client_entered_world", (eventData) => this.onClientEnteredWorld(eventData));
+};
+
+mySystem.onClientEnteredWorld = function(eventData) {
+  let messageData = this.createEventData("minecraft:display_chat_event");
+  messageData.data.message = "Player has entered the world";
+  this.broadcastEvent("minecraft:display_chat_event", messageData);
+};
+</textarea> </br>
 <br><br>
 
 <h2><p id="broadcastEvent(EventIdentifier, EventData)">broadcastEvent(EventIdentifier, EventData)</p></h2>
@@ -1148,6 +1277,17 @@ Allows you to trigger an event with the desired data from script. Anything that 
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Broadcasting an event<br / ><textarea readonly="true" cols="72" rows="9">
+const mySystem = client.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  let eventData = this.createEventData("minecraft:display_chat_event");
+  eventData.data.message = "Hello, World!";
+  this.broadcastEvent("minecraft:display_chat_event", eventData);
+};
+
+</textarea> </br>
 <br><br>
 
 <br><br>
@@ -1180,11 +1320,12 @@ Allows you to register a query. A query will contain all entities that meet the 
 <a href="#Index">Back to top</a><br><br>
 
 <h3>Code Example:</h3>
-Query Registration<br / ><textarea readonly="true" cols="40" rows="5">
-var simple_query = {};
-system.initialize = function() {
-  simple_query = this.registerQuery(); 
-}; 
+Query Registration<br / ><textarea readonly="true" cols="46" rows="6">
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  let myQuery = this.registerQuery();
+};
 </textarea> </br>
 <br><br>
 
@@ -1245,11 +1386,12 @@ Allows you to register a query that will only show entities that have the given 
 <a href="#Index">Back to top</a><br><br>
 
 <h3>Code Example:</h3>
-Query Registration<br / ><textarea readonly="true" cols="76" rows="5">
-var spacial_query = {};
-system.initialize = function() {
-  spacial_query = this.registerQuery("minecraft:position", "x", "y", "z"); 
-}; 
+Query Registration<br / ><textarea readonly="true" cols="78" rows="6">
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  let spatialQuery = this.registerQuery("minecraft:position", "x", "y", "z");
+};
 </textarea> </br>
 <br><br>
 
@@ -1271,12 +1413,23 @@ By default no filters are added. This will allow queries to capture all entities
 </tr>
 </table>
 <h3>Code Example:</h3>
-Query Filtering<br / ><textarea readonly="true" cols="63" rows="6">
-var filtered_query = {};
-system.initialize = function() {
-  filtered_query = this.registerQuery(); 
-  this.addFilterToQuery(filtered_query, "minecraft:explode"); 
-}; 
+Adding a filter to a query<br / ><textarea readonly="true" cols="140" rows="17">
+let globals = {
+  simpleQuery: null
+};
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  globals.simpleQuery = this.registerQuery();
+};
+
+mySystem.update = function() {
+  globals.simpleQuery = this.registerQuery();
+  this.addFilterToQuery(globals.simpleQuery, "minecraft:explode");  let explodingEntities = this.getEntitiesFromQuery(globals.simpleQuery);
+  for(var entity in explodingEntities) {
+    server.log(JSON.stringify(entity));
+  }
+};
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
@@ -1318,11 +1471,16 @@ Allows you to fetch the entities captured by a query.</br><h3></h3>
 <a href="#Index">Back to top</a><br><br>
 
 <h3>Code Example:</h3>
-Entity Fetching<br / ><textarea readonly="true" cols="70" rows="5">
-system.update = function() {
-  let all_entities = this.getEntitiesFromQuery(simple_query);
-  let exploding_creepers = this.getEntitiesFromQuery(filtered_query);
-}; 
+Get a list of entities from a query<br / ><textarea readonly="true" cols="60" rows="10">
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.update = function() {
+  let simpleQuery = this.registerQuery();
+  let allEntities = this.getEntitiesFromQuery(simpleQuery);
+  for(var entity in allEntities) {
+    server.log(JSON.stringify(entity));
+  }
+};
 </textarea> </br>
 <br><br>
 
@@ -1394,12 +1552,23 @@ Allows you to fetch the entities captured by a query that was created with a com
 <a href="#Index">Back to top</a><br><br>
 
 <h3>Code Example:</h3>
-Entity Fetching<br / ><textarea readonly="true" cols="143" rows="6">
-system.update = function() {
-  let player_pos_component = this.getComponent(player, "minecraft:position");
-  let pos = player_pos_component.data;
-  let entities_near_player = this.getEntitiesFromQuery(spacial_query, pos.x - 10, pos.x + 10, pos.y - 10, pos.y + 10, pos.z - 10, pos.z + 10);
-}; 
+Get a list of entities from a query<br / ><textarea readonly="true" cols="91" rows="17">
+let globals = {
+  spatialQuery: null
+};
+
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.initialize = function() {
+  globals.spatialQuery = this.registerQuery("minecraft:position", "x", "y", "z");
+};
+
+mySystem.update = function() {
+  let closeEntities = this.getEntitiesFromQuery(globals.spatialQuery, 0, 10, 0, 5, 0, 10);
+  for(var entity in closeEntities) {
+    server.log(JSON.stringify(entity));
+  }
+};
 </textarea> </br>
 <br><br>
 
@@ -1837,6 +2006,20 @@ This component controls the Attack Damage attribute from the entity. It allows y
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:container">minecraft:container</p></h2>
+
+This component represents the container of a block. The component contains an array of ItemStack JS API Objects representing each slot in the container. This specific component is used for blocks. Refer to inventory components for entities. NOTE: Currently items and containers are read-only. Slots are ordered left to right.</br><h3></h3>
+<br / ><textarea readonly="true" cols="71" rows="8">
+// This example will check if a block has a container.
+let block; // check getBlock API on how to access a block
+let has_container = system.hasComponent(block, "minecraft:container");
+if (has_container === true) {
+  let container = system.getComponent(block, "minecraft:container");
+  // you can now use the container to read items.
+
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
 <h2><p id="minecraft:collision_box">minecraft:collision_box</p></h2>
 
 Controls the collision box of the entity. When changes to the component are applied the entity's collision box is immediately updated to reflect the new dimensions. WARNING: If the change of the collision box dimensions would cause the entity to be inside a block, the entity might become stuck there and start suffocating.</br><h3>Parameters</h3>
@@ -1865,22 +2048,37 @@ Defines an array of damages and how the entity reacts to them - including whethe
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">on_damage</td>
-<td style="border-style:solid; border-width:2; padding:8px">List</td>
+<td style="border-style:solid; border-width:2; padding:8px">triggers</td>
+<td style="border-style:solid; border-width:2; padding:8px">Array</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">List of triggers with the events to call when taking this specific kind of damage, allows specifying filters for entity definitions and events</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">List of triggers with the events to call when taking specific kinds of damage.</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">on_damage</td>
+<td style="border-style:solid; border-width:1; padding:9px">JSON Object</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">Specifies filters for entity definitions and events.</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">deals_damage</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">true</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, the damage dealt to the entity will take away health from it, set to false to make the entity ignore that damage</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">deals_damage</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">true</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the damage dealt to the entity will take away health from it, set to false to make the entity ignore that damage.</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">cause</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">Type of damage that triggers this set of events</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">cause</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">Type of damage that triggers this set of events.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">damage_multiplier</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">1.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">A multiplier that modifies the base damage from the damage cause. If deals_damage is true the multiplier can only reduce the damage the entity will take to a minimum of 1.</br></td>
+</tr>
+</table>
+</td>
 </tr>
 </table>
 <h3></h3>
@@ -1974,7 +2172,7 @@ Controls the entity's explosion, timer until the explosion, and whether the time
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">fuseLength</td>
+<td style="border-style:solid; border-width:2; padding:8px">fuse_length</td>
 <td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
 <td style="border-style:solid; border-width:2; padding:8px">[0.0, 0.0]</td>
 <td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time the fuse will be lit before exploding, a negative value means the explosion will be immediate</br></td>
@@ -1986,19 +2184,19 @@ Controls the entity's explosion, timer until the explosion, and whether the time
 <td style="border-style:solid; border-width:2; padding:8px">The radius of the explosion in blocks and the amount of damage the explosion deals</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">maxResistance</td>
+<td style="border-style:solid; border-width:2; padding:8px">max_Resistance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">Infinite</td>
 <td style="border-style:solid; border-width:2; padding:8px">A blocks explosion resistance will be capped at this value when an explosion occurs</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">fuseLit</td>
+<td style="border-style:solid; border-width:2; padding:8px">fuse_lit</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, the fuse is already lit when this component is added to the entity</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">causesFire</td>
+<td style="border-style:solid; border-width:2; padding:8px">causes_fire</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, blocks in the explosion radius will be set on fire</br></td>
@@ -2010,13 +2208,13 @@ Controls the entity's explosion, timer until the explosion, and whether the time
 <td style="border-style:solid; border-width:2; padding:8px">If true, the explosion will destroy blocks in the explosion radius</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">fireAffectedByGriefing</td>
+<td style="border-style:solid; border-width:2; padding:8px">fire_affected_by_griefing</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, whether the explosion causes fire is affected by the mob griefing game rule</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">destroyAffectedByGriefing</td>
+<td style="border-style:solid; border-width:2; padding:8px">destroy_affected_by_griefing</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, whether the explosion breaks blocks is affected by the mob griefing game rule</br></td>
@@ -2319,19 +2517,19 @@ Makes the entity look at another entity. Once applied, if an entity of the speci
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">setTarget</td>
+<td style="border-style:solid; border-width:2; padding:8px">set_target</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">true</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, this entity will set the attack target as the entity that looked at it</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">searchRadius</td>
+<td style="border-style:solid; border-width:2; padding:8px">search_radius</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">10.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Maximum distance this entity will look for another entity looking at it</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">mAllowInvulnerable</td>
+<td style="border-style:solid; border-width:2; padding:8px">allow_invulnerable</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, invulnerable entities (e.g. Players in creative mode) are considered valid targets</br></td>
@@ -2555,6 +2753,10 @@ Controls the entity's ability to spawn an entity or an item. This is similar to 
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:tag">minecraft:tag</p></h2>
+
+The tag component gives access to the array of entity tags that an entity may have. With this component you can add and remove any of the entity tags.</br><a href="#Index">Back to top</a><br><br>
+
 <h2><p id="minecraft:teleport">minecraft:teleport</p></h2>
 
 This controls the entity's ability to teleport itself (similar to the Enderman). If you wish to teleport the entity once use the Position component instead.</br><h3>Parameters</h3>
@@ -2562,31 +2764,31 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">randomTeleports</td>
+<td style="border-style:solid; border-width:2; padding:8px">random_teleports</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">true</td>
 <td style="border-style:solid; border-width:2; padding:8px">If true, the entity will teleport randomly</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minRandomTeleportTime</td>
+<td style="border-style:solid; border-width:2; padding:8px">min_random_teleport_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">0.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minimum amount of time in seconds between random teleports</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">maxRandomTeleportTime</td>
+<td style="border-style:solid; border-width:2; padding:8px">max_random_teleport_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">20.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Maximum amount of time in seconds between random teleports</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">randomTeleportCube</td>
+<td style="border-style:solid; border-width:2; padding:8px">random_teleport_cube</td>
 <td style="border-style:solid; border-width:2; padding:8px">Vector [a, b, c]</td>
 <td style="border-style:solid; border-width:2; padding:8px">[32.0, 16.0, 32.0]</td>
 <td style="border-style:solid; border-width:2; padding:8px">Entity will teleport to a random position within the area defined by this cube</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">targetDistance</td>
+<td style="border-style:solid; border-width:2; padding:8px">target_distance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">16.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Maximum distance the entity will teleport when chasing a target</br></td>
@@ -2598,16 +2800,55 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <td style="border-style:solid; border-width:2; padding:8px">The chance that the entity will teleport between 0.0 and 1.0. 1.0 means 100%</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">lightTeleportChance</td>
+<td style="border-style:solid; border-width:2; padding:8px">light_teleport_chance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">0.01</td>
 <td style="border-style:solid; border-width:2; padding:8px">Modifies the chance that the entity will teleport if the entity is in daylight</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">darkTeleportChance</td>
+<td style="border-style:solid; border-width:2; padding:8px">dark_teleport_chance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">0.01</td>
 <td style="border-style:solid; border-width:2; padding:8px">Modifies the chance that the entity will teleport if the entity is in darkness</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:ticking_area_description">minecraft:ticking_area_description</p></h2>
+
+Describes the ticking area's region.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">name</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">The name of the area.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">origin</td>
+<td style="border-style:solid; border-width:2; padding:8px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">The origin position of the area.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">is_circle</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">Is the area a circle. If false the area is a square.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">radius</td>
+<td style="border-style:solid; border-width:2; padding:8px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">(if area is a circle) The radius of the area.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">max</td>
+<td style="border-style:solid; border-width:2; padding:8px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">(if area is a square) The edge of the area.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2719,17 +2960,19 @@ This event is triggered whenever the reticle changes from pointing at a block or
 </tr>
 </table>
 <h4>Code Example:</h4>
-<br / ><textarea readonly="true" cols="95" rows="5">
-system.initialize = function() {
-  this.listenForEvent("minecraft:hit_result_changed", (eventData) => this.onPick(eventData)); 
-}; 
+Responding to hit_result_changed<br / ><textarea readonly="true" cols="127" rows="14">
+const mySystem = client.registerSystem(0, 0);
 
-</textarea> </br>
-<br / ><textarea readonly="true" cols="157" rows="6">
-system.onPick = function(eventData) { 
-  if (eventData.position !== null) { 
-    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
-  } 
+mySystem.initialize = function() {
+  this.listenForEvent("minecraft:hit_result_changed", (eventData) => this.onHitChanged(eventData));
+};
+
+mySystem.onHitChanged = function(eventData) {
+  if(eventData.position != null) {
+    let chatEvent = this.createEventData("minecraft:display_chat_event");
+    chatEvent.data.message = "Hit at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z;
+    this.broadcastEvent("minecraft:display_chat_event", chatEvent);
+  }
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -2752,17 +2995,19 @@ This event is triggered every update and tells you what entity the reticle is po
 </tr>
 </table>
 <h4>Code Example:</h4>
-<br / ><textarea readonly="true" cols="98" rows="5">
-system.initialize = function() {
-  this.listenForEvent("minecraft:hit_result_continuous", (eventData) => this.onPick(eventData)); 
-}; 
+Responding to hit_result_continuous<br / ><textarea readonly="true" cols="132" rows="14">
+const mySystem = client.registerSystem(0, 0);
 
-</textarea> </br>
-<br / ><textarea readonly="true" cols="157" rows="6">
-system.onPick = function(eventData) { 
-  if (eventData.position !== null) { 
-    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
-  } 
+mySystem.initialize = function() {
+  this.listenForEvent("minecraft:hit_result_continuous", (eventData) => this.onHit(eventData));
+};
+
+mySystem.onHit = function(eventData) {
+  if(eventData.position != null) {
+    let chatEvent = this.createEventData("minecraft:display_chat_event");
+    chatEvent.data.message = "Position at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z;
+    this.broadcastEvent("minecraft:display_chat_event", chatEvent);
+  }
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -2785,17 +3030,19 @@ This event is triggered whenever the mouse pointer changes from pointing at a bl
 </tr>
 </table>
 <h4>Code Example:</h4>
-<br / ><textarea readonly="true" cols="100" rows="5">
-system.initialize = function() {
-  this.listenForEvent("minecraft:pick_hit_result_changed", (eventData) => this.onPick(eventData)); 
-}; 
+Responding to pick_hit_result_changed<br / ><textarea readonly="true" cols="128" rows="14">
+const mySystem = client.registerSystem(0, 0);
 
-</textarea> </br>
-<br / ><textarea readonly="true" cols="157" rows="6">
-system.onPick = function(eventData) { 
-  if (eventData.position !== null) { 
-    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
-  } 
+mySystem.initialize = function() {
+  this.listenForEvent("minecraft:pick_hit_result_changed", (eventData) => this.onPickChanged(eventData));
+};
+
+mySystem.onPickChanged = function(eventData) {
+  if(eventData.position != null) {
+    let chatEvent = this.createEventData("minecraft:display_chat_event");
+    chatEvent.data.message = "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z;
+    this.broadcastEvent("minecraft:display_chat_event", chatEvent);
+  }
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -2818,17 +3065,19 @@ This event is triggered every update and tells you what entity the mouse pointer
 </tr>
 </table>
 <h4>Code Example:</h4>
-<br / ><textarea readonly="true" cols="103" rows="5">
-system.initialize = function() {
-  this.listenForEvent("minecraft:pick_hit_result_continuous", (eventData) => this.onPick(eventData)); 
-}; 
+Responding to pick_hit_result_continuous<br / ><textarea readonly="true" cols="157" rows="14">
+const mySystem = client.registerSystem(0, 0);
 
-</textarea> </br>
-<br / ><textarea readonly="true" cols="157" rows="6">
-system.onPick = function(eventData) { 
-  if (eventData.position !== null) { 
-    this.broadcastEvent("minecraft:display_chat_event", "Pick at x:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.z); 
-  } 
+mySystem.initialize = function() {
+  this.listenForEvent("minecraft:pick_hit_result_continuous", (eventData) => this.onPick(eventData));
+};
+
+mySystem.onPick = function(eventData) {
+  if(eventData.position != null) {
+    let chatEvent = this.createEventData("minecraft:display_chat_event");
+    chatEvent.data.message = "Pick at:" + eventData.position.x + " y:" + eventData.position.y + " z:" + eventData.position.y + " z:" + eventData.position.z;
+    this.broadcastEvent("minecraft:display_chat_event", chatEvent);
+  }
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -2852,6 +3101,16 @@ This event is used to display a chat message to the specific player that is runn
 <td style="border-style:solid; border-width:1; padding:9px">The chat message that will be displayed</br></td>
 </tr>
 </table>
+<h4>Code Example:</h4>
+Trigger chat event<br / ><textarea readonly="true" cols="72" rows="8">
+const mySystem = server.registerSystem(0, 0);
+
+mySystem.update = function() {
+  let chatEvent = this.createEventData("minecraft:display_chat_event");
+  chatEvent.data.message = "Hello, World!";
+  this.broadcastEvent("minecraft:display_chat_event", chatEvent);
+};
+</textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:load_ui">minecraft:load_ui</p></h3>
@@ -3013,6 +3272,25 @@ This event is used to turn various levels of logging on and off for client scrip
 
 The following Minecraft events are events the Script Engine is listening for and to which you can react in scripts.</br><h3></h3>
 
+<h3><p id="minecraft:entity_attack">minecraft:entity_attack</p></h3>
+
+This event is triggered whenever an entity is being attacked by another entity. This does not guarantee the entity was or will be hurt by the attack.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that attacked</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">target</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was targeted in the attack</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:player_attacked_entity">minecraft:player_attacked_entity</p></h3>
 
 This event is triggered whenever a player attacks an entity.</br><h4>Parameters</h4>
@@ -3106,7 +3384,7 @@ This event is triggered whenever an entity is added to the world.</br><h4>Parame
 
 <h3><p id="minecraft:entity_death">minecraft:entity_death</p></h3>
 
-This event is triggered whenever an entity dies. This won't be triggered when an entity is removed (such as when using destroyEntity).</br><h4>Parameters</h4>
+This event is triggered whenever an entity dies. This won't be triggered when an entity is removed (such as when using destroyEntity). Not all of these values are present with every entity death.</br><h4>Parameters</h4>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
 <tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
@@ -3114,6 +3392,26 @@ This event is triggered whenever an entity dies. This won't be triggered when an
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
 <td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that died</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">killer</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that killed the entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that killed the entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">cause</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The cause of the entity's death</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">projectile_type</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The type of the projectile that killed the entity</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3152,6 +3450,69 @@ This event is triggered whenever an entity equips an item in their armor slots.<
 <td style="border-style:solid; border-width:1; padding:9px">item_stack</td>
 <td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The armor that is being equipped</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:entity_hurt">minecraft:entity_hurt</p></h3>
+
+This event is triggered whenever an entity is hurt.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that took damage</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">cause</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The way the entity took damage. Refer to the Damage Source documentation for a complete list of sources</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">attacker</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">Present only when damaged by an entity or projectile. The entity that attacked and caused the damage</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">projectile_type</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">Present only when damaged by a projectile. This is the identifier of the projectile that hit the entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:1; padding:9px">Present only when damaged by a block. This is the position of the block that hit the entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">damage</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The amount of damage the entity took after immunity and armor are taken into account</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">absorbed_damage</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The amount the damage was reduced by by the entity's absorption effect</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:entity_sneak">minecraft:entity_sneak</p></h3>
+
+This event is triggered whenever an entity flag's value changes.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that changed their sneaking state</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">sneaking</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">If true, the entity just started sneaking. If false, the entity just stopped sneaking</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3285,6 +3646,35 @@ This event is triggered whenever a player stops destroying a block.</br><h4>Para
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:block_exploded">minecraft:block_exploded</p></h3>
+
+This event is triggered whenever a block is destroyed by an explosion.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that exploded</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that was destroyed by the explosion</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_identifier</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The identifier of the block that was destroyed</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">cause</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The cause of the block's destruction</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:block_interacted_with">minecraft:block_interacted_with</p></h3>
 
 This event is triggered whenever a player interacts with a block.</br><h4>Parameters</h4>
@@ -3404,6 +3794,35 @@ This event is used to play a sound effect. Currently, sounds can only be played 
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:projectile_hit">minecraft:projectile_hit</p></h3>
+
+This event is triggered whenever a projectile hits something.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">projectile</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The projectile in question</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">owner</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that fired the projectile</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that was hit by the projectile, if any</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">position</td>
+<td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the collision</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:weather_changed">minecraft:weather_changed</p></h3>
 
 This event is triggered whenever the weather changes. It contains information about the weather it is changing to.</br><h4>Parameters</h4>
@@ -3433,6 +3852,27 @@ This event is triggered whenever the weather changes. It contains information ab
 <h2><p id="Trigger-able Events">Trigger-able Events</p></h2>
 
 The following Minecraft events can be triggered from scripting and the game will respond, accordingly.</br><h3></h3>
+
+<h3><p id="minecraft:entity_definition_event">minecraft:entity_definition_event</p></h3>
+
+This event is used to trigger events that Entity Definition JSON files are listening for. For example, you can trigger the minecraft:become_charged event on a creeper to turn it into a charged creeper.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity object you want to attach the effect to</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">event</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The identifier of the event to trigger on that entity. Both built-in (minecraft:) and custom events are supported</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:display_chat_event">minecraft:display_chat_event</p></h3>
 

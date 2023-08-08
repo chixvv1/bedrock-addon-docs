@@ -1,4 +1,5 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.12.0.28</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.1</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Why Does MoLang Exist?">Why Does MoLang Exist?</a></th> </tr>
@@ -413,6 +414,14 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity can walk, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.cape_flap_amount</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns value between 0.0 and 1.0 with 0.0 meaning cape is fully down and 1.0 is cape is fully up</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.cape_height_offset</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the body armor offset value used to adjust height on Elytra or Capes. Returns 0.0 if there's no body armor offset</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.current_squish_value</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the squish value for the current entity, or 0.0 if this doesn't make sense</br></td>
 </tr>
@@ -421,8 +430,24 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the time in seconds since the previous frame</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.eye_target_x_rotation</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the X eye rotation of the entity if it makes sense, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.eye_target_y_rotation</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the Y eye rotation of the entity if it makes sense, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.frame_alpha</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the ratio (from 0 to 1) of how much between AI ticks this frame is being rendered</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.get_equipped_item_name</td>
+<td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot index as a parameter (0 for main hand, 1 for off hand), and returns the name of the item in the requested slot (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.get_name</td>
+<td style="border-style:solid; border-width:3; padding:7px">get the name of the mob if there is one, otherwise return ''</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.ground_speed</td>
@@ -431,6 +456,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.has_armor_slot</td>
 <td style="border-style:solid; border-width:3; padding:7px">Takes the armor slot index as a parameter, and returns 1.0 if the entity has armor in the requested slot, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.has_cape</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the player has a cape, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.has_collision</td>
@@ -467,6 +496,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.invulnerable_ticks</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the number of ticks of invulnerability the entity has left if it makes sense, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_alive</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is alive, and 0.0 if it's dead</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_angry</td>
@@ -541,6 +574,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is being rendered in first person mode, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_ghost</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if an entity is a ghost, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_gliding</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is gliding, else it returns 0.0</br></td>
 </tr>
@@ -563,6 +600,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_in_love</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is in love, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_in_ui</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is rendered as part of the UI, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_in_water</td>
@@ -649,6 +690,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is scared, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_selected_item</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns true if the player has selected an item in the inventory</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_shaking</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is casting, else it returns 0.0</br></td>
 </tr>
@@ -691,6 +736,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_stackable</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is stackable, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_stalking</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is stalking, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_standing</td>
@@ -753,6 +802,18 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">debug log a value</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.main_hand_item_is_charged</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns if the item in the main hand is fully charged.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.main_hand_item_max_duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the use time maximum duration for the main hand item.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.main_hand_item_use_duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the use time for the main hand item.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.mark_variant</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the entity's mark variant</br></td>
 </tr>
@@ -773,8 +834,16 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the current walk speed of the entity modified by status flags such as is_baby or on_fire</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.open_mouth</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the delta feeding animation of a horse, or 0.0 if this doesn't make sense</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.overlay_alpha</td>
 <td style="border-style:solid; border-width:3; padding:7px">Do not use - this function is deprecated and will be removed</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.position_delta</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the position delta for an actor</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.previous_squish_value</td>
@@ -789,12 +858,20 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">returns the shaking angle of the wolf entity</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.shake_time</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the shake time of the entity.</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.sit_amount</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the current sit amount of the entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.skin_id</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the entity's skin ID</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.sleep_rotation</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the rotation of the bed the player is sleeping on.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.sneeze_counter</td>
@@ -815,6 +892,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.standing_scale</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the scale of how standing up the entity is</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.sub_variant</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the sub-type specifically for mobs that has an extra layer for their variants, or 0.0 if this doesn't make sense</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.swell_amount</td>
@@ -841,10 +922,6 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the current time stamp of the level</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">query.trade_experience</td>
-<td style="border-style:solid; border-width:3; padding:7px">Returns the current trade experience of the entity if it makes sense, else it returns 0.0</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.trade_tier</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the trade tier of the entity if it makes sense, else it returns 0.0</br></td>
 </tr>
@@ -855,6 +932,14 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.variant</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the entity's variant index</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.vertical_speed</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the speed of the entity up or down in metres/second, where positive is up</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.walk_distance</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the walk distance of the entity.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.wing_flap_position</td>
