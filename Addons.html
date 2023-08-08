@@ -1,4 +1,4 @@
-<h1>Version: 1.4.0.5</h1>
+<h1>Version: 1.5.0.14</h1>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#[01]Entity Definition Properties">Entity Definition Properties</a></th> </tr>
@@ -56,6 +56,7 @@
 <tr> <td> <a href="#minecraft:boostable"> minecraft:boostable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:breathable"> minecraft:breathable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:breedable"> minecraft:breedable</a> </tr> </td>
+<tr> <td> <a href="#minecraft:bribeable"> minecraft:bribeable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:damage_over_time"> minecraft:damage_over_time</a> </tr> </td>
 <tr> <td> <a href="#minecraft:damage_sensor"> minecraft:damage_sensor</a> </tr> </td>
 <tr> <td> <a href="#minecraft:environment_sensor"> minecraft:environment_sensor</a> </tr> </td>
@@ -69,6 +70,7 @@
 <tr> <td> <a href="#minecraft:jump.static"> minecraft:jump.static</a> </tr> </td>
 <tr> <td> <a href="#minecraft:leashable"> minecraft:leashable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:lookat"> minecraft:lookat</a> </tr> </td>
+<tr> <td> <a href="#minecraft:movement.amphibious"> minecraft:movement.amphibious</a> </tr> </td>
 <tr> <td> <a href="#minecraft:movement.basic"> minecraft:movement.basic</a> </tr> </td>
 <tr> <td> <a href="#minecraft:movement.fly"> minecraft:movement.fly</a> </tr> </td>
 <tr> <td> <a href="#minecraft:movement.generic"> minecraft:movement.generic</a> </tr> </td>
@@ -121,6 +123,7 @@
 <tr> <td> <a href="#minecraft:behavior.enderman_leave_block"> minecraft:behavior.enderman_leave_block</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.enderman_take_block"> minecraft:behavior.enderman_take_block</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.find_mount"> minecraft:behavior.find_mount</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.find_underwater_treasure"> minecraft:behavior.find_underwater_treasure</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.flee_sun"> minecraft:behavior.flee_sun</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.float"> minecraft:behavior.float</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.float_wander"> minecraft:behavior.float_wander</a> </tr> </td>
@@ -128,9 +131,11 @@
 <tr> <td> <a href="#minecraft:behavior.follow_mob"> minecraft:behavior.follow_mob</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.follow_owner"> minecraft:behavior.follow_owner</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.follow_parent"> minecraft:behavior.follow_parent</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.go_home"> minecraft:behavior.go_home</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.guardian_attack"> minecraft:behavior.guardian_attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.harvest_farm_block"> minecraft:behavior.harvest_farm_block</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.hurt_by_target"> minecraft:behavior.hurt_by_target</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.lay_egg"> minecraft:behavior.lay_egg</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.leap_at_target"> minecraft:behavior.leap_at_target</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.look_at_entity"> minecraft:behavior.look_at_entity</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.look_at_player"> minecraft:behavior.look_at_player</a> </tr> </td>
@@ -141,6 +146,7 @@
 <tr> <td> <a href="#minecraft:behavior.mount_pathing"> minecraft:behavior.mount_pathing</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_indoors"> minecraft:behavior.move_indoors</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_through_village"> minecraft:behavior.move_through_village</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.move_to_land"> minecraft:behavior.move_to_land</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_to_water"> minecraft:behavior.move_to_water</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_towards_restriction"> minecraft:behavior.move_towards_restriction</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_towards_target"> minecraft:behavior.move_towards_target</a> </tr> </td>
@@ -183,6 +189,7 @@
 <tr> <td> <a href="#minecraft:behavior.squid_out_of_water"> minecraft:behavior.squid_out_of_water</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.stay_while_sitting"> minecraft:behavior.stay_while_sitting</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.stomp_attack"> minecraft:behavior.stomp_attack</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.stomp_turtle_egg"> minecraft:behavior.stomp_turtle_egg</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.summon_entity"> minecraft:behavior.summon_entity</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.swell"> minecraft:behavior.swell</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.swim_wander"> minecraft:behavior.swim_wander</a> </tr> </td>
@@ -248,6 +255,8 @@
 <tr> <th><a href="#[10]Entities">Entities</a></th> </tr>
 <tr> <th><a href="#[11]Blocks">Blocks</a></th> </tr>
 <tr> <th><a href="#[12]Items">Items</a></th> </tr>
+<tr> <th><a href="#[13]Geometry">Geometry</a></th> </tr>
+<tr> <td> <a href="#Blocks"> Blocks</a> </tr> </td>
 </table>
 <a href="#Index">Back to top</a>
 <h3><p id="[01]Entity Definition Properties">Entity Definition Properties</p></h3>
@@ -492,6 +501,12 @@ Sets the Equipment table to use for this Entity.</br><h4>Parameters</h4>
 
 <table border="1">
 <tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>slot_drop_chance</td>
+<td>String</td>
+<td></td>
+<td>A list of slots with the chance to drop an equipped item from that slot.</br></td>
+</tr>
 <tr>
 <td>table</td>
 <td>String</td>
@@ -934,6 +949,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>731306871</br></td>
 </tr>
 <tr>
+<td>minecraft:behavior.find_underwater_treasure</td>
+<td>-1602192311</br></td>
+</tr>
+<tr>
 <td>minecraft:behavior.flee_sun</td>
 <td>-617664229</br></td>
 </tr>
@@ -962,6 +981,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>2127040136</br></td>
 </tr>
 <tr>
+<td>minecraft:behavior.go_home</td>
+<td>-1579225026</br></td>
+</tr>
+<tr>
 <td>minecraft:behavior.guardian_attack</td>
 <td>-579215554</br></td>
 </tr>
@@ -972,6 +995,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:behavior.hurt_by_target</td>
 <td>-1710404297</br></td>
+</tr>
+<tr>
+<td>minecraft:behavior.lay_egg</td>
+<td>-1207740530</br></td>
 </tr>
 <tr>
 <td>minecraft:behavior.leap_at_target</td>
@@ -1012,6 +1039,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:behavior.move_through_village</td>
 <td>779377630</br></td>
+</tr>
+<tr>
+<td>minecraft:behavior.move_to_land</td>
+<td>-943551837</br></td>
 </tr>
 <tr>
 <td>minecraft:behavior.move_to_water</td>
@@ -1182,6 +1213,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>-1851446496</br></td>
 </tr>
 <tr>
+<td>minecraft:behavior.stomp_turtle_egg</td>
+<td>851839416</br></td>
+</tr>
+<tr>
 <td>minecraft:behavior.summon_entity</td>
 <td>-2005850647</br></td>
 </tr>
@@ -1232,6 +1267,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:breedable</td>
 <td>-1616430100</br></td>
+</tr>
+<tr>
+<td>minecraft:bribeable</td>
+<td>0</br></td>
 </tr>
 <tr>
 <td>minecraft:burns_in_daylight</td>
@@ -1404,6 +1443,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:mark_variant</td>
 <td>663621689</br></td>
+</tr>
+<tr>
+<td>minecraft:movement.amphibious</td>
+<td>0</br></td>
 </tr>
 <tr>
 <td>minecraft:movement.basic</td>
@@ -1633,6 +1676,12 @@ Adds a timer for the entity to grow up. It can be accelerated by giving the enti
 
 <table border="1">
 <tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>drop_items</td>
+<td>List</td>
+<td></td>
+<td>List of items that the entity drops when it grows up.</br></td>
+</tr>
 <tr>
 <td>duration</td>
 <td>Decimal</td>
@@ -1870,6 +1919,12 @@ Defines the way an entity can get into the 'love' state.</br><h4>Parameters</h4>
 </td>
 </tr>
 <tr>
+<td>causes_pregnancy</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If true, the entity will become pregnant instead of spawning a baby.</br></td>
+</tr>
+<tr>
 <td>extraBabyChance</td>
 <td>Decimal</td>
 <td>0.0</td>
@@ -1913,6 +1968,29 @@ Defines the way an entity can get into the 'love' state.</br><h4>Parameters</h4>
 <td>Boolean</td>
 <td>true</td>
 <td>If true, the entities need to be tamed first before they can breed.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:bribeable">minecraft:bribeable</p></h3>
+
+<h4>Description</h4>
+
+Defines the way an entity can get into the 'bribed' state.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>bribe_cooldown</td>
+<td>Decimal</td>
+<td>2.0</td>
+<td>Time in seconds before the Entity can be bribed again</br></td>
+</tr>
+<tr>
+<td>bribe_items</td>
+<td>List</td>
+<td></td>
+<td>The list of items that can be used to bribe the entity</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2430,6 +2508,23 @@ Defines the behavior when another entity looks at this entity.</br><h4>Parameter
 <td>Boolean</td>
 <td>true</td>
 <td>If true, this entity will set the attack target as the entity that looked at it</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:movement.amphibious">minecraft:movement.amphibious</p></h3>
+
+<h4>Description</h4>
+
+This move control allows the mob to swim in water and walk on land.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>max_turn</td>
+<td>Decimal</td>
+<td>30.0</td>
+<td>The maximum number in degrees the mob can turn per tick.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3030,6 +3125,12 @@ Allows the entity to be a thrown entity.</br><h4>Parameters</h4>
 <td>Decimal</td>
 <td>0.6</td>
 <td>The fraction of the projectile's speed maintained every frame while traveling in water</br></td>
+</tr>
+<tr>
+<td>multipletargets</td>
+<td>Boolean</td>
+<td>true</td>
+<td>If true, the projectile can hit multiple entities per flight</br></td>
 </tr>
 <tr>
 <td>offset</td>
@@ -3808,7 +3909,7 @@ Defines an entity's transformation from the current definition into another</br>
 <td>drop_equipment</td>
 <td>Boolean</td>
 <td></td>
-<td>*EXPERIMENTAL* Cause the entity to drop all equipment upon transformation</br></td>
+<td>Cause the entity to drop all equipment upon transformation</br></td>
 </tr>
 <tr>
 <td>into</td>
@@ -4147,6 +4248,35 @@ Allows the mob to look around for another mob to ride atop it.</br><h4>Parameter
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.find_underwater_treasure">minecraft:behavior.find_underwater_treasure</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to move towards the nearest underwater ruin or shipwreck.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>search_range</td>
+<td>Integer</td>
+<td>0</td>
+<td>The range that the mob will search for a treasure chest within a ruin or shipwreck to move towards.</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+<tr>
+<td>stop_distance</td>
+<td>Decimal</td>
+<td>2.0</td>
+<td>The distance the mob will move before stopping.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.flee_sun">minecraft:behavior.flee_sun</p></h3>
 
 <h4>Description</h4>
@@ -4354,6 +4484,41 @@ Allows the mob to follow their parent around.</br><h4>Parameters</h4>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.go_home">minecraft:behavior.go_home</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to move back to the position they were spawned.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>goal_radius</td>
+<td>Decimal</td>
+<td>0.5</td>
+<td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>interval</td>
+<td>Integer</td>
+<td>120</td>
+<td>A random value to determine when to randomly move somewhere. This has a 1/interval chance to choose this goal</br></td>
+</tr>
+<tr>
+<td>on_home</td>
+<td>String</td>
+<td></td>
+<td>Event to run when this mob gets home.</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.guardian_attack">minecraft:behavior.guardian_attack</p></h3>
 
 <h4>Description</h4>
@@ -4435,6 +4600,47 @@ Allows the mob to target another mob that hurts them.</br><h4>Parameters</h4>
 <td>Boolean</td>
 <td>false</td>
 <td>If true, the mob will hurt its owner and other mobs with the same owner as itself</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:behavior.lay_egg">minecraft:behavior.lay_egg</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to lay an egg block on a sand block if the mob is pregnant.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>goal_radius</td>
+<td>Decimal</td>
+<td>0.5</td>
+<td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>on_lay</td>
+<td>String</td>
+<td></td>
+<td>Event to run when this mob lays the egg.</br></td>
+</tr>
+<tr>
+<td>search_height</td>
+<td>Integer</td>
+<td>1</td>
+<td>Height in blocks the mob will look for sand block to move towards</br></td>
+</tr>
+<tr>
+<td>search_range</td>
+<td>Integer</td>
+<td>0</td>
+<td>The distance in blocks it will look for a sand block to move towards</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -4748,6 +4954,41 @@ Can only be used by Villagers. Allows the villagers to create paths around the v
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.move_to_land">minecraft:behavior.move_to_land</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to move back onto land when in water.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>goal_radius</td>
+<td>Decimal</td>
+<td>0.5</td>
+<td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>search_height</td>
+<td>Integer</td>
+<td>1</td>
+<td>Height in blocks the mob will look for land to move towards</br></td>
+</tr>
+<tr>
+<td>search_range</td>
+<td>Integer</td>
+<td>0</td>
+<td>The distance in blocks it will look for land to move towards</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.move_to_water">minecraft:behavior.move_to_water</p></h3>
 
 <h4>Description</h4>
@@ -4772,7 +5013,7 @@ Allows the mob to move back into water when on land.</br><h4>Parameters</h4>
 <td>search_range</td>
 <td>Integer</td>
 <td>0</td>
-<td>The distance in blocks it will look for a water to move towards</br></td>
+<td>The distance in blocks it will look for water to move towards</br></td>
 </tr>
 <tr>
 <td>speed_multiplier</td>
@@ -5085,6 +5326,12 @@ Allows the mob to enter the panic state, which makes it run around and away from
 <td>Boolean</td>
 <td>false</td>
 <td>If true, this mob will not stop panicking until it can't move anymore or the goal is removed from it</br></td>
+</tr>
+<tr>
+<td>prefer_water</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If true, the mob will prefer water over land</br></td>
 </tr>
 <tr>
 <td>speed_multiplier</td>
@@ -5711,6 +5958,47 @@ Allows the mob to use the polar bear's melee attack.</br><h4>Parameters</h4>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.stomp_turtle_egg">minecraft:behavior.stomp_turtle_egg</p></h3>
+
+<h4>Description</h4>
+
+Allows this mob to stomp turtle eggs</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>goal_radius</td>
+<td>Decimal</td>
+<td>0.5</td>
+<td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>interval</td>
+<td>Integer</td>
+<td>120</td>
+<td>A random value to determine when to randomly move somewhere. This has a 1/interval chance to choose this goal</br></td>
+</tr>
+<tr>
+<td>search_height</td>
+<td>Integer</td>
+<td>1</td>
+<td>Height in blocks the mob will look for turtle eggs to move towards</br></td>
+</tr>
+<tr>
+<td>search_range</td>
+<td>Integer</td>
+<td>0</td>
+<td>The distance in blocks it will look for turtle eggs to move towards</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.summon_entity">minecraft:behavior.summon_entity</p></h3>
 
 <h4>Description</h4>
@@ -6069,11 +6357,7 @@ Filters allow data objects to specify test critera which allows their use.</br><
 
 <h4>Description</h4>
 
-Compares the current time with a float value in the range (0.0, 1.0).
-0.0= Noon
-0.25= Sunset
-0.5= Midnight
-0.75= Sunrise</br><h4>Parameters</h4>
+Compares the current time with a float value in the range (0.0, 1.0).0.0= Noon0.25= Sunset0.5= Midnight0.75= Sunrise</br><h4>Parameters</h4>
 
 <table border="1">
 <tr> <th>Name</th> <th>Type</th> <th>Default</th> <th>Description</th> </tr>
@@ -10647,6 +10931,11 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>111</br></td>
 </tr>
 <tr>
+<td>turtle</td>
+<td>4938</td>
+<td>74</br></td>
+</tr>
+<tr>
 <td>vex</td>
 <td>2921</td>
 <td>105</br></td>
@@ -10757,20 +11046,8 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>256.00</td>
 </tr>
 <tr>
-<td>412</td>
-<td>412.00</td>
-</tr>
-<tr>
 <td>413</td>
 <td>413.00</td>
-</tr>
-<tr>
-<td>414</td>
-<td>414.00</td>
-</tr>
-<tr>
-<td>415</td>
-<td>415.00</td>
 </tr>
 <tr>
 <td>416</td>
@@ -11277,6 +11554,10 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>99.00</td>
 </tr>
 <tr>
+<td>bubble_column</td>
+<td>415.00</td>
+</tr>
+<tr>
 <td>cactus</td>
 <td>81.00</td>
 </tr>
@@ -11367,6 +11648,10 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <tr>
 <td>concretePowder</td>
 <td>237.00</td>
+</tr>
+<tr>
+<td>conduit</td>
+<td>412.00</td>
 </tr>
 <tr>
 <td>coral</td>
@@ -12697,6 +12982,10 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>131.00</td>
 </tr>
 <tr>
+<td>turtle_egg</td>
+<td>414.00</td>
+</tr>
+<tr>
 <td>underwater_torch</td>
 <td>239.00</td>
 </tr>
@@ -12786,6 +13075,11 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <tr>
 <td>acacia_door</td>
 <td>430</td>
+<td></td>
+</tr>
+<tr>
+<td>air</td>
+<td>-158</td>
 <td></td>
 </tr>
 <tr>
@@ -13066,6 +13360,11 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <tr>
 <td>concrete_powder</td>
 <td>237</td>
+<td></td>
+</tr>
+<tr>
+<td>conduit</td>
+<td>-157</td>
 <td></td>
 </tr>
 <tr>
@@ -14679,6 +14978,21 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td></td>
 </tr>
 <tr>
+<td>turtle_egg</td>
+<td>-159</td>
+<td></td>
+</tr>
+<tr>
+<td>turtle_helmet</td>
+<td>469</td>
+<td></td>
+</tr>
+<tr>
+<td>turtle_shell_piece</td>
+<td>468</td>
+<td></td>
+</tr>
+<tr>
 <td>undyed_shulker_box</td>
 <td>205</td>
 <td></td>
@@ -14755,3 +15069,123 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
+
+<h3><p id="[13]Geometry">Geometry</p></h3>
+
+<h3><p id="Blocks">Blocks</p></h3>
+
+<h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>elements</td>
+<td>List</td>
+<td></td>
+<td>List of elements that make up the geometry of this block</br><h3><p id="boxes">boxes</p></h3>
+
+<h4>Description</h4>
+
+List of cubes that make up the geometry of this element</br><h4>Parameters</h4>
+
+<h3><p id="faces">faces</p></h3>
+
+<h4>Description</h4>
+
+List of the 6 faces of the box. If specified, there MUST be 6 faces (front, back, left side, right side, top, bottom)</br><h4>Parameters</h4>
+
+<h3><p id="material">material</p></h3>
+
+<h4>Description</h4>
+
+The material of this face if different from the box's</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="rotation">rotation</p></h3>
+
+<h4>Description</h4>
+
+UV Rotation of this face. Only acceptable values are 0, 90 and 270 degrees. This allows reusing a texture and just rotating it for different faces</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="uv">uv</p></h3>
+
+<h4>Description</h4>
+
+Texture coordinates of this face, given as min x, min y, max x, max y withg values between 0.0 and 1.0</br><a href="#Index">Back to top</a><br><br>
+
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="material">material</p></h3>
+
+<h4>Description</h4>
+
+The material of this box if different from the element's</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="origin">origin</p></h3>
+
+<h4>Description</h4>
+
+The position of the center of the box relative to the geometry</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="size">size</p></h3>
+
+<h4>Description</h4>
+
+Scale of the box in the x, y and z coordinates. A typical block is of scale 1, 1, 1</br><a href="#Index">Back to top</a><br><br>
+
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="material">material</p></h3>
+
+<h4>Description</h4>
+
+The material of this element if different from the block's</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="name">name</p></h3>
+
+<h4>Description</h4>
+
+Name of the element</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="parent">parent</p></h3>
+
+<h4>Description</h4>
+
+Name of the parent element of this element. Pivot and box positions are made relative to the parent element's pivot</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="pivot">pivot</p></h3>
+
+<h4>Description</h4>
+
+Position in model space of the pivot point of the element. This is used as the "center" position of the element, as well as the point around which to rotate</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="rotation">rotation</p></h3>
+
+<h4>Description</h4>
+
+The rotation of this element about its pivot</br><a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+<tr>
+<td>format_version</td>
+<td>String</td>
+<td>0.0.0.0</td>
+<td>Version of the block geometry being used. This is used to determine if backwards compatibility is needed</br></td>
+</tr>
+<tr>
+<td>materials</td>
+<td>List</td>
+<td>#0</td>
+<td>List of materials used by this model</br></td>
+</tr>
+<tr>
+<td>parent</td>
+<td>String</td>
+<td></td>
+<td>Parent model of this model</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
