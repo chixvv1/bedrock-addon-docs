@@ -1,4 +1,5 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.11.0.23</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.12.0.2</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Why Does MoLang Exist?">Why Does MoLang Exist?</a></th> </tr>
@@ -389,6 +390,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is blocking, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.body_y_rotation</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the body yaw rotation if called on an actor, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.can_climb</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity can climb, else it returns 0.0</br></td>
 </tr>
@@ -437,12 +442,20 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is affected by gravity, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.has_owner</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns true if the entity has an owner ID else it returns false</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.has_rider</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity has a rider, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.has_target</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity has a target, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.head_roll_angle</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the roll angle of the head of the wolf entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.head_x_rotation</td>
@@ -523,6 +536,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_fire_immune</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is immune to fire, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_first_person</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is being rendered in first person mode, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_gliding</td>
@@ -637,6 +654,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is casting, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_shaking_wetness</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns true if the entity is shaking water off</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_sheared</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is able to be sheared and is sheared, else it returns 0.0</br></td>
 </tr>
@@ -669,6 +690,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is sprinting, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_stackable</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is stackable, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_standing</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is standing, else it returns 0.0</br></td>
 </tr>
@@ -697,6 +722,18 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is climbing a wall, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.item_in_use_duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the amount of time an item has been in use in seconds up to the maximum duration, else 0.0 if it doesn't make sense</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.item_max_use_duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the maximum amount of time the item can be used, else 0.0 if it doesn't make sense</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.item_remaining_use_duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the amount of time an item has left to use in seconds, else 0.0 if it doesn't make sense</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.key_frame_lerp_time</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the ratio between the previous and next key frames</br></td>
 </tr>
@@ -705,8 +742,16 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the lie down amount for the entity</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.life_span</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the limited life span of an entity, or 0.0 if it lives forever</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.life_time</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the time in seconds since the current animation started, else 0.0 if not called within an animation</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.log</td>
+<td style="border-style:solid; border-width:3; padding:7px">debug log a value</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.mark_variant</td>
@@ -739,6 +784,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.roll_counter</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the roll counter of the entity</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.shake_angle</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the shaking angle of the wolf entity</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.sit_amount</td>
@@ -775,6 +824,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.swelling_dir</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the swelling direction of the entity if it makes sense, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.tail_angle</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the angle of the tail of the wolf entity else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.target_x_rotation</td>

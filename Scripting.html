@@ -1,9 +1,11 @@
-<h1>SCRIPTING DOCUMENTATION </br>Version: 1.11.0.23</h1>
+<h1>SCRIPTING DOCUMENTATION </br>Version: 1.12.0.2</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Scripting System">Scripting System</a></th> </tr>
 <tr> <td> <a href="#Demos"> Demos</a> </tr> </td>
 <tr> <td> <a href="#Known Issues"> Known Issues</a> </tr> </td>
+<tr> <td> <a href="#Breaking Changes"> Breaking Changes</a> </tr> </td>
 <tr> <td> <a href="#Pre-Requisites"> Pre-Requisites</a> </tr> </td>
 <tr> <td> <a href="#Getting Started"> Getting Started</a> </tr> </td>
 <tr> <td> <a href="#Structure of a Script"> Structure of a Script</a> </tr> </td>
@@ -13,15 +15,23 @@
 <tr> <td> <a href="#Level JS API Object"> Level JS API Object</a> </tr> </td>
 <tr> <td> <a href="#Component JS API Object"> Component JS API Object</a> </tr> </td>
 <tr> <td> <a href="#Query JS API Object"> Query JS API Object</a> </tr> </td>
+<tr> <td> <a href="#ItemStack JS API Object"> ItemStack JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Block JS API Object"> Block JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Ticking Area JS API Object"> Ticking Area JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Entity Ticking Area JS API Object"> Entity Ticking Area JS API Object</a> </tr> </td>
+<tr> <td> <a href="#Level Ticking Area JS API Object"> Level Ticking Area JS API Object</a> </tr> </td>
 <tr> <th><a href="#Script Bindings">Script Bindings</a></th> </tr>
 <tr> <td> <a href="#Entity Bindings"> Entity Bindings</a> </tr> </td>
 <tr> <td> <a href="#Component Bindings"> Component Bindings</a> </tr> </td>
 <tr> <td> <a href="#Event Bindings"> Event Bindings</a> </tr> </td>
 <tr> <td> <a href="#Entity Queries"> Entity Queries</a> </tr> </td>
+<tr> <td> <a href="#Slash Commands"> Slash Commands</a> </tr> </td>
+<tr> <td> <a href="#Block Bindings"> Block Bindings</a> </tr> </td>
 <tr> <th><a href="#Script Components">Script Components</a></th> </tr>
 <tr> <td> <a href="#Level Components"> Level Components</a> </tr> </td>
 <tr> <td> <a href="#Server Components"> Server Components</a> </tr> </td>
 <tr> <td> <a href="#Client Components"> Client Components</a> </tr> </td>
+<tr> <td> <a href="#Block Components"> Block Components</a> </tr> </td>
 <tr> <th><a href="#User-Defined Components">User-Defined Components</a></th> </tr>
 <tr> <th><a href="#Script Events">Script Events</a></th> </tr>
 <tr> <td> <a href="#Client Events"> Client Events</a> </tr> </td>
@@ -64,18 +74,6 @@ This is the list of currently known issues with the Minecraft Script Engine</br>
 <td style="border-style:solid; border-width:3; padding:7px">Currently you will only be able to use custom UI when running the game in regular mode</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">Custom UI resets after the application is suspended</td>
-<td style="border-style:solid; border-width:3; padding:7px">Currently there's no workaround for this issue</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">Custom UI prevents menus (such as the pause menu) from displaying</td>
-<td style="border-style:solid; border-width:3; padding:7px">You need to close and re-open Minecraft to exit out of a world that uses custom UI</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">Custom UI draws on top of the chat screen and chat pop-ups</td>
-<td style="border-style:solid; border-width:3; padding:7px">If you are using custom UI we recommend using Visual Studio to debug your scripts. Script errors are printed out to the chat but they won't be visible if you have a custom UI due to this bug</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:3; padding:7px">Custom UI doesn't retain state upon suspend and resume</td>
 <td style="border-style:solid; border-width:3; padding:7px">Currently there's no workaround for this issue</br></td>
 </tr>
@@ -84,12 +82,41 @@ This is the list of currently known issues with the Minecraft Script Engine</br>
 <td style="border-style:solid; border-width:3; padding:7px">Restart Minecraft before loading a new world with scripts</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px"> Pressing the Leave button at the end of the demo will display some errors</td>
-<td style="border-style:solid; border-width:3; padding:7px">The errors are from running the /fill command to replace a block with a block that's already there and can be safely ignored</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">Calling removeEntity on a dying entity might cause the game to crash</td>
+<td style="border-style:solid; border-width:3; padding:7px">Don't call removeEntity the same frame you reduced the entity's damage to 0. Removing the entity forces it to be removed right away. Instead, save any dying entities and clean the up on the next frame (See the Turn-Based Demo for an example of this)</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Breaking Changes">Breaking Changes</p></h1>
+
+While we continue to work and refine the experimental Scripting API we might need to make changes that will break your current scripts. Please check this section if your scripts aren't working as expected.</br><h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Category</th> <th style="border-style:solid; border-width:3;">Change</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">UI</td>
+<td style="border-style:solid; border-width:3; padding:7px">engine.on now takes a facet name. In order to check for the script engine starting and connect it to the UI you will need the following:</br>engine.on("facet:updated:core.scripting", ...);</br>Followed by the following line after you are done doing your initialization:</br>engine.trigger("facet:request", ["core.scripting"]);</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px"> There might be an extra Ocelot at the beginning of the game</td>
-<td style="border-style:solid; border-width:3; padding:7px">This is due to the built-in behavior of Ocelot to spawn with a litter but is otherwise a harmless issue</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">Components</td>
+<td style="border-style:solid; border-width:3; padding:7px">Calls to getComponent now return the component's parameters inside of the 'data' parameter of the return object.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Events</td>
+<td style="border-style:solid; border-width:3; padding:7px">Event data objects now hold the event's parameters inside of the 'data' parameter of the event data object.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Events</td>
+<td style="border-style:solid; border-width:3; padding:7px">Custom events need to be registered before using. Check the documentation for registerEventData for more information.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Events</td>
+<td style="border-style:solid; border-width:3; padding:7px">Custom events need to have a namespace and can't use the 'minecraft' namespace. This namespace is reserved for built-in events only.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">Events</td>
+<td style="border-style:solid; border-width:3; padding:7px">Event Data is now standardized. Call createEventData to create an event data object prefilled with all the fields and default values for an event. You will need this event data object to trigger any events.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -130,7 +157,17 @@ So you want to make your own Scripts? That's awesome! In this section you will f
 
 <h1><p id="Getting Started">Getting Started</p></h1>
 
-First you will need to download the latest Vanilla Behavior Pack. You can get this from the following link: https://aka.ms/behaviorpacktemplate </br>Once you have downloaded the Behavior Pack, unzip it to a folder. Inside the Behavior Pack you will find the scripts folder which contains all the scripting files you want to run.</br>In the scripts folder you will find two folders: one for client scripts and one for server scripts.</br>-Server Scripts: These scripts run on the server side of the game. This includes spawning new entities, adding components, or modifying components on an entity.</br>-Client Scripts: These scripts run on each individual player's side of the game. This is a good place to respond to events and manage anything specific to the player.</br>Once you have chosen whether you are making a client or server script, simply add a new blank text file with .js extension to the appropriate folder, and open it in your preferred code editor. Then code away! You can have as many or as few JavaScript files as you want here (the name of the files doesn't matter) and they will all be run independently of each other!</br></br> NOTE: For scripts to be run by the game, you need to enable Experimental Gameplay on the world where you will run scripts on. This will be necessary while scripting is still in beta.</br>When entering a world that has client scripts in it, you will be prompted to accept that you wish to run scripts on your device (this will show up both for local worlds as well as multiplayer worlds).</br><h2>Folder Structure</h2>
+First you will need to download the latest Vanilla Behavior Pack. You can get this from the following link: https://aka.ms/behaviorpacktemplate </br>Once you have downloaded the Behavior Pack, unzip it to a folder. Inside the Behavior Pack you will find the scripts folder which contains all the scripting files you want to run.</br>In the scripts folder you will find two folders: one for client scripts and one for server scripts.</br>-Server Scripts: These scripts run on the server side of the game. This includes spawning new entities, adding components, or modifying components on an entity.</br>-Client Scripts: These scripts run on each individual player's side of the game. This is a good place to respond to events and manage anything specific to the player.</br>Once you have chosen whether you are making a client or server script, simply add a new blank text file with .js extension to the appropriate folder, and open it in your preferred code editor. Then code away! You can have as many or as few JavaScript files as you want here (the name of the files doesn't matter) and they will all be run independently of each other!</br></br> NOTE: For scripts to be run by the game, you need to enable Experimental Gameplay on the world where you will run scripts on. This will be necessary while scripting is still in beta.</br>When entering a world that has client scripts in it, you will be prompted to accept that you wish to run scripts on your device (this will show up both for local worlds as well as multiplayer worlds).</br>Additionally, if your pack contains client scripts, you need to include a client_data module in the pack's manifest. This tells the game anything in the scripts/client folder needs to be sent over to the clients. Please refer to the Add-on Documentation page for more information on the pack's manifest contents.</br><h2>Folder Structure</h2>
+Example of manifest module needed for client scripts<br / ><textarea readonly="true" cols="60" rows="9">
+
+        {
+            "description": "Example client scripts module",
+            "type": "client_data",
+            "uuid": "c05a992e-482a-455f-898c-58bbb4975e47",
+            "version": [0, 0, 1]
+        }
+
+</textarea> </br>
 vanilla_behavior_pack<br / ><textarea readonly="true" cols="22" rows="8">
 |-scripts
 |--client
@@ -175,9 +212,9 @@ let sampleServerSystem = server.registerSystem(0, 0);
 <h2><p id="2. System Initialization">2. System Initialization</p></h2>
 
 This is the first method that gets called immediately after the system is registered. It will run as soon as the script loads at world start.</br>You can use this to set up the environment for your script: register custom components and events, sign up event listeners, etc. This will run BEFORE the world is ready and the player has been added to it. This function should be used to initialize variables and setup event listeners. 					You shouldn't try to spawn or interact with any entities at this point! You should also avoid interaction with UI elements or sending messages to the chat window since this is called before the player is ready.</br><h3>Code Example:</h3>
-<br / ><textarea readonly="true" cols="39" rows="4">
+<br / ><textarea readonly="true" cols="82" rows="4">
 sampleSystem.initialize = function() {
-  //Initialize all the things
+  //register event data, register components, register queries, listen for events
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -197,7 +234,7 @@ sampleSystem.update = function() {
 This method gets called when the Minecraft Script Engine is shutting down. For the client this is when they leave the world; for the server this is after the last player has exited the world.</br><h3>Code Example:</h3>
 <br / ><textarea readonly="true" cols="37" rows="4">
 sampleSystem.shutdown = function() {
-  //Cleanup all the things
+  //Cleanup script only things
 };
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
@@ -286,7 +323,7 @@ Here you can find the definition of some objects returned by the script API.</br
 <td style="border-style:solid; border-width:3; padding:7px">data</td>
 <td style="border-style:solid; border-width:3; padding:7px">JavaScript Object</td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
-<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the content of the component.</br></td>
+<td style="border-style:solid; border-width:3; padding:7px">This is the content of the component.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -312,6 +349,142 @@ Here you can find the definition of some objects returned by the script API.</br
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h1><p id="ItemStack JS API Object">ItemStack JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">ItemStack JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "item_stack".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__identifier__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is entity and the object is representing a vanilla cow, the identifier would be minecraft:cow</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">item</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the identifier of the item.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">count</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the number of items in the stack.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Block JS API Object">Block JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Block JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "block".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__identifier__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the identifier for the object in the format namespace:name. For example, if the type is block and the object is representing a block of bedrock, the identifier would be minecraft:bedrock</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">ticking_area</td>
+<td style="border-style:solid; border-width:3; padding:7px">JavaScript Object</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the ticking area object that was used to get this block.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">block_position</td>
+<td style="border-style:solid; border-width:3; padding:7px">JavaScript Object</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the position of the block and it functions as part of its unique identifier.</br><h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">x</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The x position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">y</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The y position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">z</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The z position</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Ticking Area JS API Object">Ticking Area JS API Object</p></h1>
+
+There are two types of ticking area objects. Entity and Level. When a function calls for a ticking area it can take either type as an argument.</br><a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Entity Ticking Area JS API Object">Entity Ticking Area JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Entity Ticking Area JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "entity_ticking_area".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">entity_ticking_area_id</td>
+<td style="border-style:solid; border-width:3; padding:7px">Positive Integer</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the unique identifier of the ticking area.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Level Ticking Area JS API Object">Level Ticking Area JS API Object</p></h1>
+
+<h2></h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Level Ticking Area JS API Object</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">__type__</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This defines the type of object. Will be: "level_ticking_area".</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">level_ticking_area_id</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">READ ONLY. This is the unique identifier of the ticking area.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <br><br>
 
 <h1><p id="Script Bindings">Script Bindings</p></h1>
@@ -322,7 +495,7 @@ Bindings are the capabilities of the Minecraft Script Engine to change or modify
 
 <h2><p id="createEntity()">createEntity()</p></h2>
 
-Creates an empty entity with no components and does not place it in the world. The empty entity will be of type custom and have a blank identifier. This is NOT a valid entity that exists in the world, just an empty one that only scripts know about.</br><h3></h3>
+Creates an empty entity with no components and does not place it in the world. The empty entity will be of type custom and have a blank identifier. This is NOT a valid entity that exists in the world, just an empty one that only scripts know about.</br></br>NOTE: Entities are created first on the server, with the client notified of new entities afterwards. Be aware that if you send the result object to the client right away, the created entity might not exist on the client yet.</br><h3></h3>
 
 <h3><p id="Return Value">Return Value</p></h3>
 
@@ -347,7 +520,7 @@ Creates an empty entity with no components and does not place it in the world. T
 
 <h2><p id="createEntity(Type, TemplateIdentifier)">createEntity(Type, TemplateIdentifier)</p></h2>
 
-Creates an entity and applies the specified template as defined in JSON. This allows you to quickly create an entity from the applied Behavior Packs as the base for an entity created in scripting. The entity will be spawned into the world with all the components, component groups, and event triggers that are defined in the JSON file of the identifier specified. Only works on scripts registered on the server.</br><h3></h3>
+Creates an entity and applies the specified template as defined in JSON. This allows you to quickly create an entity from the applied Behavior Packs as the base for an entity created in scripting. The entity will be spawned into the world with all the components, component groups, and event triggers that are defined in the JSON file of the identifier specified. Only works on scripts registered on the server.NOTE: Entities are created first on the server, with the client notified of new entities afterwards. Be aware that if you send the result object to the client right away, the created entity might not exist on the client yet.</br><h3></h3>
 
 <h3><p id="Parameters">Parameters</p></h3>
 
@@ -663,7 +836,7 @@ Looks for the specified component in the entity. If it exists, retrieves the dat
 <td style="border-style:solid; border-width:1; padding:10px">data</td>
 <td style="border-style:solid; border-width:1; padding:10px">JavaScript Object</td>
 <td style="border-style:solid; border-width:1; padding:10px"></td>
-<td style="border-style:solid; border-width:1; padding:10px">READ ONLY. This is the content of the component.</br></td>
+<td style="border-style:solid; border-width:1; padding:10px">This is the content of the component.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -773,6 +946,89 @@ Removes the specified component from the given entity. If the entity has the com
 <h1><p id="Event Bindings">Event Bindings</p></h1>
 
 These are the bindings used to handle events. For a list of events you can react to or trigger, check the Events section of this document.</br><h2></h2>
+
+<h2><p id="registerEventData(EventIdentifier, EventData)">registerEventData(EventIdentifier, EventData)</p></h2>
+
+Registers the Event to the script engine. This allows you to create Event Data by calling createEventData and have it initialized with the correct default data and fields. Only custom events need to be registered.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">EventIdentifier</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the identifier of the custom event we are registering. The namespace is required and can't be set to minecraft.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">EventData</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The JavaScript object with the correct fields and default values for the event</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">true</td>
+<td style="border-style:solid; border-width:1; padding:9px">Successfully registered the event data</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when registering the event for listening</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h2><p id="createEventData(EventIdentifier)">createEventData(EventIdentifier)</p></h2>
+
+Creates an object with all the required fields and default data for the specified event. If the event is a custom event, it needs to have been previously registered.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">EventIdentifier</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">This is the identifier of the custom event we are registering. The namespace is required and can't be set to minecraft.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The object containing the event data</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when registering the event for listening</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
 
 <h2><p id="listenForEvent(EventIdentifier, CallbackObject)">listenForEvent(EventIdentifier, CallbackObject)</p></h2>
 
@@ -891,6 +1147,13 @@ Allows you to register a query. A query will contain all entities that meet the 
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Query Registration<br / ><textarea readonly="true" cols="40" rows="5">
+var simple_query = {};
+system.initialize = function() {
+  simple_query = this.registerQuery(); 
+}; 
+</textarea> </br>
 <br><br>
 
 <h2><p id="registerQuery(Component, ComponentField1, ComponentField2, ComponentField3)">registerQuery(Component, ComponentField1, ComponentField2, ComponentField3)</p></h2>
@@ -949,6 +1212,13 @@ Allows you to register a query that will only show entities that have the given 
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Query Registration<br / ><textarea readonly="true" cols="76" rows="5">
+var spacial_query = {};
+system.initialize = function() {
+  spacial_query = this.registerQuery("minecraft:position", "x", "y", "z"); 
+}; 
+</textarea> </br>
 <br><br>
 
 <h2><p id="addFilterToQuery(Query, ComponentIdentifier)">addFilterToQuery(Query, ComponentIdentifier)</p></h2>
@@ -968,6 +1238,14 @@ By default no filters are added. This will allow queries to capture all entities
 <td style="border-style:solid; border-width:2; padding:8px">This is the identifier of the component that will be added to the filter list. Only entities that have that component will be listed in the query</br></td>
 </tr>
 </table>
+<h3>Code Example:</h3>
+Query Filtering<br / ><textarea readonly="true" cols="63" rows="6">
+var filtered_query = {};
+system.initialize = function() {
+  filtered_query = this.registerQuery(); 
+  this.addFilterToQuery(filtered_query, "minecraft:explode"); 
+}; 
+</textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h2><p id="getEntitiesFromQuery(Query)">getEntitiesFromQuery(Query)</p></h2>
@@ -1007,6 +1285,13 @@ Allows you to fetch the entities captured by a query.</br><h3></h3>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Entity Fetching<br / ><textarea readonly="true" cols="70" rows="5">
+system.update = function() {
+  let all_entities = this.getEntitiesFromQuery(simple_query);
+  let exploding_creepers = this.getEntitiesFromQuery(filtered_query);
+}; 
+</textarea> </br>
 <br><br>
 
 <h2><p id="getEntitiesFromQuery(Query, ComponentField1_Min, ComponentField2_Min, ComponentField3_Min, ComponentField1_Max, ComponentField2_Max, ComponentField3_Max)">getEntitiesFromQuery(Query, ComponentField1_Min, ComponentField2_Min, ComponentField3_Min, ComponentField1_Max, ComponentField2_Max, ComponentField3_Max)</p></h2>
@@ -1076,6 +1361,346 @@ Allows you to fetch the entities captured by a query that was created with a com
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3>Code Example:</h3>
+Entity Fetching<br / ><textarea readonly="true" cols="143" rows="6">
+system.update = function() {
+  let player_pos_component = this.getComponent(player, "minecraft:position");
+  let pos = player_pos_component.data;
+  let entities_near_player = this.getEntitiesFromQuery(spacial_query, pos.x - 10, pos.x + 10, pos.y - 10, pos.y + 10, pos.z - 10, pos.z + 10);
+}; 
+</textarea> </br>
+<br><br>
+
+<br><br>
+
+<h1><p id="Slash Commands">Slash Commands</p></h1>
+
+You can use the traditional Slash Command system from scripts. Currently you can either trigger an event ("minecraft:execute_command") or use the executeCommand binding. Commands in scripts are restricted to server scripts, they can't be run from the client's side at the moment.</br><h2></h2>
+
+<h2><p id="executeCommand(Command, Callback)">executeCommand(Command, Callback)</p></h2>
+
+Allows you to execute a Slash Command on the server. The command will be queried and executed at the end of the current frame. All data output from the command will be compiled on a JavaScript Object and sent to the Callback object specified in the second parameter.</br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">Command</td>
+<td style="border-style:solid; border-width:2; padding:8px">String</td>
+<td style="border-style:solid; border-width:2; padding:8px">The slash command to run</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">Callback</td>
+<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
+<td style="border-style:solid; border-width:2; padding:8px">The JavaScript object that will be called after the command executes</br></td>
+</tr>
+</table>
+<h3>Example</h3>
+<br / ><textarea readonly="true" cols="183" rows="11">
+system.executeCommand("/fill ~ ~ ~ ~100 ~5 ~50 stone", (commandResultData) => this.commandCallback(commandResultData));
+
+system.commandCallback = function (commandResultData) {
+  let eventData = this.createEventData("minecraft:display_chat_event");
+  if (eventData) {
+    eventData.data.message = message;
+    this.broadcastEvent("minecraft:display_chat_event", "Callback called! Command: " + commandResultData.command + " Data: " + JSON.stringify(commandResultData.data, null, "    ") );
+  }
+};
+
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h1><p id="Block Bindings">Block Bindings</p></h1>
+
+These functions define how you interact with blocks.</br><h2></h2>
+
+<h2><p id="getBlock(Ticking Area, x, y, z)">getBlock(Ticking Area, x, y, z)</p></h2>
+
+Allows you to get a block from the world when provided an x, y, and z position. The block must be within a ticking area.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area</td>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The ticking area the block is in</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">x</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The x position of the block you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">y</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The y position of the block you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">z</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The z position of the block you want</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Block JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">object</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object containing the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the block</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h2><p id="getBlock(Ticking Area, PositionObject)">getBlock(Ticking Area, PositionObject)</p></h2>
+
+Allows you to get a block from the world when provided a JavaScript object containing a position. The block must be within a ticking area.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area</td>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The ticking area the block is in</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">PositionObject</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">A JavaScript object with the x, y, and z position of the block you want</br><h5><p id="Parameters">Parameters</p></h5>
+
+<h6></h6>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">x</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The x position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">y</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The y position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">z</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The z position</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Block JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">object</td>
+<td style="border-style:solid; border-width:1; padding:9px">An object containing the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the block</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h2><p id="getBlocks(Ticking Area, x min, y min, z min, x max, y max, z max)">getBlocks(Ticking Area, x min, y min, z min, x max, y max, z max)</p></h2>
+
+Allows you to get an array of blocks from the world when provided a minimum and maximum x, y, and z position. The blocks must be within a ticking area.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area</td>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The ticking area the blocks are in</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">x min</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The minimum x position of the blocks you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">y min</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The minimum y position of the blocks you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">z min</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The minimum z position of the blocks you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">x max</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The maximum x position of the blocks you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">y max</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The maximum y position of the blocks you want</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">z max</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The maximum z position of the blocks you want</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Array</td>
+<td style="border-style:solid; border-width:1; padding:9px">array</td>
+<td style="border-style:solid; border-width:1; padding:9px">An array of block objects</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the blocks</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h2><p id="getBlocks(Ticking Area, Minimum PositionObject, Maximum PositionObject)">getBlocks(Ticking Area, Minimum PositionObject, Maximum PositionObject)</p></h2>
+
+Allows you to get an array of blocks from the world when provided a minimum and maximum position. The blocks must be within a ticking area.</br><h3></h3>
+
+<h3><p id="Parameters">Parameters</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area</td>
+<td style="border-style:solid; border-width:1; padding:9px">Ticking Area JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The ticking area the blocks are in</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Minimum PositionObject</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">A JavaScript object with the minimum x, y, and z position of the blocks you want</br><h5><p id="Parameters">Parameters</p></h5>
+
+<h6></h6>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">x</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The x position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">y</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The y position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">z</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The z position</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Maximum PositionObject</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">A JavaScript object with the maximum x, y, and z position of the blocks you want</br><h5><p id="Parameters">Parameters</p></h5>
+
+<h6></h6>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">x</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The x position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">y</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The y position</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:10px">z</td>
+<td style="border-style:solid; border-width:1; padding:10px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:10px">The z position</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+</td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="Return Value">Return Value</p></h3>
+
+<h4></h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">Array</td>
+<td style="border-style:solid; border-width:1; padding:9px">array</td>
+<td style="border-style:solid; border-width:1; padding:9px">An array of block objects</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">null</td>
+<td style="border-style:solid; border-width:1; padding:9px">Something went wrong when retrieving the blocks</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <br><br>
 
 <br><br>
@@ -1086,57 +1711,69 @@ Allows you to fetch the entities captured by a query that was created with a com
 
 This is the documentation for the attributes, properties, and components available from the Minecraft Script Engine.</br>There are two kinds of components: server components and client components. We will go into a bit more detail on what they are in their respective sections below.</br>Components can be added, retrieved, updated, and removed from entities. They do not exist on their own. Currently only user-defined components can be added and removed from entities. A component must be in an entity in order to retrieve or update it.</br>Check the Script Engine Bindings section to see how to add, remove, retrieve, and update components. This section deals with the specific API of each component.</br><h1><p id="Level Components">Level Components</p></h1>
 
-These are the components that belong to the level. They can only belong on the level object and cannot be removed from it. You can get the components and change their data through the global server object.</br><h2></h2>
+These are the components that belong to the level. They can only belong on the level object and cannot be removed from it. You can get the components and change their data through the global server object.</br></br>let levelComponent = this.getComponent(server.level, "minecraft:example_level_component");</br><h2></h2>
 
-<h3></h3>
-Getting Level Components<br / ><textarea readonly="true" cols="91" rows="2">
-let levelComponent = this.getComponent(server.level, "minecraft:example_level_component");
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
+<h2><p id="minecraft:ticking_areas">minecraft:ticking_areas</p></h2>
 
-<h3>Parameters</h3>
+This component gives access to the static ticking areas in the level. The component contains an array of ticking areas. The ticking areas can be accessed by name or by UUID if they were not given a name.</br><a href="#Index">Back to top</a><br><br>
 
-<h3><p id="minecraft:weather">minecraft:weather</p></h3>
+<h2><p id="minecraft:weather">minecraft:weather</p></h2>
 
-The weather component allows users to change the level's weather. Rain and lightning levels can be changed independently and the default weather cycle can be turned off completely.</br><h4>Parameters</h4>
+The weather component allows users to change the level's weather. Rain and lightning levels can be changed independently and the default weather cycle can be turned off completely.</br><h3>Parameters</h3>
 
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
-<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">do_weather_cycle</td>
-<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
-<td style="border-style:solid; border-width:1; padding:9px">This is the world option that determines if the vanilla weather cycle will be used</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">do_weather_cycle</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">This is the world option that determines if the vanilla weather cycle will be used</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">rain_level</td>
-<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
-<td style="border-style:solid; border-width:1; padding:9px">A value between 0 and 1 that determains how heavy the rainfall is</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">rain_level</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">A value between 0 and 1 that determains how heavy the rainfall is</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">rain_time</td>
-<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:9px">How long, in ticks, it will rain for</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">rain_time</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">How long, in ticks, it will rain for</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">lightning_level</td>
-<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
-<td style="border-style:solid; border-width:1; padding:9px">A value between 0 and 1 that determines how much lightning and thunder there is</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">lightning_level</td>
+<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
+<td style="border-style:solid; border-width:2; padding:8px">A value between 0 and 1 that determines how much lightning and thunder there is</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:1; padding:9px">lightning_time</td>
-<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
-<td style="border-style:solid; border-width:1; padding:9px">How long, in ticks, it will lightning and thunder for</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">lightning_time</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">How long, in ticks, it will lightning and thunder for</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
 <br><br>
 
-<br><br>
-
 <h1><p id="Server Components">Server Components</p></h1>
 
 These are the components that run on the server and are synced with all the clients (players) in the world.</br>As much as possible, the API of each component matches its JSON counterpart (with some differences noted).</br><h2></h2>
+
+<h2><p id="minecraft:armor_container">minecraft:armor_container</p></h2>
+
+This component represents the armor contents of an entity. The component contains an array of ItemStack JS API Objects representing each slot in the armor container. NOTE: Currently items and containers are read-only. Slots are ordered from head to feet.</br><h3></h3>
+<br / ><textarea readonly="true" cols="113" rows="12">
+// This example will check the players helmet armor slot for a specific item after the player attacks an entity.
+system.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
+    // Get the players armor container
+    let playerArmor = system.getComponent(eventData.data.player, "minecraft:armor_container");
+    // Get the players helmet
+    let playerHelmet = playerArmor.data[0];
+    // Destroy the attacked entity if the player has a gold helmet equipped
+    if (playerHelmet.item == "minecraft:golden_helmet") {
+        system.destroyEntity(eventData.data.attacked_entity);
+    }
+});
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:attack">minecraft:attack</p></h2>
 
@@ -1148,19 +1785,22 @@ This component controls the Attack Damage attribute from the entity. It allows y
 <td style="border-style:solid; border-width:2; padding:8px">damage</td>
 <td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">Range of the random amount of damage the melee attack deals. A negative value can heal the entity instead of hurting it</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Range of the random amount of damage the melee attack deals. A negative value can heal the entity instead of hurting it</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">range_min</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">0.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The minimum amount of damage the entity will deal</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">effect_name</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">Identifier of the status ailment to apply to an entity attacked by this entity's melee attack</br></td>
+<td style="border-style:solid; border-width:1; padding:9px">range_max</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">0.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The maximum amount of damage the entity will deal</br></td>
 </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">effect_duration</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Duration in seconds of the status ailment applied to the damaged entity</br></td>
+</table>
+</td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -1352,6 +1992,24 @@ Controls the entity's explosion, timer until the explosion, and whether the time
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h2><p id="minecraft:hand_container">minecraft:hand_container</p></h2>
+
+This component represents the contents of an entity's hands. The component contains an array of ItemStack JS API Objects representing each slot in the hand container. NOTE: Currently items and containers are read-only. Slot 0 is main-hand Slot 1 is off-hand.</br><h3></h3>
+<br / ><textarea readonly="true" cols="108" rows="12">
+// This example will check the players offhand slot for a specific item after the player attacks an entity.
+system.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
+    // Get the players hand container
+    let handContainer = system.getComponent(eventData.data.player, "minecraft:hand_container");
+    // Get the players offhand item
+    let offhandItem = handContainer.data[1];
+    // Destroy the attacked entity if the player has a totem in their offhand
+    if (offhandItem.item == "minecraft:totem") {
+        system.destroyEntity(eventData.data.attacked_entity);
+    }
+});
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
 <h2><p id="minecraft:healable">minecraft:healable</p></h2>
 
 Defines how the entity can be healed by the player. This doesn't control how much health the entity can have; you must use the Health component for that instead.</br><h3>Parameters</h3>
@@ -1419,6 +2077,24 @@ Defines the current and maximum possible health of the entity. Upon applying the
 <td style="border-style:solid; border-width:2; padding:8px">The maximum health the entity can heal</br></td>
 </tr>
 </table>
+<a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:hotbar_container">minecraft:hotbar_container</p></h2>
+
+This component represents the hotbar contents of a player. The component contains an array of ItemStack JS API Objects representing each slot in the hotbar. NOTE: Currently items and containers are read-only. Slots are ordered left to right.</br><h3></h3>
+<br / ><textarea readonly="true" cols="118" rows="12">
+// This example will check the players third hotbar item slot for a specific item after the player attacks an entity.
+system.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
+    // Get the players hotbar
+    let playerHotbar = system.getComponent(eventData.data.player, "minecraft:hotbar_container");
+    // Get the item at the first slot in the hotbar
+    let firstHotbarSlot = playerHotbar.data[0];
+    // Destroy the attacked entity if the player has an apple in their first hotbar slot
+    if (firstHotbarSlot.item == "minecraft:apple") {
+        system.destroyEntity(eventData.data.attacked_entity);
+    }
+});
+</textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:interact">minecraft:interact</p></h2>
@@ -1584,6 +2260,24 @@ Defines the entity's inventory (size, restrictions, etc.). Currently this does n
 <td style="border-style:solid; border-width:2; padding:8px">Number of slots that this entity can gain per extra strength</br></td>
 </tr>
 </table>
+<a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:inventory_container">minecraft:inventory_container</p></h2>
+
+This component represents the inventory contents of an entity. The component contains an array of ItemStack JS API Objects representing each slot in the inventory. NOTE: Currently items and containers are read-only.Slot 0-8 is the hotbar, 9-16 is the top row of the player's inventory, 17-24 is the middle row, 25-32 is the bottom row</br><h3></h3>
+<br / ><textarea readonly="true" cols="121" rows="12">
+// This example will check the players third inventory item slot for a specific item after the player attacks an entity.
+system.listenForEvent("minecraft:player_attacked_entity", function(eventData) {
+    // Get the players inventory
+    let playerInventory = system.getComponent(eventData.data.player, "minecraft:inventory_container");
+    // Get the item at the third slot in the inventory
+    let thirdItemSlot = playerInventory.data[2];
+    // Destroy the attacked entity if the player has an apple in their third item slot
+    if (thirdItemSlot.item == "minecraft:apple") {
+        system.destroyEntity(eventData.data.attacked_entity);
+    }
+});
+</textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:lookat">minecraft:lookat</p></h2>
@@ -1905,6 +2599,23 @@ this.applyComponentChanges(molangComponent);
 
 <br><br>
 
+<h1><p id="Block Components">Block Components</p></h1>
+
+These components are only found on block objects and can only be on block objects</br><h2></h2>
+
+<h2><p id="minecraft:blockstate">minecraft:blockstate</p></h2>
+
+This component contains all the blockstates on a block object. Blockstates control all different aspects of blocks from their orientation to the type of wood they are. Blockstates are represented by numbers, bools, or strings. Please see the Blockstates Documentation to see the valid values for each state. This component allows for the getting and setting of these states.</br><h3>Code Example:</h3>
+<br / ><textarea readonly="true" cols="76" rows="5">
+let blockstateComponent = this.getComponent(block, "minecraft:blockstate");
+blockstateComponent.data.coral_color = "blue";
+this.applyComponentChanges(block, blockstateComponent);
+
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
 <br><br>
 
 <h1><p id="User-Defined Components">User-Defined Components</p></h1>
@@ -1927,7 +2638,7 @@ The following Minecraft events are events the Script Engine is listening for and
 
 <h3><p id="minecraft:client_entered_world">minecraft:client_entered_world</p></h3>
 
-This event is fired whenever a player joins the world. The event data contains the ID of the player in the world. The ID uniquely identifies the player in the world. This does NOT uniquely identify the player if they disconnect and reconnect.</br><a href="#Index">Back to top</a><br><br>
+This event is fired whenever a player joins the world. The event data contains the player entity object.</br><a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:hit_result_changed">minecraft:hit_result_changed</p></h3>
 
@@ -2069,7 +2780,18 @@ The following Minecraft Events can be triggered from scripting and cause the gam
 
 <h3><p id="minecraft:display_chat_event">minecraft:display_chat_event</p></h3>
 
-This event is used to display a chat message to the specific player that is running the client script. The event data is the message to be displayed in plain text. Special formatting is supported the same way it would be if a player was sending the message.</br><a href="#Index">Back to top</a><br><br>
+This event is used to display a chat message to the specific player that is running the client script. The event data is the message to be displayed in plain text. Special formatting is supported the same way it would be if a player was sending the message.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">message</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The chat message that will be displayed</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:load_ui">minecraft:load_ui</p></h3>
 
@@ -2191,6 +2913,33 @@ This event is used to create a static particle effect in the world. This particl
 
 This event is used to remove a UI screen from the stack of the specific player running the client script. The event data contains the name of the screen to remove as a string. After the event is triggered the screen will be scheduled to be removed from the stack the next time the UI Engine can do so. Only screens defined in a HTML file can be removed using this event.</br><a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:script_logger_config">minecraft:script_logger_config</p></h3>
+
+This event is used to turn various levels of logging on and off for client scripts. Note that turning logging on/off is not limited to the script that broadcasted the event. It will affect ALL client scripts including those in other Behavior Packs that are applied to the world. See the Debugging section for more information on logging.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">log_errors</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Set to true to log any scripting errors that occur on the client</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">log_warnings</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Set to true to log any scripting warnings that occur on the client</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">log_information</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Set to true to log any general scripting information that occurs on the client. This includes any logging done with client.log()</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <br><br>
 
 <br><br>
@@ -2222,6 +2971,64 @@ This event is triggered whenever a player attacks an entity.</br><h4>Parameters<
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:entity_acquired_item">minecraft:entity_acquired_item</p></h3>
+
+This event is triggered whenever an entity acquires an item.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity who acquired the item</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">item_stack</td>
+<td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The item that was acquired</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">acquisition_method</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The way the entity acquired the item</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">acquired_amount</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">The total number of items acquired by the entity during this event</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">secondary_entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">If it exists, the entity that affected the item before it was acquired. Example: A player completes a trade with a villager. The `entity` property would be the player and the `secondary_entity` would be the villager</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:entity_carried_item_changed">minecraft:entity_carried_item_changed</p></h3>
+
+This event is triggered whenever an entity changes the item carried in their hand.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity that changed what they were carrying</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">previous_carried_item</td>
+<td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The item that was previously in the entities hands</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">carried_item</td>
+<td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The item that is now in the entities hands</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:entity_created">minecraft:entity_created</p></h3>
 
 This event is triggered whenever an entity is added to the world.</br><h4>Parameters</h4>
@@ -2246,6 +3053,44 @@ This event is triggered whenever an entity dies. This won't be triggered when an
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
 <td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that died</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:entity_dropped_item">minecraft:entity_dropped_item</p></h3>
+
+This event is triggered whenever an entity drops an item.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity who dropped the item</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">item_stack</td>
+<td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The item that was dropped</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:entity_equipped_armor">minecraft:entity_equipped_armor</p></h3>
+
+This event is triggered whenever an entity equips an item in their armor slots.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">entity</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The entity who is equipping the armor</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">item_stack</td>
+<td style="border-style:solid; border-width:1; padding:9px">ItemStack JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The armor that is being equipped</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2308,6 +3153,116 @@ This event is triggered whenever an entity is ticked. This event will not fire w
 <td style="border-style:solid; border-width:1; padding:9px">entity</td>
 <td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
 <td style="border-style:solid; border-width:1; padding:9px">The entity that was ticked</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:block_destruction_started">minecraft:block_destruction_started</p></h3>
+
+This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">player</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The player that started destoying the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that is being destroyed</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:block_destruction_stopped">minecraft:block_destruction_stopped</p></h3>
+
+This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">player</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The player that stopped destoying the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that was being destroyed</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">destruction_progress</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">How far along the destruction was before it was stopped (0 - 1 range)</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:piston_moved_block">minecraft:piston_moved_block</p></h3>
+
+This event is triggered whenever a piston moves a block.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">piston_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the piston that moved the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that was moved</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">piston_action</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The action the piston took, "extended" or "retracted"</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:player_destroyed_block">minecraft:player_destroyed_block</p></h3>
+
+This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">player</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The player that destroyed the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that was destroyed</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_identifier</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px">The identifier of the block that was destroyed</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:player_placed_block">minecraft:player_placed_block</p></h3>
+
+This event is triggered whenever a player places a block.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">player</td>
+<td style="border-style:solid; border-width:1; padding:9px">Entity JS API Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The player that placed the block</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">block_position</td>
+<td style="border-style:solid; border-width:1; padding:9px">JavaScript Object</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position of the block that was placed</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2377,11 +3332,66 @@ The following Minecraft events can be triggered from scripting and the game will
 
 <h3><p id="minecraft:display_chat_event">minecraft:display_chat_event</p></h3>
 
-This event is used to send a chat message from the server to the players. The event data is the message being sent as a string. Special formatting is supported the same way it would be if a player was sending the message.</br><a href="#Index">Back to top</a><br><br>
+This event is used to send a chat message from the server to the players. The event data is the message being sent as a string. Special formatting is supported the same way it would be if a player was sending the message.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">message</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The chat message that will be displayed</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:execute_command">minecraft:execute_command</p></h3>
 
-This event is used to execute a slash command on the server with the World Owner permission level. The event data contains the slash command as a string. The slash command will be processed and will run after the event is sent.</br><a href="#Index">Back to top</a><br><br>
+This event is used to execute a slash command on the server with the World Owner permission level. The event data contains the slash command as a string. The slash command will be processed and will run after the event is sent.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">command</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The command that will be run</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:play_sound">minecraft:play_sound</p></h3>
+
+This event is used to play a sound effect. Currently, sounds can only be played at a fixed position in the world. Global sounds and sounds played by an entity will be supported in a later update.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">sound</td>
+<td style="border-style:solid; border-width:1; padding:9px">String</td>
+<td style="border-style:solid; border-width:1; padding:9px"></td>
+<td style="border-style:solid; border-width:1; padding:9px">The identifier of the sound you want to play. Only sounds defined in the applied resource packs can be played</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">volume</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">1.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The volume of the sound effect. A value of 1.0 will play the sound effect at the volume it was recorded at</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">pitch</td>
+<td style="border-style:solid; border-width:1; padding:9px">Decimal</td>
+<td style="border-style:solid; border-width:1; padding:9px">1.0</td>
+<td style="border-style:solid; border-width:1; padding:9px">The pitch of the sound effect. A value of 1.0 will play the sound effect with regular pitch</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">position</td>
+<td style="border-style:solid; border-width:1; padding:9px">Vector [a, b, c]</td>
+<td style="border-style:solid; border-width:1; padding:9px">[0, 0, 0]</td>
+<td style="border-style:solid; border-width:1; padding:9px">The position in the world we want to play the sound at</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:spawn_particle_attached_entity">minecraft:spawn_particle_attached_entity</p></h3>
 
@@ -2433,6 +3443,33 @@ This event is used to create a static particle effect in the world. This particl
 <td style="border-style:solid; border-width:1; padding:9px">String</td>
 <td style="border-style:solid; border-width:1; padding:9px">overworld</td>
 <td style="border-style:solid; border-width:1; padding:9px">The dimension in which you want to spawn the effect. Can be "overworld", "nether", or "the end"</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:script_logger_config">minecraft:script_logger_config</p></h3>
+
+This event is used to turn various levels of logging on and off for server scripts. Note that turning logging on/off is not limited to the script that broadcasted the event. It will affect ALL server scripts including those in other Behavior Packs that are applied to the world. See the Debugging section for more information on logging.</br><h4>Parameters</h4>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">log_errors</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Set to true to log any scripting errors that occur on the server</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">log_warnings</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Set to true to log any scripting warnings that occur on the server</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">log_information</td>
+<td style="border-style:solid; border-width:1; padding:9px">Boolean</td>
+<td style="border-style:solid; border-width:1; padding:9px">false</td>
+<td style="border-style:solid; border-width:1; padding:9px">Set to true to log any general scripting information that occurs on the server. This includes any logging done with server.log()</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
