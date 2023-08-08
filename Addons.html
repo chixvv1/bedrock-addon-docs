@@ -1,16 +1,21 @@
-<h1>Version: 1.7.0.12</h1>
+<h1>ADDONS DOCUMENTATION </br>Version: 1.8.0.0</h1>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#[01]Entity Definition Properties">Entity Definition Properties</a></th> </tr>
 <tr> <td> <a href="#do_not_upgrade"> do_not_upgrade</a> </tr> </td>
 <tr> <td> <a href="#format_version"> format_version</a> </tr> </td>
-<tr> <th><a href="#[02]Attributes">Attributes</a></th> </tr>
+<tr> <th><a href="#[02]Entity Description Properties">Entity Description Properties</a></th> </tr>
+<tr> <td> <a href="#minecraft:identifier"> minecraft:identifier</a> </tr> </td>
+<tr> <td> <a href="#minecraft:is_experimental"> minecraft:is_experimental</a> </tr> </td>
+<tr> <td> <a href="#minecraft:is_summonable"> minecraft:is_summonable</a> </tr> </td>
+<tr> <td> <a href="#minecraft:runtime_identifier"> minecraft:runtime_identifier</a> </tr> </td>
+<tr> <td> <a href="#minecraft:spawn_egg"> minecraft:spawn_egg</a> </tr> </td>
+<tr> <th><a href="#[03]Attributes">Attributes</a></th> </tr>
 <tr> <td> <a href="#minecraft:attack"> minecraft:attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:spell_effects"> minecraft:spell_effects</a> </tr> </td>
 <tr> <td> <a href="#minecraft:strength"> minecraft:strength</a> </tr> </td>
-<tr> <th><a href="#[03]Properties">Properties</a></th> </tr>
+<tr> <th><a href="#[04]Properties">Properties</a></th> </tr>
 <tr> <td> <a href="#minecraft:ambient_sound_interval"> minecraft:ambient_sound_interval</a> </tr> </td>
-<tr> <td> <a href="#minecraft:burns_in_daylight"> minecraft:burns_in_daylight</a> </tr> </td>
 <tr> <td> <a href="#minecraft:can_climb"> minecraft:can_climb</a> </tr> </td>
 <tr> <td> <a href="#minecraft:can_fly"> minecraft:can_fly</a> </tr> </td>
 <tr> <td> <a href="#minecraft:can_power_jump"> minecraft:can_power_jump</a> </tr> </td>
@@ -25,7 +30,6 @@
 <tr> <td> <a href="#minecraft:foot_size"> minecraft:foot_size</a> </tr> </td>
 <tr> <td> <a href="#minecraft:friction_modifier"> minecraft:friction_modifier</a> </tr> </td>
 <tr> <td> <a href="#minecraft:ground_offset"> minecraft:ground_offset</a> </tr> </td>
-<tr> <td> <a href="#minecraft:hurt_when_wet"> minecraft:hurt_when_wet</a> </tr> </td>
 <tr> <td> <a href="#minecraft:input_ground_controlled"> minecraft:input_ground_controlled</a> </tr> </td>
 <tr> <td> <a href="#minecraft:is_baby"> minecraft:is_baby</a> </tr> </td>
 <tr> <td> <a href="#minecraft:is_charged"> minecraft:is_charged</a> </tr> </td>
@@ -47,8 +51,8 @@
 <tr> <td> <a href="#minecraft:variant"> minecraft:variant</a> </tr> </td>
 <tr> <td> <a href="#minecraft:walk_animation_speed"> minecraft:walk_animation_speed</a> </tr> </td>
 <tr> <td> <a href="#minecraft:wants_jockey"> minecraft:wants_jockey</a> </tr> </td>
-<tr> <th><a href="#[04]Component IDs">Component IDs</a></th> </tr>
-<tr> <th><a href="#[05]Components">Components</a></th> </tr>
+<tr> <th><a href="#[05]Component IDs">Component IDs</a></th> </tr>
+<tr> <th><a href="#[06]Components">Components</a></th> </tr>
 <tr> <td> <a href="#"> </a> </tr> </td>
 <tr> <td> <a href="#minecraft:addrider"> minecraft:addrider</a> </tr> </td>
 <tr> <td> <a href="#minecraft:ageable"> minecraft:ageable</a> </tr> </td>
@@ -57,12 +61,15 @@
 <tr> <td> <a href="#minecraft:breathable"> minecraft:breathable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:breedable"> minecraft:breedable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:bribeable"> minecraft:bribeable</a> </tr> </td>
+<tr> <td> <a href="#minecraft:burns_in_daylight"> minecraft:burns_in_daylight</a> </tr> </td>
 <tr> <td> <a href="#minecraft:damage_over_time"> minecraft:damage_over_time</a> </tr> </td>
 <tr> <td> <a href="#minecraft:damage_sensor"> minecraft:damage_sensor</a> </tr> </td>
 <tr> <td> <a href="#minecraft:environment_sensor"> minecraft:environment_sensor</a> </tr> </td>
 <tr> <td> <a href="#minecraft:equippable"> minecraft:equippable</a> </tr> </td>
 <tr> <td> <a href="#minecraft:explode"> minecraft:explode</a> </tr> </td>
+<tr> <td> <a href="#minecraft:genetics"> minecraft:genetics</a> </tr> </td>
 <tr> <td> <a href="#minecraft:healable"> minecraft:healable</a> </tr> </td>
+<tr> <td> <a href="#minecraft:hurt_when_wet"> minecraft:hurt_when_wet</a> </tr> </td>
 <tr> <td> <a href="#minecraft:insomnia"> minecraft:insomnia</a> </tr> </td>
 <tr> <td> <a href="#minecraft:interact"> minecraft:interact</a> </tr> </td>
 <tr> <td> <a href="#minecraft:inventory"> minecraft:inventory</a> </tr> </td>
@@ -90,6 +97,7 @@
 <tr> <td> <a href="#minecraft:rail_movement"> minecraft:rail_movement</a> </tr> </td>
 <tr> <td> <a href="#minecraft:rail_sensor"> minecraft:rail_sensor</a> </tr> </td>
 <tr> <td> <a href="#minecraft:rideable"> minecraft:rideable</a> </tr> </td>
+<tr> <td> <a href="#minecraft:scaffolding_climber"> minecraft:scaffolding_climber</a> </tr> </td>
 <tr> <td> <a href="#minecraft:scale_by_age"> minecraft:scale_by_age</a> </tr> </td>
 <tr> <td> <a href="#minecraft:shareables"> minecraft:shareables</a> </tr> </td>
 <tr> <td> <a href="#minecraft:shooter"> minecraft:shooter</a> </tr> </td>
@@ -103,7 +111,9 @@
 <tr> <td> <a href="#minecraft:timer"> minecraft:timer</a> </tr> </td>
 <tr> <td> <a href="#minecraft:trade_table"> minecraft:trade_table</a> </tr> </td>
 <tr> <td> <a href="#minecraft:transformation"> minecraft:transformation</a> </tr> </td>
-<tr> <th><a href="#[06]AI Goals">AI Goals</a></th> </tr>
+<tr> <td> <a href="#minecraft:trusting"> minecraft:trusting</a> </tr> </td>
+<tr> <th><a href="#[07]AI Goals">AI Goals</a></th> </tr>
+<tr> <td> <a href="#minecraft.behavior.scared"> minecraft.behavior.scared</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.avoid_mob_type"> minecraft:behavior.avoid_mob_type</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.beg"> minecraft:behavior.beg</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.break_door"> minecraft:behavior.break_door</a> </tr> </td>
@@ -121,6 +131,7 @@
 <tr> <td> <a href="#minecraft:behavior.dragonscanning"> minecraft:behavior.dragonscanning</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.dragonstrafeplayer"> minecraft:behavior.dragonstrafeplayer</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.dragontakeoff"> minecraft:behavior.dragontakeoff</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.drop_item_for"> minecraft:behavior.drop_item_for</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.eat_block"> minecraft:behavior.eat_block</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.enderman_leave_block"> minecraft:behavior.enderman_leave_block</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.enderman_take_block"> minecraft:behavior.enderman_take_block</a> </tr> </td>
@@ -137,6 +148,7 @@
 <tr> <td> <a href="#minecraft:behavior.guardian_attack"> minecraft:behavior.guardian_attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.harvest_farm_block"> minecraft:behavior.harvest_farm_block</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.hurt_by_target"> minecraft:behavior.hurt_by_target</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.lay_down"> minecraft:behavior.lay_down</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.lay_egg"> minecraft:behavior.lay_egg</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.leap_at_target"> minecraft:behavior.leap_at_target</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.look_at_entity"> minecraft:behavior.look_at_entity</a> </tr> </td>
@@ -161,6 +173,7 @@
 <tr> <td> <a href="#minecraft:behavior.owner_hurt_target"> minecraft:behavior.owner_hurt_target</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.panic"> minecraft:behavior.panic</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.peek"> minecraft:behavior.peek</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.pet_sleep_with_owner"> minecraft:behavior.pet_sleep_with_owner</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.pickup_items"> minecraft:behavior.pickup_items</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.play"> minecraft:behavior.play</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.player_ride_tamed"> minecraft:behavior.player_ride_tamed</a> </tr> </td>
@@ -168,12 +181,14 @@
 <tr> <td> <a href="#minecraft:behavior.random_breach"> minecraft:behavior.random_breach</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_fly"> minecraft:behavior.random_fly</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_look_around"> minecraft:behavior.random_look_around</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.random_sitting"> minecraft:behavior.random_sitting</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_stroll"> minecraft:behavior.random_stroll</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_swim"> minecraft:behavior.random_swim</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.ranged_attack"> minecraft:behavior.ranged_attack</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.receive_love"> minecraft:behavior.receive_love</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.restrict_open_door"> minecraft:behavior.restrict_open_door</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.restrict_sun"> minecraft:behavior.restrict_sun</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.roll"> minecraft:behavior.roll</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.run_around_like_crazy"> minecraft:behavior.run_around_like_crazy</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.send_event"> minecraft:behavior.send_event</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.share_items"> minecraft:behavior.share_items</a> </tr> </td>
@@ -184,6 +199,8 @@
 <tr> <td> <a href="#minecraft:behavior.slime_float"> minecraft:behavior.slime_float</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.slime_keep_on_jumping"> minecraft:behavior.slime_keep_on_jumping</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.slime_random_direction"> minecraft:behavior.slime_random_direction</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.snacking"> minecraft:behavior.snacking</a> </tr> </td>
+<tr> <td> <a href="#minecraft:behavior.sneeze"> minecraft:behavior.sneeze</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.squid_dive"> minecraft:behavior.squid_dive</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.squid_flee"> minecraft:behavior.squid_flee</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.squid_idle"> minecraft:behavior.squid_idle</a> </tr> </td>
@@ -203,9 +220,10 @@
 <tr> <td> <a href="#minecraft:behavior.vex_random_move"> minecraft:behavior.vex_random_move</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.wither_random_attack_pos_goal"> minecraft:behavior.wither_random_attack_pos_goal</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.wither_target_highest_damage"> minecraft:behavior.wither_target_highest_damage</a> </tr> </td>
-<tr> <th><a href="#[07]Filters">Filters</a></th> </tr>
+<tr> <th><a href="#[08]Filters">Filters</a></th> </tr>
 <tr> <td> <a href="#clock_time"> clock_time</a> </tr> </td>
 <tr> <td> <a href="#has_ability"> has_ability</a> </tr> </td>
+<tr> <td> <a href="#has_biome_tag"> has_biome_tag</a> </tr> </td>
 <tr> <td> <a href="#has_component"> has_component</a> </tr> </td>
 <tr> <td> <a href="#has_damage"> has_damage</a> </tr> </td>
 <tr> <td> <a href="#has_equipment"> has_equipment</a> </tr> </td>
@@ -240,7 +258,7 @@
 <tr> <td> <a href="#moon_phase"> moon_phase</a> </tr> </td>
 <tr> <td> <a href="#on_ground"> on_ground</a> </tr> </td>
 <tr> <td> <a href="#on_ladder"> on_ladder</a> </tr> </td>
-<tr> <th><a href="#[08]Triggers">Triggers</a></th> </tr>
+<tr> <th><a href="#[09]Triggers">Triggers</a></th> </tr>
 <tr> <td> <a href="#minecraft:on_death"> minecraft:on_death</a> </tr> </td>
 <tr> <td> <a href="#minecraft:on_friendly_anger"> minecraft:on_friendly_anger</a> </tr> </td>
 <tr> <td> <a href="#minecraft:on_hurt"> minecraft:on_hurt</a> </tr> </td>
@@ -250,14 +268,15 @@
 <tr> <td> <a href="#minecraft:on_start_takeoff"> minecraft:on_start_takeoff</a> </tr> </td>
 <tr> <td> <a href="#minecraft:on_target_acquired"> minecraft:on_target_acquired</a> </tr> </td>
 <tr> <td> <a href="#minecraft:on_target_escape"> minecraft:on_target_escape</a> </tr> </td>
-<tr> <th><a href="#[09]Built-in Events">Built-in Events</a></th> </tr>
+<tr> <td> <a href="#minecraft:on_wake_with_owner"> minecraft:on_wake_with_owner</a> </tr> </td>
+<tr> <th><a href="#[10]Built-in Events">Built-in Events</a></th> </tr>
 <tr> <td> <a href="#minecraft:entity_born"> minecraft:entity_born</a> </tr> </td>
 <tr> <td> <a href="#minecraft:entity_spawned"> minecraft:entity_spawned</a> </tr> </td>
 <tr> <td> <a href="#minecraft:entity_transformed"> minecraft:entity_transformed</a> </tr> </td>
 <tr> <td> <a href="#minecraft:on_prime"> minecraft:on_prime</a> </tr> </td>
-<tr> <th><a href="#[10]Entities">Entities</a></th> </tr>
-<tr> <th><a href="#[11]Blocks">Blocks</a></th> </tr>
-<tr> <th><a href="#[13]Geometry">Geometry</a></th> </tr>
+<tr> <th><a href="#[11]Entities">Entities</a></th> </tr>
+<tr> <th><a href="#[12]Blocks">Blocks</a></th> </tr>
+<tr> <th><a href="#[14]Geometry">Geometry</a></th> </tr>
 <tr> <td> <a href="#Blocks"> Blocks</a> </tr> </td>
 </table>
 <a href="#Index">Back to top</a>
@@ -284,7 +303,98 @@ Specifies the version of the game this entity was made in. If the version is low
     "component_groups": {...} ...}</br>
 <br><br>
 
-<h3><p id="[02]Attributes">Attributes</p></h3>
+<h3><p id="[02]Entity Description Properties">Entity Description Properties</p></h3>
+
+<h4>Description</h4>
+
+This section defines properties required to identify and construct the entity</br><h3><p id="minecraft:identifier">minecraft:identifier</p></h3>
+
+<h4>Description</h4>
+
+Sets the name for this entity's description.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td></td>
+<td>The identifier for this entity</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:is_experimental">minecraft:is_experimental</p></h3>
+
+<h4>Description</h4>
+
+Sets whether or not this entity is experimental. Experimental entities are only enabled when the experimental toggle is enabled.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>value</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Flag to mark this entity as being experimental or not.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:is_summonable">minecraft:is_summonable</p></h3>
+
+<h4>Description</h4>
+
+Sets whether or not we can summon this entity using commands such as /summon.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>value</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Flag to mark this entity as being summonable or not.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:runtime_identifier">minecraft:runtime_identifier</p></h3>
+
+<h4>Description</h4>
+
+Sets the name for the Vanilla Minecraft identifier this entity will use to build itself from.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>id</td>
+<td>String</td>
+<td></td>
+<td>The identifier for the class to construct this entity with</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:spawn_egg">minecraft:spawn_egg</p></h3>
+
+<h4>Description</h4>
+
+Sets whether or not this entity has a spawn egg in the creative ui.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>value</td>
+<td>Boolean</td>
+<td>false</td>
+<td>Set to determine if this entity has a spawn egg.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h3><p id="[03]Attributes">Attributes</p></h3>
 
 <h3><p id="minecraft:attack">minecraft:attack</p></h3>
 
@@ -372,7 +482,7 @@ Defines the entity's strength to carry items.</br><h4>Parameters</h4>
 
 <br><br>
 
-<h3><p id="[03]Properties">Properties</p></h3>
+<h3><p id="[04]Properties">Properties</p></h3>
 
 <h3><p id="minecraft:ambient_sound_interval">minecraft:ambient_sound_interval</p></h3>
 
@@ -396,12 +506,6 @@ Sets the entity's delay between playing its ambient sound.</br><h4>Parameters</h
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
-
-<h3><p id="minecraft:burns_in_daylight">minecraft:burns_in_daylight</p></h3>
-
-<h4>Description</h4>
-
-Sets that this entity burns if exposed to daylight.</br><a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:can_climb">minecraft:can_climb</p></h3>
 
@@ -597,12 +701,6 @@ Sets the offset from the ground that the entity is actually at.</br><h4>Paramete
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
-
-<h3><p id="minecraft:hurt_when_wet">minecraft:hurt_when_wet</p></h3>
-
-<h4>Description</h4>
-
-Sets that this entity will take damage when it is wet.</br><a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:input_ground_controlled">minecraft:input_ground_controlled</p></h3>
 
@@ -842,12 +940,16 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 
 <br><br>
 
-<h3><p id="[04]Component IDs">Component IDs</p></h3>
+<h3><p id="[05]Component IDs">Component IDs</p></h3>
 
 <table border="1">
 <tr> <th>JSON Name</th> <th>ID</th> </tr>
 <tr>
 <td></td>
+<td>0</br></td>
+</tr>
+<tr>
+<td>minecraft.behavior.scared</td>
 <td>0</br></td>
 </tr>
 <tr>
@@ -939,6 +1041,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>-1912535317</br></td>
 </tr>
 <tr>
+<td>minecraft:behavior.drop_item_for</td>
+<td>1846615759</br></td>
+</tr>
+<tr>
 <td>minecraft:behavior.eat_block</td>
 <td>1972447274</br></td>
 </tr>
@@ -1001,6 +1107,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:behavior.hurt_by_target</td>
 <td>-1710404297</br></td>
+</tr>
+<tr>
+<td>minecraft:behavior.lay_down</td>
+<td>-2074934675</br></td>
 </tr>
 <tr>
 <td>minecraft:behavior.lay_egg</td>
@@ -1099,6 +1209,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>211304085</br></td>
 </tr>
 <tr>
+<td>minecraft:behavior.pet_sleep_with_owner</td>
+<td>1379392240</br></td>
+</tr>
+<tr>
 <td>minecraft:behavior.pickup_items</td>
 <td>644287189</br></td>
 </tr>
@@ -1127,6 +1241,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>1177762851</br></td>
 </tr>
 <tr>
+<td>minecraft:behavior.random_sitting</td>
+<td>1722716662</br></td>
+</tr>
+<tr>
 <td>minecraft:behavior.random_stroll</td>
 <td>-1643504294</br></td>
 </tr>
@@ -1149,6 +1267,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:behavior.restrict_sun</td>
 <td>-382716017</br></td>
+</tr>
+<tr>
+<td>minecraft:behavior.roll</td>
+<td>817471653</br></td>
 </tr>
 <tr>
 <td>minecraft:behavior.run_around_like_crazy</td>
@@ -1189,6 +1311,14 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:behavior.slime_random_direction</td>
 <td>1437515506</br></td>
+</tr>
+<tr>
+<td>minecraft:behavior.snacking</td>
+<td>875141064</br></td>
+</tr>
+<tr>
+<td>minecraft:behavior.sneeze</td>
+<td>1528584076</br></td>
 </tr>
 <tr>
 <td>minecraft:behavior.squid_dive</td>
@@ -1359,6 +1489,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>-714364556</br></td>
 </tr>
 <tr>
+<td>minecraft:genetics</td>
+<td>-82484670</br></td>
+</tr>
+<tr>
 <td>minecraft:ground_offset</td>
 <td>-1816881803</br></td>
 </tr>
@@ -1369,6 +1503,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:hurt_when_wet</td>
 <td>237531867</br></td>
+</tr>
+<tr>
+<td>minecraft:identifier</td>
+<td>0</br></td>
 </tr>
 <tr>
 <td>minecraft:input_ground_controlled</td>
@@ -1403,6 +1541,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>1381448355</br></td>
 </tr>
 <tr>
+<td>minecraft:is_experimental</td>
+<td>0</br></td>
+</tr>
+<tr>
 <td>minecraft:is_ignited</td>
 <td>905710223</br></td>
 </tr>
@@ -1421,6 +1563,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:is_stackable</td>
 <td>1184456737</br></td>
+</tr>
+<tr>
+<td>minecraft:is_summonable</td>
+<td>0</br></td>
 </tr>
 <tr>
 <td>minecraft:is_tamed</td>
@@ -1551,6 +1697,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>-1373130027</br></td>
 </tr>
 <tr>
+<td>minecraft:on_wake_with_owner</td>
+<td>-1543219003</br></td>
+</tr>
+<tr>
 <td>minecraft:peek</td>
 <td>-863721039</br></td>
 </tr>
@@ -1575,6 +1725,14 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>1656173828</br></td>
 </tr>
 <tr>
+<td>minecraft:runtime_identifier</td>
+<td>0</br></td>
+</tr>
+<tr>
+<td>minecraft:scaffolding_climber</td>
+<td>169799877</br></td>
+</tr>
+<tr>
 <td>minecraft:scale</td>
 <td>77854436</br></td>
 </tr>
@@ -1597,6 +1755,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <tr>
 <td>minecraft:sound_volume</td>
 <td>937951776</br></td>
+</tr>
+<tr>
+<td>minecraft:spawn_egg</td>
+<td>0</br></td>
 </tr>
 <tr>
 <td>minecraft:spawn_entity</td>
@@ -1643,6 +1805,10 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 <td>-457894577</br></td>
 </tr>
 <tr>
+<td>minecraft:trusting</td>
+<td>936499892</br></td>
+</tr>
+<tr>
 <td>minecraft:type_family</td>
 <td>-255011285</br></td>
 </tr>
@@ -1661,7 +1827,7 @@ Sets that this entity wants to become a jockey.</br><a href="#Index">Back to top
 </table>
 <a href="#Index">Back to top</a><br><br>
 
-<h3><p id="[05]Components">Components</p></h3>
+<h3><p id="[06]Components">Components</p></h3>
 
 <br><br>
 
@@ -1894,6 +2060,12 @@ Defines the way an entity can get into the 'love' state.</br><h4>Parameters</h4>
 <td>If true, entities can breed while sitting</br></td>
 </tr>
 <tr>
+<td>blend_attributes</td>
+<td>Boolean</td>
+<td>true</td>
+<td>If true, the entities will blend their attributes in the offspring after they breed. For example, horses blend their health, movement, and jump_strength in their offspring.</br></td>
+</tr>
+<tr>
 <td>breedCooldown</td>
 <td>Decimal</td>
 <td>60.0</td>
@@ -1909,7 +2081,7 @@ Defines the way an entity can get into the 'love' state.</br><h4>Parameters</h4>
 <td>breedsWith</td>
 <td>List</td>
 <td></td>
-<td>The list of entity definitions that this entity can breed with</br><table border="1">
+<td>The list of entity definitions that this entity can breed with.</br><table border="1">
 <tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
 <tr>
 <td>babyType</td>
@@ -1937,6 +2109,30 @@ Defines the way an entity can get into the 'love' state.</br><h4>Parameters</h4>
 <td>Boolean</td>
 <td>false</td>
 <td>If true, the entity will become pregnant instead of spawning a baby.</br></td>
+</tr>
+<tr>
+<td>environment_requirements</td>
+<td>List</td>
+<td></td>
+<td>The list of nearby block requirements to get the entity into the 'love' state.</br><h3><p id="block">block</p></h3>
+
+<h4>Description</h4>
+
+The block types required nearby for the entity to breed.</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="count">count</p></h3>
+
+<h4>Description</h4>
+
+The number of the required block types nearby for the entity to breed.</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="radius">radius</p></h3>
+
+<h4>Description</h4>
+
+How many blocks radius from the mob's center to search in for the required blocks. Bounded between 0 and 16.</br><a href="#Index">Back to top</a><br><br>
+
+</td>
 </tr>
 <tr>
 <td>extraBabyChance</td>
@@ -2008,6 +2204,12 @@ Defines the way an entity can get into the 'bribed' state.</br><h4>Parameters</h
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:burns_in_daylight">minecraft:burns_in_daylight</p></h3>
+
+<h4>Description</h4>
+
+Specifies if/how a mob burns in daylight.</br><a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:damage_over_time">minecraft:damage_over_time</p></h3>
 
@@ -2193,6 +2395,98 @@ Defines how the entity explodes.</br><h4>Parameters</h4>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:genetics">minecraft:genetics</p></h3>
+
+<h4>Description</h4>
+
+Defines the way a mob's genes and alleles are passed on to it's offspring, and how those traits manifest in the child. Compatible parent genes are crossed together, the alleles are handed down from the parents to the child, and any matching genetic variants fire off JSON events to modify the child and express the traits.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>genes</td>
+<td>List</td>
+<td></td>
+<td>The list of genes that this entity has and will cross with a partner during breeding.</br><table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>allele_range</td>
+<td>Integer</td>
+<td></td>
+<td>The range of positive integer allele values for this gene. Spawned mobs will have a random number in this range assigned to them.</br><table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>range_max</td>
+<td>Integer</td>
+<td>0</td>
+<td>Upper bound of the allele values for this gene.</br></td>
+</tr>
+<tr>
+<td>range_min</td>
+<td>Integer</td>
+<td>0</td>
+<td>Lower bound of the allele values for this gene.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>genetic_variants</td>
+<td>List</td>
+<td></td>
+<td>The list of genetic variants for this gene. These check for particular allele combinations and fire events when all of them are satisfied.</br><table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>birth_event</td>
+<td>String</td>
+<td></td>
+<td>Event to run when this mob is created and matches the above allele conditions.</br></td>
+</tr>
+<tr>
+<td>both_allele</td>
+<td>Integer</td>
+<td>-1</td>
+<td>If this value is non-negative, compare both the mob's main and hidden alleles with this value for a match with both. Can also be a range of integers.</br></td>
+</tr>
+<tr>
+<td>either_allele</td>
+<td>Integer</td>
+<td>-1</td>
+<td>If this value is non-negative, compare both the mob's main and hidden alleles with this value for a match with either. Can also be a range of integers.</br></td>
+</tr>
+<tr>
+<td>hidden_allele</td>
+<td>Integer</td>
+<td>-1</td>
+<td>If this value is non-negative, compare the mob's hidden allele with this value for a match. Can also be a range of integers.</br></td>
+</tr>
+<tr>
+<td>main_allele</td>
+<td>Integer</td>
+<td>-1</td>
+<td>If this value is non-negative, compare the mob's main allele with this value for a match. Can also be a range of integers.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td></td>
+<td>The name of the gene.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>mutation_rate</td>
+<td>Decimal</td>
+<td>0.03125</td>
+<td>Chance that an allele will be replaced with a random one instead of the parent's allele during birth.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:healable">minecraft:healable</p></h3>
 
 <h4>Description</h4>
@@ -2242,6 +2536,12 @@ Defines the interactions with this entity for healing it.</br><h4>Parameters</h4
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:hurt_when_wet">minecraft:hurt_when_wet</p></h3>
+
+<h4>Description</h4>
+
+Specifies if an actor is hurt when wet.</br><a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:insomnia">minecraft:insomnia</p></h3>
 
@@ -3412,6 +3712,12 @@ Determines whether this entity can be ridden. Allows specifying the different se
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:scaffolding_climber">minecraft:scaffolding_climber</p></h3>
+
+<h4>Description</h4>
+
+Allows the player to detect and manuever on the scaffolding block.</br><a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:scale_by_age">minecraft:scale_by_age</p></h3>
 
 <h4>Description</h4>
@@ -3444,28 +3750,34 @@ Defines a list of items the mob wants to share. Each item must have the followin
 <table border="1">
 <tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
 <tr>
-<td>craft_into</td>
-<td>String</td>
+<td>items</td>
+<td>List</td>
 <td></td>
-<td>Defines the item this entity wants to craft with the item defined above. Should be an item name</br></td>
-</tr>
-<tr>
-<td>item</td>
-<td>String</td>
-<td></td>
-<td>The name of the item</br></td>
-</tr>
-<tr>
-<td>surplus_amount</td>
-<td>Integer</td>
-<td>-1</td>
-<td>Number of this item considered extra that the entity wants to share</br></td>
-</tr>
-<tr>
-<td>want_amount</td>
-<td>Integer</td>
-<td>-1</td>
-<td>Number of this item this entity wants to share</br></td>
+<td>List of items that the entity wants to share</br><h3><p id="craft_into">craft_into</p></h3>
+
+<h4>Description</h4>
+
+Defines the item this entity wants to craft with the item defined above. Should be an item name</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="item">item</p></h3>
+
+<h4>Description</h4>
+
+The name of the item</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="surplus_amount">surplus_amount</p></h3>
+
+<h4>Description</h4>
+
+Number of this item considered extra that the entity wants to share</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="want_amount">want_amount</p></h3>
+
+<h4>Description</h4>
+
+Number of this item this entity wants to share</br><a href="#Index">Back to top</a><br><br>
+
+</td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -3963,9 +4275,55 @@ Defines an entity's transformation from the current definition into another</br>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:trusting">minecraft:trusting</p></h3>
+
+<h4>Description</h4>
+
+Defines the rules for a mob to trust players.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>probability</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>The chance of the entity trusting with each item use between 0.0 and 1.0, where 1.0 is 100%</br></td>
+</tr>
+<tr>
+<td>trust_event</td>
+<td>String</td>
+<td></td>
+<td>Event to run when this entity becomes trusting</br></td>
+</tr>
+<tr>
+<td>trust_items</td>
+<td>List</td>
+<td></td>
+<td>The list of items that can be used to get the entity to trust players</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <br><br>
 
-<h3><p id="[06]AI Goals">AI Goals</p></h3>
+<h3><p id="[07]AI Goals">AI Goals</p></h3>
+
+<h3><p id="minecraft.behavior.scared">minecraft.behavior.scared</p></h3>
+
+<h4>Description</h4>
+
+Allows the a mob to become scared when the weather outside is thundering</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>sound_interval</td>
+<td>Integer</td>
+<td>0</td>
+<td>The interval in which a sound will play when active in a 1/delay chance to kick off</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:behavior.avoid_mob_type">minecraft:behavior.avoid_mob_type</p></h3>
 
@@ -4013,6 +4371,12 @@ Allows this entity to avoid certain mob types.</br><h4>Parameters</h4>
 </tr>
 </table>
 </td>
+</tr>
+<tr>
+<td>ignore_visibility</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If true, visbility between this entity and the mob type will not be checked.</br></td>
 </tr>
 <tr>
 <td>max_dist</td>
@@ -4267,6 +4631,116 @@ Allows the dragon to fly around looking for a player and shoot fireballs at them
 <h4>Description</h4>
 
 Allows the dragon to leave perch mode and go back to flying around. Can only be used by the Ender Dragon.</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:behavior.drop_item_for">minecraft:behavior.drop_item_for</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to move near a target and drop an item.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>drop_item_chance</td>
+<td>Decimal</td>
+<td>[1.0]</td>
+<td>The probability that the mob will drop an item.</br></td>
+</tr>
+<tr>
+<td>entity_types</td>
+<td>JSON Object</td>
+<td></td>
+<td>List of entity types this mob will drop items for.</br><table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>filters</td>
+<td>Minecraft Filter</td>
+<td></td>
+<td>Conditions that make this entry in the list valid</br></td>
+</tr>
+<tr>
+<td>max_dist</td>
+<td>Decimal</td>
+<td>16</td>
+<td>Maximum distance this mob can be away to be a valid choice</br></td>
+</tr>
+<tr>
+<td>must_see</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If true, the mob has to be visible to be a valid choice</br></td>
+</tr>
+<tr>
+<td>sprint_speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Multiplier for the running speed. A value of 1.0 means the speed is unchanged</br></td>
+</tr>
+<tr>
+<td>walk_speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Multiplier for the walking speed. A value of 1.0 means the speed is unchanged</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>goal_radius</td>
+<td>Decimal</td>
+<td>0.5</td>
+<td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>loot_table</td>
+<td>String</td>
+<td></td>
+<td>Loot table to select items from.</br></td>
+</tr>
+<tr>
+<td>max_dist</td>
+<td>Decimal</td>
+<td>0.0</td>
+<td>Maximum distance in blocks this mob will look for entities to drop an item for.</br></td>
+</tr>
+<tr>
+<td>offering_distance</td>
+<td>Decimal</td>
+<td>[1.0]</td>
+<td>The distance in blocks the mob will try to be away from the entity when it drops the item.</br></td>
+</tr>
+<tr>
+<td>on_drop_attempt</td>
+<td>String</td>
+<td></td>
+<td>Event to run when this mob attempts to drop an item.</br></td>
+</tr>
+<tr>
+<td>search_height</td>
+<td>Integer</td>
+<td>1</td>
+<td>Height in blocks from the target the mob can be.</br></td>
+</tr>
+<tr>
+<td>search_range</td>
+<td>Integer</td>
+<td>0</td>
+<td>The distance in blocks from the target the mob can be.</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+<tr>
+<td>time_of_day_range</td>
+<td>Range [a, b]</td>
+<td>[0.0, 1.0]</td>
+<td>The valid times of day that this goal can be used.  For reference: noon is 0.0, sunset is 0.25, midnight is 0.5, and sunrise is 0.75, and back to noon for 1.0.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:behavior.eat_block">minecraft:behavior.eat_block</p></h3>
 
@@ -4694,6 +5168,29 @@ Allows the mob to target another mob that hurts them.</br><h4>Parameters</h4>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.lay_down">minecraft:behavior.lay_down</p></h3>
+
+<h4>Description</h4>
+
+Allows mobs to lay down at times</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>interval</td>
+<td>Integer</td>
+<td>120</td>
+<td>A random value to determine at what intervals something can occur. This has a 1/interval chance to choose this goal</br></td>
+</tr>
+<tr>
+<td>random_stop_interval</td>
+<td>Integer</td>
+<td>120</td>
+<td>a random value in which the goal can use to pull out of the behavior. This is a 1/interval chance to play the sound</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.lay_egg">minecraft:behavior.lay_egg</p></h3>
 
 <h4>Description</h4>
@@ -4713,6 +5210,12 @@ Allows the mob to lay an egg block on a sand block if the mob is pregnant.</br><
 <td>String</td>
 <td></td>
 <td>Event to run when this mob lays the egg.</br></td>
+</tr>
+<tr>
+<td>search_count</td>
+<td>Integer</td>
+<td>10</td>
+<td>The number of blocks each tick that the mob will check within it's search range and height for a valid block to move to. A value of 0 will have the mob check every block within range in one tick</br></td>
 </tr>
 <tr>
 <td>search_height</td>
@@ -5071,6 +5574,12 @@ Allows the mob to move back onto land when in water.</br><h4>Parameters</h4>
 <td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
 </tr>
 <tr>
+<td>search_count</td>
+<td>Integer</td>
+<td>10</td>
+<td>The number of blocks each tick that the mob will check within it's search range and height for a valid block to move to. A value of 0 will have the mob check every block within range in one tick</br></td>
+</tr>
+<tr>
 <td>search_height</td>
 <td>Integer</td>
 <td>1</td>
@@ -5104,6 +5613,12 @@ Allows the mob to move back into water when on land.</br><h4>Parameters</h4>
 <td>Decimal</td>
 <td>0.5</td>
 <td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>search_count</td>
+<td>Integer</td>
+<td>10</td>
+<td>The number of blocks each tick that the mob will check within it's search range and height for a valid block to move to. A value of 0 will have the mob check every block within range in one tick</br></td>
 </tr>
 <tr>
 <td>search_height</td>
@@ -5468,6 +5983,41 @@ Allows the mob to enter the panic state, which makes it run around and away from
 
 Allows the mob to peek out. This is what the shulker uses to look out of its shell.</br><a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.pet_sleep_with_owner">minecraft:behavior.pet_sleep_with_owner</p></h3>
+
+<h4>Description</h4>
+
+Allows the pet mob to move onto a bed with it's owner while sleeping.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>goal_radius</td>
+<td>Decimal</td>
+<td>0.5</td>
+<td>Distance in blocks within the mob considers it has reached the goal. This is the "wiggle room" to stop the AI from bouncing back and forth trying to reach a specific spot</br></td>
+</tr>
+<tr>
+<td>search_height</td>
+<td>Integer</td>
+<td>1</td>
+<td>Height in blocks from the owner the pet can be to sleep with owner.</br></td>
+</tr>
+<tr>
+<td>search_range</td>
+<td>Integer</td>
+<td>0</td>
+<td>The distance in blocks from the owner the pet can be to sleep with owner.</br></td>
+</tr>
+<tr>
+<td>speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.pickup_items">minecraft:behavior.pickup_items</p></h3>
 
 <h4>Description</h4>
@@ -5666,6 +6216,41 @@ Allows the mob to randomly look around.</br><h4>Parameters</h4>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:behavior.random_sitting">minecraft:behavior.random_sitting</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to randomly sit for a duration.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>cooldown</td>
+<td>Decimal</td>
+<td>100</td>
+<td>The cooldown time in seconds before the mob may sit again</br></td>
+</tr>
+<tr>
+<td>min_sit_time</td>
+<td>Decimal</td>
+<td>10</td>
+<td>The minimum amount of time in seconds before the mob can stand back up</br></td>
+</tr>
+<tr>
+<td>start_chance</td>
+<td>Decimal</td>
+<td>0.1</td>
+<td>This is the chance that the mob will start sitting, from 0 to 1</br></td>
+</tr>
+<tr>
+<td>stop_chance</td>
+<td>Decimal</td>
+<td>0.3</td>
+<td>This is the chance that the mob will stop sitting, from 0 to 1</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h3><p id="minecraft:behavior.random_stroll">minecraft:behavior.random_stroll</p></h3>
 
 <h4>Description</h4>
@@ -5818,6 +6403,23 @@ Allows the mob to stay indoors during night time.</br><a href="#Index">Back to t
 <h4>Description</h4>
 
 Allows the mob to automatically start avoiding the sun when its a clear day out.</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:behavior.roll">minecraft:behavior.roll</p></h3>
+
+<h4>Description</h4>
+
+This allows the mob to roll forward.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>probability</td>
+<td>Decimal</td>
+<td>[1.0]</td>
+<td>The probability that the mob will use the goal.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:behavior.run_around_like_crazy">minecraft:behavior.run_around_like_crazy</p></h3>
 
@@ -6006,6 +6608,139 @@ Can only be used by Slimes and Magma Cubes. Allows the mob to continuously jump 
 <h4>Description</h4>
 
 Can only be used by Slimes and Magma Cubes. Allows the mob to move in random directions like a slime.</br><a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:behavior.snacking">minecraft:behavior.snacking</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to take a load off and snack on food that it found nearby.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>items</td>
+<td>List</td>
+<td></td>
+<td>Items that we are interested in snacking on</br></td>
+</tr>
+<tr>
+<td>snacking_cooldown</td>
+<td>Decimal</td>
+<td>7.5</td>
+<td>The cooldown time in seconds before the mob is able to snack again</br></td>
+</tr>
+<tr>
+<td>snacking_cooldown_min</td>
+<td>Decimal</td>
+<td>0.5f</td>
+<td>The minimum time in seconds before the mob is able to snack again</br></td>
+</tr>
+<tr>
+<td>snacking_stop_chance</td>
+<td>Decimal</td>
+<td>0.0017</td>
+<td>This is the chance that the mob will stop snacking, from 0 to 1</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="minecraft:behavior.sneeze">minecraft:behavior.sneeze</p></h3>
+
+<h4>Description</h4>
+
+Allows the mob to stop and sneeze possibly startling nearby mobs and dropping an item.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>cooldown_time</td>
+<td>Decimal</td>
+<td>0.0</td>
+<td>Time in seconds the mob has to wait before using the goal again</br></td>
+</tr>
+<tr>
+<td>drop_item_chance</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>The probability that the mob will drop an item when it sneezes.</br></td>
+</tr>
+<tr>
+<td>entity_types</td>
+<td>JSON Object</td>
+<td></td>
+<td>List of entity types this mob will startle (cause to jump) when it sneezes.</br><table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>filters</td>
+<td>Minecraft Filter</td>
+<td></td>
+<td>Conditions that make this entry in the list valid</br></td>
+</tr>
+<tr>
+<td>max_dist</td>
+<td>Decimal</td>
+<td>16</td>
+<td>Maximum distance this mob can be away to be a valid choice</br></td>
+</tr>
+<tr>
+<td>must_see</td>
+<td>Boolean</td>
+<td>false</td>
+<td>If true, the mob has to be visible to be a valid choice</br></td>
+</tr>
+<tr>
+<td>sprint_speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Multiplier for the running speed. A value of 1.0 means the speed is unchanged</br></td>
+</tr>
+<tr>
+<td>walk_speed_multiplier</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>Multiplier for the walking speed. A value of 1.0 means the speed is unchanged</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>loot_table</td>
+<td>String</td>
+<td></td>
+<td>Loot table to select dropped items from.</br></td>
+</tr>
+<tr>
+<td>prepare_sound</td>
+<td>String</td>
+<td></td>
+<td>Sound to play when the sneeze is about to happen.</br></td>
+</tr>
+<tr>
+<td>prepare_time</td>
+<td>Decimal</td>
+<td>1.0</td>
+<td>The time in seconds that the mob takes to prepare to sneeze (while the prepare_sound is playing).</br></td>
+</tr>
+<tr>
+<td>probability</td>
+<td>Decimal</td>
+<td>0.02</td>
+<td>The probability of sneezing. A value of 1.00 is 100%</br></td>
+</tr>
+<tr>
+<td>sound</td>
+<td>String</td>
+<td></td>
+<td>Sound to play when the sneeze occurs.</br></td>
+</tr>
+<tr>
+<td>within_radius</td>
+<td>Decimal</td>
+<td>0.0</td>
+<td>Distance in blocks that mobs will be startled.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <h3><p id="minecraft:behavior.squid_dive">minecraft:behavior.squid_dive</p></h3>
 
@@ -6510,7 +7245,7 @@ Allows the wither to focus its attacks on whichever mob has dealt the most damag
 
 <br><br>
 
-<h3><p id="[07]Filters">Filters</p></h3>
+<h3><p id="[08]Filters">Filters</p></h3>
 
 <h4>Description</h4>
 
@@ -6518,7 +7253,11 @@ Filters allow data objects to specify test critera which allows their use.</br><
 
 <h4>Description</h4>
 
-Compares the current time with a float value in the range (0.0, 1.0).0.0= Noon0.25= Sunset0.5= Midnight0.75= Sunrise</br><h4>Parameters</h4>
+Compares the current time with a float value in the range (0.0, 1.0).
+0.0= Noon
+0.25= Sunset
+0.5= Midnight
+0.75= Sunrise</br><h4>Parameters</h4>
 
 <table border="1">
 <tr> <th>Name</th> <th>Type</th> <th>Default</th> <th>Description</th> </tr>
@@ -6751,6 +7490,104 @@ Returns true when the subject entity has the named ability.</br><h4>Parameters</
 <h4>Examples</h4>
 { "test": "has_ability", "subject": "self", "operator": "equals", "value": "instabuild" }</br>
 { "test": "has_ability", "value": "instabuild" }</br>
+<a href="#Index">Back to top</a><br><br>
+
+<h3><p id="has_biome_tag">has_biome_tag</p></h3>
+
+<h4>Description</h4>
+
+Tests whether the biome the subject is in has the specified tag.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default</th> <th>Description</th> </tr>
+<tr>
+<td>operator</td>
+<td>String</td>
+<td>equals</td>
+<td>(Optional) The comparison to apply with 'value'.</br><table border="1">
+<tr> <th>Options</th> <th>Description</th> </tr>
+<tr>
+<td>!=</td>
+<td>Test for inequality.</br></td>
+</tr>
+<tr>
+<td><</td>
+<td>Test for less-than the value.</br></td>
+</tr>
+<tr>
+<td><=</td>
+<td>Test for less-than or equal to the value.</br></td>
+</tr>
+<tr>
+<td><></td>
+<td>Test for inequality.</br></td>
+</tr>
+<tr>
+<td>=</td>
+<td>Test for equality.</br></td>
+</tr>
+<tr>
+<td>==</td>
+<td>Test for equality.</br></td>
+</tr>
+<tr>
+<td>></td>
+<td>Test for greater-than the value.</br></td>
+</tr>
+<tr>
+<td>>=</td>
+<td>Test for greater-than or equal to the value.</br></td>
+</tr>
+<tr>
+<td>equals</td>
+<td>Test for equality.</br></td>
+</tr>
+<tr>
+<td>not</td>
+<td>Test for inequality.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>subject</td>
+<td>String</td>
+<td>self</td>
+<td>(Optional) The subject of this filter test.</br><table border="1">
+<tr> <th>Options</th> <th>Description</th> </tr>
+<tr>
+<td>other</td>
+<td>The other member of an interaction, not the caller.</br></td>
+</tr>
+<tr>
+<td>parent</td>
+<td>The caller's current parent.</br></td>
+</tr>
+<tr>
+<td>player</td>
+<td>The player involved with the interaction.</br></td>
+</tr>
+<tr>
+<td>self</td>
+<td>The entity or object calling the test</br></td>
+</tr>
+<tr>
+<td>target</td>
+<td>The caller's current target.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>value</td>
+<td>String</td>
+<td></td>
+<td>(Required) The tag to look for</br></td>
+</tr>
+</table>
+<h4>Examples</h4>
+{ "test": "has_biome_tag", "subject": "self", "operator": "equals", "value": " " }</br>
+{ "test": "has_biome_tag", "value": " " }</br>
 <a href="#Index">Back to top</a><br><br>
 
 <h3><p id="has_component">has_component</p></h3>
@@ -10409,7 +11246,7 @@ Returns true when the subject entity is on a ladder.</br><h4>Parameters</h4>
 
 <br><br>
 
-<h3><p id="[08]Triggers">Triggers</p></h3>
+<h3><p id="[09]Triggers">Triggers</p></h3>
 
 <h3><p id="minecraft:on_death">minecraft:on_death</p></h3>
 
@@ -10672,9 +11509,38 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h3><p id="minecraft:on_wake_with_owner">minecraft:on_wake_with_owner</p></h3>
+
+<h4>Description</h4>
+
+Adds a trigger to call when this pet's owner awakes after sleeping with the pet.</br><h4>Parameters</h4>
+
+<table border="1">
+<tr> <th>Name</th> <th>Type</th> <th>Default Value</th> <th>Description</th> </tr>
+<tr>
+<td>event</td>
+<td>String</td>
+<td></td>
+<td>The event to run when the conditions for this trigger are met</br></td>
+</tr>
+<tr>
+<td>filters</td>
+<td>Minecraft Filter</td>
+<td></td>
+<td>The list of conditions for this trigger</br></td>
+</tr>
+<tr>
+<td>target</td>
+<td>String</td>
+<td>self</td>
+<td>The target of the event</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <br><br>
 
-<h3><p id="[09]Built-in Events">Built-in Events</p></h3>
+<h3><p id="[10]Built-in Events">Built-in Events</p></h3>
 
 <table border="1">
 <tr> <th>Name</th> <th>Description</th> </tr>
@@ -10697,7 +11563,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </table>
 <a href="#Index">Back to top</a><br><br>
 
-<h3><p id="[10]Entities">Entities</p></h3>
+<h3><p id="[11]Entities">Entities</p></h3>
 
 <table border="1">
 <tr> <th>Identifier</th> <th>Full ID</th> <th>Short ID</th> </tr>
@@ -10728,12 +11594,12 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>bat</td>
-<td>33587475</td>
+<td>33043</td>
 <td>19</br></td>
 </tr>
 <tr>
 <td>blaze</td>
-<td>33557291</td>
+<td>2859</td>
 <td>43</br></td>
 </tr>
 <tr>
@@ -10742,9 +11608,19 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>90</br></td>
 </tr>
 <tr>
+<td>cat</td>
+<td>21323</td>
+<td>75</br></td>
+</tr>
+<tr>
 <td>cave_spider</td>
-<td>33819432</td>
+<td>265000</td>
 <td>40</br></td>
+</tr>
+<tr>
+<td>chalkboard</td>
+<td>78</td>
+<td>78</br></td>
 </tr>
 <tr>
 <td>chest_minecart</td>
@@ -10758,7 +11634,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>cod</td>
-<td>16786288</td>
+<td>9072</td>
 <td>112</br></td>
 </tr>
 <tr>
@@ -10773,12 +11649,12 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>creeper</td>
-<td>33557281</td>
+<td>2849</td>
 <td>33</br></td>
 </tr>
 <tr>
 <td>dolphin</td>
-<td>16786207</td>
+<td>8991</td>
 <td>31</br></td>
 </tr>
 <tr>
@@ -10793,7 +11669,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>drowned</td>
-<td>50531182</td>
+<td>199534</td>
 <td>110</br></td>
 </tr>
 <tr>
@@ -10803,7 +11679,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>elder_guardian</td>
-<td>33557298</td>
+<td>2866</td>
 <td>50</br></td>
 </tr>
 <tr>
@@ -10813,7 +11689,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>ender_dragon</td>
-<td>33557301</td>
+<td>2869</td>
 <td>53</br></td>
 </tr>
 <tr>
@@ -10823,12 +11699,12 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>enderman</td>
-<td>33557286</td>
+<td>2854</td>
 <td>38</br></td>
 </tr>
 <tr>
 <td>endermite</td>
-<td>33819447</td>
+<td>265015</td>
 <td>55</br></td>
 </tr>
 <tr>
@@ -10838,7 +11714,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>evocation_illager</td>
-<td>33557352</td>
+<td>2920</td>
 <td>104</br></td>
 </tr>
 <tr>
@@ -10868,12 +11744,12 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>ghast</td>
-<td>33557289</td>
+<td>2857</td>
 <td>41</br></td>
 </tr>
 <tr>
 <td>guardian</td>
-<td>33557297</td>
+<td>2865</td>
 <td>49</br></td>
 </tr>
 <tr>
@@ -10888,7 +11764,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>husk</td>
-<td>33753903</td>
+<td>199471</td>
 <td>47</br></td>
 </tr>
 <tr>
@@ -10933,7 +11809,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>magma_cube</td>
-<td>33557290</td>
+<td>2858</td>
 <td>42</br></td>
 </tr>
 <tr>
@@ -10957,6 +11833,11 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>25</br></td>
 </tr>
 <tr>
+<td>npc</td>
+<td>307</td>
+<td>51</br></td>
+</tr>
+<tr>
 <td>ocelot</td>
 <td>21270</td>
 <td>22</br></td>
@@ -10967,13 +11848,18 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>83</br></td>
 </tr>
 <tr>
+<td>panda</td>
+<td>4977</td>
+<td>113</br></td>
+</tr>
+<tr>
 <td>parrot</td>
 <td>21278</td>
 <td>30</br></td>
 </tr>
 <tr>
 <td>phantom</td>
-<td>33622842</td>
+<td>68410</td>
 <td>58</br></td>
 </tr>
 <tr>
@@ -10993,7 +11879,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>pufferfish</td>
-<td>16786284</td>
+<td>9068</td>
 <td>108</br></td>
 </tr>
 <tr>
@@ -11003,7 +11889,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>salmon</td>
-<td>16786285</td>
+<td>9069</td>
 <td>109</br></td>
 </tr>
 <tr>
@@ -11013,7 +11899,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>shulker</td>
-<td>33557302</td>
+<td>2870</td>
 <td>54</br></td>
 </tr>
 <tr>
@@ -11023,22 +11909,22 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>silverfish</td>
-<td>33819431</td>
+<td>264999</td>
 <td>39</br></td>
 </tr>
 <tr>
 <td>skeleton</td>
-<td>34671394</td>
+<td>1116962</td>
 <td>34</br></td>
 </tr>
 <tr>
 <td>skeleton_horse</td>
-<td>35740442</td>
+<td>2186010</td>
 <td>26</br></td>
 </tr>
 <tr>
 <td>slime</td>
-<td>33557285</td>
+<td>2853</td>
 <td>37</br></td>
 </tr>
 <tr>
@@ -11058,7 +11944,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>spider</td>
-<td>33819427</td>
+<td>264995</td>
 <td>35</br></td>
 </tr>
 <tr>
@@ -11068,12 +11954,12 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>squid</td>
-<td>16786193</td>
+<td>8977</td>
 <td>17</br></td>
 </tr>
 <tr>
 <td>stray</td>
-<td>34671406</td>
+<td>1116974</td>
 <td>46</br></td>
 </tr>
 <tr>
@@ -11092,8 +11978,13 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>97</br></td>
 </tr>
 <tr>
+<td>tripod_camera</td>
+<td>318</td>
+<td>62</br></td>
+</tr>
+<tr>
 <td>tropicalfish</td>
-<td>16786287</td>
+<td>9071</td>
 <td>111</br></td>
 </tr>
 <tr>
@@ -11103,7 +11994,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>vex</td>
-<td>33557353</td>
+<td>2921</td>
 <td>105</br></td>
 </tr>
 <tr>
@@ -11113,22 +12004,22 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>vindicator</td>
-<td>33557305</td>
+<td>2873</td>
 <td>57</br></td>
 </tr>
 <tr>
 <td>witch</td>
-<td>33557293</td>
+<td>2861</td>
 <td>45</br></td>
 </tr>
 <tr>
 <td>wither</td>
-<td>33622836</td>
+<td>68404</td>
 <td>52</br></td>
 </tr>
 <tr>
 <td>wither_skeleton</td>
-<td>34671408</td>
+<td>1116976</td>
 <td>48</br></td>
 </tr>
 <tr>
@@ -11158,28 +12049,28 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>zombie</td>
-<td>33753888</td>
+<td>199456</td>
 <td>32</br></td>
 </tr>
 <tr>
 <td>zombie_horse</td>
-<td>35740443</td>
+<td>2186011</td>
 <td>27</br></td>
 </tr>
 <tr>
 <td>zombie_pigman</td>
-<td>33622820</td>
+<td>68388</td>
 <td>36</br></td>
 </tr>
 <tr>
 <td>zombie_villager</td>
-<td>33753900</td>
+<td>199468</td>
 <td>44</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
-<h3><p id="[11]Blocks">Blocks</p></h3>
+<h3><p id="[12]Blocks">Blocks</p></h3>
 
 <table border="1">
 <tr> <th>Name</th> </tr>
@@ -11209,6 +12100,12 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </tr>
 <tr>
 <td>minecraft:anvil</td>
+</tr>
+<tr>
+<td>minecraft:bamboo</td>
+</tr>
+<tr>
+<td>minecraft:bamboo_sapling</td>
 </tr>
 <tr>
 <td>minecraft:barrier</td>
@@ -11868,9 +12765,6 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>minecraft:glass_pane</td>
 </tr>
 <tr>
-<td>minecraft:glow_stick</td>
-</tr>
-<tr>
 <td>minecraft:glowingobsidian</td>
 </tr>
 <tr>
@@ -12210,6 +13104,9 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 <td>minecraft:sapling</td>
 </tr>
 <tr>
+<td>minecraft:scaffolding</td>
+</tr>
+<tr>
 <td>minecraft:seaLantern</td>
 </tr>
 <tr>
@@ -12413,7 +13310,7 @@ Adds a trigger to call when this entity loses the target it currently has.</br><
 </table>
 <a href="#Index">Back to top</a><br><br>
 
-<h3><p id="[13]Geometry">Geometry</p></h3>
+<h3><p id="[14]Geometry">Geometry</p></h3>
 
 <h3><p id="Blocks">Blocks</p></h3>
 
