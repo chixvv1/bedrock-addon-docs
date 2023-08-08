@@ -1,4 +1,4 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.16</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.18</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -388,10 +388,6 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">returns value between 0.0 and 1.0 with 0.0 meaning cape is fully down and 1.0 is cape is fully up</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:3; padding:7px">query.cape_height_offset</td>
-<td style="border-style:solid; border-width:3; padding:7px">Returns the body armor offset value used to adjust height on Elytra or Capes. Returns 0.0 if there's no body armor offset</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.current_squish_value</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the squish value for the current entity, or 0.0 if this doesn't make sense</br></td>
 </tr>
@@ -420,8 +416,16 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot as a parameter (0 or 'main_hand' for main hand, 1 or 'off_hand' for off hand), and a second parameter (0=default) if you would like the equipped item or any non-zero number for the currently rendered item, and returns the name of the item in the requested slot (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.get_locator_offset</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the root actor identifier</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.get_name</td>
 <td style="border-style:solid; border-width:3; padding:7px">get the name of the mob if there is one, otherwise return ''</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.get_root_locator_offset</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the root actor identifier</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.ground_speed</td>
