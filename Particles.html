@@ -1,4 +1,4 @@
-<h1>PARTICLES DOCUMENTATION </br>Version: 1.12.0.11</h1>
+<h1>PARTICLES DOCUMENTATION </br>Version: 1.12.0.13</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -805,7 +805,7 @@ This component enables collisions between the terrain and the particle. Collisio
 <h3><p id="Particle Appearance Billboard component">Particle Appearance Billboard component</p></h3>
 
 This component tells the particle system to render the particle as a billboard, a rectangle in the world facing a particluar direction.</br><h4></h4>
-<br / ><textarea readonly="true" cols="112" rows="32">
+<br / ><textarea readonly="true" cols="121" rows="32">
 "minecraft:particle_appearance_billboard": {
     // specifies the x/y size of the billboard
     // evaluated every frame
@@ -816,8 +816,9 @@ This component tells the particle system to render the particle as a billboard, 
     // "rotate_y" -aligned to camera, but rotating around world y axis
     // "lookat_xyz" - aimed at the camera, biased towards world y up
     // "lookat_y" - aimed at the camera, but rotating around world y axis
-    // "direction" - billboard is aligned perpendicular to the direction vector, 
-    //    e.g. a direction of [0, 1, 0] would have the particle facing upwards
+    // "direction_x" - unrotated particle x axis is along the direction vector, unrotated y axis attempts to aim upwards
+    // "direction_y" - unrotated particle y axis is along the direction vector, unrotated x axis attempts to aim upwards
+    // "direction_z" - billboard face is along the direction vector, unrotated y axis attempts to aim upwards
     "face_camera_mode": <string>
 
     // specifies the UVs for the particle.  
