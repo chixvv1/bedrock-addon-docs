@@ -1,4 +1,4 @@
-<h1>RECIPES DOCUMENTATION </br>Version: 1.13.0.13</h1>
+<h1>RECIPES DOCUMENTATION </br>Version: 1.13.0.15</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -64,14 +64,9 @@ Represents a shaped crafting recipe for a crafting table.</br>The key used in th
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">tags</td>
-<td style="border-style:solid; border-width:2; padding:8px">array of strings</td>
-<td style="border-style:solid; border-width:2; padding:8px">Item used as input for the furnace recipe.</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">priority</td>
-<td style="border-style:solid; border-width:2; padding:8px">integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">Item used as output for the furnace recipe.</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">key</td>
+<td style="border-style:solid; border-width:2; padding:8px">array of key and item pairs</td>
+<td style="border-style:solid; border-width:2; padding:8px">patten key character mapped to item names.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">pattern</td>
@@ -79,14 +74,19 @@ Represents a shaped crafting recipe for a crafting table.</br>The key used in th
 <td style="border-style:solid; border-width:2; padding:8px">characters that represent a pattern to be defined by keys.</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">key</td>
-<td style="border-style:solid; border-width:2; padding:8px">array of key and item pairs</td>
-<td style="border-style:solid; border-width:2; padding:8px">patten key character mapped to item names.</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">priority</td>
+<td style="border-style:solid; border-width:2; padding:8px">integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">Item used as output for the furnace recipe.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">result</td>
 <td style="border-style:solid; border-width:2; padding:8px">array of item names</td>
 <td style="border-style:solid; border-width:2; padding:8px">when input items match the pattern then these items are the result.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">tags</td>
+<td style="border-style:solid; border-width:2; padding:8px">array of strings</td>
+<td style="border-style:solid; border-width:2; padding:8px">Item used as input for the furnace recipe.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -133,9 +133,9 @@ Represents a shapeless crafting recipe..</br><h2></h2>
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">tags</td>
-<td style="border-style:solid; border-width:2; padding:8px">array of strings</td>
-<td style="border-style:solid; border-width:2; padding:8px">Item used as input for the furnace recipe.</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">ingredients</td>
+<td style="border-style:solid; border-width:2; padding:8px">array of item names</td>
+<td style="border-style:solid; border-width:2; padding:8px">items used as input (without a shape) for the recipe.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">priority</td>
@@ -143,14 +143,14 @@ Represents a shapeless crafting recipe..</br><h2></h2>
 <td style="border-style:solid; border-width:2; padding:8px">Item used as output for the furnace recipe.</br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">ingredients</td>
-<td style="border-style:solid; border-width:2; padding:8px">array of item names</td>
-<td style="border-style:solid; border-width:2; padding:8px">items used as input (without a shape) for the recipe.</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">result</td>
 <td style="border-style:solid; border-width:2; padding:8px">array of item names</td>
 <td style="border-style:solid; border-width:2; padding:8px">these items are the result.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">tags</td>
+<td style="border-style:solid; border-width:2; padding:8px">array of strings</td>
+<td style="border-style:solid; border-width:2; padding:8px">Item used as input for the furnace recipe.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>

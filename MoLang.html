@@ -1,252 +1,29 @@
-<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.13</h1>
+<h1>MOLANG DOCUMENTATION </br>Version: 1.13.0.15</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
-<tr> <th><a href="#Why Does MoLang Exist?">Why Does MoLang Exist?</a></th> </tr>
+<tr> <th><a href="#Domain Examples">Domain Examples</a></th> </tr>
+<tr> <td> <a href="#Animation and Animation Controller Files"> Animation and Animation Controller Files</a> </tr> </td>
+<tr> <td> <a href="#Entity Definition Scripts"> Entity Definition Scripts</a> </tr> </td>
+<tr> <td> <a href="#Render Controllers"> Render Controllers</a> </tr> </td>
 <tr> <th><a href="#Lexical Structure">Lexical Structure</a></th> </tr>
-<tr> <td> <a href="#Values"> Values</a> </tr> </td>
-<tr> <td> <a href="#Variables"> Variables</a> </tr> </td>
 <tr> <td> <a href="#Keywords"> Keywords</a> </tr> </td>
 <tr> <td> <a href="#Math Functions"> Math Functions</a> </tr> </td>
-<tr> <td> <a href="#Types, Values, and Variables"> Types, Values, and Variables</a> </tr> </td>
 <tr> <td> <a href="#Simple vs Complex Expressions"> Simple vs Complex Expressions</a> </tr> </td>
-<tr> <th><a href="#Domain Examples">Domain Examples</a></th> </tr>
-<tr> <td> <a href="#Entity Definition Scripts"> Entity Definition Scripts</a> </tr> </td>
-<tr> <td> <a href="#Animation and Animation Controller Files"> Animation and Animation Controller Files</a> </tr> </td>
-<tr> <td> <a href="#Render Controllers"> Render Controllers</a> </tr> </td>
+<tr> <td> <a href="#Types, Values, and Variables"> Types, Values, and Variables</a> </tr> </td>
+<tr> <td> <a href="#Values"> Values</a> </tr> </td>
+<tr> <td> <a href="#Variables"> Variables</a> </tr> </td>
 <tr> <th><a href="#Query Functions">Query Functions</a></th> </tr>
 <tr> <td> <a href="#"> </a> </tr> </td>
 <tr> <td> <a href="#List of Entity Queries"> List of Entity Queries</a> </tr> </td>
+<tr> <th><a href="#Why Does MoLang Exist?">Why Does MoLang Exist?</a></th> </tr>
 </table>
 <a href="#Index">Back to top</a>
-<h1><p id="Why Does MoLang Exist?">Why Does MoLang Exist?</p></h1>
-
-MoLang is a simple expression-based language designed for fast calculation of values at run-time.  Its focus is solely to enable script-like capabilities in high-performance systems where JavaScript is not performant at scale.  We need scripting capabilities in these low-level systems to support end-user modding capabilities, custom entities, rendering, and animation.</br><a href="#Index">Back to top</a><br><br>
-
-<h1><p id="Lexical Structure">Lexical Structure</p></h1>
-
-The language structure is largely based on simple C-style syntax, focusing on handling math expressions.  A script is made of either one expression for simple cases, or can be made of several where intermediate values are required or to help reduce compute time.</br></br>In all cases, the value of the last expression in a script provides the script's value.  In a multi-expression script, all but the last expression must assign a value to a variable.  The last expression can as well, but doesn't need to as its value is assumed to be the used as the return value.</br><h1><p id="Values">Values</p></h1>
-
-- Value types are concretely specified, or numeric if not.</br>- All numerical values are floats.</br>- Boolean values such as actor flags are converted to a float value of either 0.0 or 1.0 for values of false or true respectively.</br>- For boolean tests, a float value equivalent to 0.0 is false, and anything not equal to 0.0 is true.</br>- For array indices, floats are c-style cast to ints, and clamped at zero for negative values or wrapped by the array size for large values.</br>- Other supported types are textures, materials, and geometry where they make sense (such as render controllers).</br>- Errors generally return a value of 0.0.</br><a href="#Index">Back to top</a><br><br>
-
-<h1><p id="Variables">Variables</p></h1>
-
-There are several domains a variable may belong to:</br><h2>Parameters</h2>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
-<tr> <th style="border-style:solid; border-width:3;">Domain</th> <th style="border-style:solid; border-width:3;">Scope</th> <th style="border-style:solid; border-width:3;">Example</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">temp</td>
-<td style="border-style:solid; border-width:3; padding:7px">current expression</td>
-<td style="border-style:solid; border-width:3; padding:7px">temp.foo = math.sin(query.anim_time); return temp.foo * temp.foo;</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">variable</td>
-<td style="border-style:solid; border-width:3; padding:7px">read-write values, usually related to the current entity</td>
-<td style="border-style:solid; border-width:3; padding:7px">variable.my_saved_var = variable.my_saved_var + 1;</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">query</td>
-<td style="border-style:solid; border-width:3; padding:7px">read-only values, usually related to current entity</td>
-<td style="border-style:solid; border-width:3; padding:7px">query.is_baby</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">geometry</td>
-<td style="border-style:solid; border-width:3; padding:7px">current render controller</td>
-<td style="border-style:solid; border-width:3; padding:7px">"geometry": "array.geos[query.is_sheared]"</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">material</td>
-<td style="border-style:solid; border-width:3; padding:7px">current render controller</td>
-<td style="border-style:solid; border-width:3; padding:7px">"materials": [ { "*": "material.default" }, { "leg*": "material.legs" } ]</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">texture</td>
-<td style="border-style:solid; border-width:3; padding:7px">current render controller</td>
-<td style="border-style:solid; border-width:3; padding:7px">"textures": ["array.skins[query.is_saddled]"]</br></td>
-</tr>
-</table>
-<a href="#Index">Back to top</a><br><br>
-
-<h1><p id="Keywords">Keywords</p></h1>
-
-All identifiers not in a scope listed below are reserved for future use</br><h2>Parameters</h2>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
-<tr> <th style="border-style:solid; border-width:3;">Keyword</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`float`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Numerical constant value`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`( )`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Parentheses for expression term evaluation control`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Brackets for array access`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`query.function_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Access to an entity's properties`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.function_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Various math functions (see below)`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`temp.variable_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Store an intermediate value for the duration of the current expression`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`variable.variable_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Store a value on the attached entity for later use`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`geometry.texture_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`A reference to a texture named in the entity definition`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`material.texture_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`A reference to a texture named in the entity definition`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`texture.texture_name`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`A reference to a texture named in the entity definition`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`! && || < <= >= > == !=`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Logical operators`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`* / + -`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Basic math operators`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`test ? if true : if false`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Conditional operator`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`this`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`The current value before executing the script (context sensitive)`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`return`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`For complex expressions, this evaluates the following statement and stops execution of the script, returns the value computed`</br></td>
-</tr>
-</table>
-<a href="#Index">Back to top</a><br><br>
-
-<h1><p id="Math Functions">Math Functions</p></h1>
-
-`</br><h2>Parameters</h2>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
-<tr> <th style="border-style:solid; border-width:3;">Function</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.abs(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Absolute value of value`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.sin(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Sine (in degrees) of value`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.cos(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Cosine (in degrees) of value`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.exp(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Calculates e to the value'th power`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.ln(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Natural logarithm of value`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.pow(base, exponent)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Elevates base to the exponent'th power`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.sqrt(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Square root of value`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.random(low, high)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Random value between low and high inclusive`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.ceil(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Round value up to nearest integral number`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.round(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Round value to nearest integral number`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.trunc(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Round value towards zero`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.floor(value)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Round value down to nearest integral number`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.mod(value, denominator)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Return the remainder of value / denominator`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.min(A, B)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Return lowest value of A or B`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.max(A, B)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Return highest value of A or B`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.clamp(value, min, max)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Clamp value to between min and max inclusive`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.lerp(start, end, 0_to_1)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Lerp from start to end via 0_to_1`</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:3; padding:7px">`math.lerprotate(start, end, 0_to_1)`</td>
-<td style="border-style:solid; border-width:3; padding:7px">`Lerp the shortest direction around a circle from start degrees to end degrees via 0_to_1`</br></td>
-</tr>
-</table>
-<a href="#Index">Back to top</a><br><br>
-
-<h1><p id="Types, Values, and Variables">Types, Values, and Variables</p></h1>
-
-In general, all expression values are floats.  In render controllers, some expressions result in a texture or material depending on the context.  All array index expressions are processed as floats, and cast to integers when performing the final lookup into the array.  Positive array indices wrap by the size of the array.  Negative array indices clamp to 0.</br><a href="#Index">Back to top</a><br><br>
-
-<h1><p id="Simple vs Complex Expressions">Simple vs Complex Expressions</p></h1>
-
-<h2></h2>
-
-A simple expression is a single statement, the value of which is returned to the system that evaluated the expression.  eg:</br><h3></h3>
-<br / ><textarea readonly="true" cols="33" rows="2">
-math.sin(query.anim_time * 1.23)
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
-
-A complex expression is one with multiple statements, each ending in a ';'.  Each statement is evaluated in order.  In the current implementation, the last statement requires the use of the return keyword and defines the resulting value of the expression.  eg:</br><h3></h3>
-<br / ><textarea readonly="true" cols="69" rows="4">
-temp.my_temp_var = Math.sin(query.anim_time * 1.23);
-temp.my_other_temp_var = Math.cos(query.life_time + 2.0);
-return temp.my_temp_var * temp.my_temp_var + temp.my_other_temp_var;
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
-
-Note that in a simple expression, ';' is not allowed, whereas in a complex expression, each statement requires a ';' including the last.</br><a href="#Index">Back to top</a><br><br>
-
-<br><br>
-
-<br><br>
-
 <h1><p id="Domain Examples">Domain Examples</p></h1>
+
+<h1><p id="Animation and Animation Controller Files">Animation and Animation Controller Files</p></h1>
+
+These are always numerical operations to control which animations are playing and how to animate bones.  "variable.variable_name" and "query.function_name" refers to the entity currently being rendered.  They have access to everything in the language except material, texture, and geometry types.</br><a href="#Index">Back to top</a><br><br>
 
 <h1><p id="Entity Definition Scripts">Entity Definition Scripts</p></h1>
 
@@ -261,10 +38,6 @@ In the definition file there is a section for pre-computing values.  These are e
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
-<h1><p id="Animation and Animation Controller Files">Animation and Animation Controller Files</p></h1>
-
-These are always numerical operations to control which animations are playing and how to animate bones.  "variable.variable_name" and "query.function_name" refers to the entity currently being rendered.  They have access to everything in the language except material, texture, and geometry types.</br><a href="#Index">Back to top</a><br><br>
-
 <h1><p id="Render Controllers">Render Controllers</p></h1>
 
 There are a few different kinds of expressions here, where context implies what is allowed.  As with animations, the entity accessors refer to the current entity, however depending on the context one also has access to materials, textures, and geometries.  There are two sections in a render controller:</br>-Array definitions (optional)</br>-Resource usage (required)</br>The array definition section allows you to create arrays of resources by resource type if you so desire.  These can then be referenced in the resource usage section.</br><h2>Parameters</h2>
@@ -273,23 +46,7 @@ There are a few different kinds of expressions here, where context implies what 
 
 For each of the three resource types (materials, textures, and geometry), you can define an array of resources.  The name of the resource is the nice-name from the definition file.  Using materials as an example:</br><h3></h3>
 
-<h4></h4>
-<br / ><textarea readonly="true" cols="93" rows="12">
-"arrays":
-{
-  "materials": {
-    "array.my_array_1": ["material.a", "material.b", "material.c"],
-    "array.my_array_2" : ["material.d", "material.e"],
-    "array.my_array_3" : ["array.my_array_1", "material.my_array_2"],
-    "array.my_array_4" : ["array.my_array_2", "material.my_array_3"],
-    "array.my_array_5" : ["array.my_array_1", "material.my_array_1", "material.my_array_4"],
-    "array.my_array_6" : ["array.my_array_1", "material.f"],
-    ...
-  },
-</textarea> </br>
-<a href="#Index">Back to top</a><br><br>
-
-Note that all elements of an array must be of the same type.  eg: a texture array must only contain textures.</br></br>An array can reference any combination of zero or more arrays (including duplicates if desired) and/or zero or more materails (again, including duplicates if you like), and you can have as many arrays as you like, each with as many elements as you like.  If an array includes arrays in its members, they do not need to be the same length.  When indexing into an array in the resource usage section, you use numerical expressions.  If the resulting number is negative, it will use zero as the index.  Any non - negative index will converted to an integer, and will wrap based on the size of the array:</br><h4></h4>
+An array can reference any combination of zero or more arrays (including duplicates if desired) and/or zero or more materails (again, including duplicates if you like), and you can have as many arrays as you like, each with as many elements as you like.  If an array includes arrays in its members, they do not need to be the same length.  When indexing into an array in the resource usage section, you use numerical expressions.  If the resulting number is negative, it will use zero as the index.  Any non - negative index will converted to an integer, and will wrap based on the size of the array:</br><h4></h4>
 <br / ><textarea readonly="true" cols="47" rows="2">
 index = max(0, expression_result) % array_size
 </textarea> </br>
@@ -326,7 +83,7 @@ The geometry section specifies which geometry to use when rendering.  As you can
 
 The materials section specifies how to map what material to what bone of the geometry.  A single material is mapped to a whole bone.  Material expressions are evaluated in the order listed.  The first part of each statement is the name of the model part to apply the material to, and the second part is the material to use.  The model part name can use * for wild - card matching of characters.  For example : </br><h4></h4>
 
-<h6></h6>
+- Next, it will set the material on a model part named "TailA" to the result of the expression "Array.hairColors[variable.hair_color]".  This will look up some previously created variable on the entity named hair_color and use that to index into a material array called "array.hair_colors" defined in this render controller.  This will overwrite the Material.default material set in the line above.</br>- Third, it will look up the same material as the expression is identical, and apply it to the "Mane" model part.</br>- Lastly, if will find any model part starting with, ending with, or containing "Saddle" (case sensitive) and change its material to either material.leather_saddle or material.iron_saddle depending on the previously set entity variable variable.is_leather_saddle.</br><h6></h6>
 <br / ><textarea readonly="true" cols="100" rows="7">
   "materials": [
       { "*": "Material.default" },
@@ -337,13 +94,226 @@ The materials section specifies how to map what material to what bone of the geo
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
-- This will start by applying Material.default to all model parts.</br>- Next, it will set the material on a model part named "TailA" to the result of the expression "Array.hairColors[variable.hair_color]".  This will look up some previously created variable on the entity named hair_color and use that to index into a material array called "array.hair_colors" defined in this render controller.  This will overwrite the Material.default material set in the line above.</br>- Third, it will look up the same material as the expression is identical, and apply it to the "Mane" model part.</br>- Lastly, if will find any model part starting with, ending with, or containing "Saddle" (case sensitive) and change its material to either material.leather_saddle or material.iron_saddle depending on the previously set entity variable variable.is_leather_saddle.</br><a href="#Index">Back to top</a><br><br>
-
 <br><br>
 
 <br><br>
 
 <br><br>
+
+<br><br>
+
+<h1><p id="Lexical Structure">Lexical Structure</p></h1>
+
+The language structure is largely based on simple C-style syntax, focusing on handling math expressions.  A script is made of either one expression for simple cases, or can be made of several where intermediate values are required or to help reduce compute time.</br></br>In all cases, the value of the last expression in a script provides the script's value.  In a multi-expression script, all but the last expression must assign a value to a variable.  The last expression can as well, but doesn't need to as its value is assumed to be the used as the return value.</br><h1><p id="Keywords">Keywords</p></h1>
+
+All identifiers not in a scope listed below are reserved for future use</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Keyword</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`! && || < <= >= > == !=`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Logical operators`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`( )`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Parentheses for expression term evaluation control`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`* / + -`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Basic math operators`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Brackets for array access`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`float`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Numerical constant value`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`geometry.texture_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`A reference to a texture named in the entity definition`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`material.texture_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`A reference to a texture named in the entity definition`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.function_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Various math functions (see below)`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`query.function_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Access to an entity's properties`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`return`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`For complex expressions, this evaluates the following statement and stops execution of the script, returns the value computed`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`temp.variable_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Store an intermediate value for the duration of the current expression`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`test ? if true : if false`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Conditional operator`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`texture.texture_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`A reference to a texture named in the entity definition`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`this`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`The current value before executing the script (context sensitive)`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`variable.variable_name`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Store a value on the attached entity for later use`</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Math Functions">Math Functions</p></h1>
+
+`</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Function</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.abs(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Absolute value of value`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.ceil(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Round value up to nearest integral number`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.clamp(value, min, max)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Clamp value to between min and max inclusive`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.cos(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Cosine (in degrees) of value`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.exp(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Calculates e to the value'th power`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.floor(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Round value down to nearest integral number`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.lerp(start, end, 0_to_1)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Lerp from start to end via 0_to_1`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.lerprotate(start, end, 0_to_1)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Lerp the shortest direction around a circle from start degrees to end degrees via 0_to_1`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.ln(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Natural logarithm of value`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.max(A, B)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Return highest value of A or B`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.min(A, B)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Return lowest value of A or B`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.mod(value, denominator)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Return the remainder of value / denominator`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.pow(base, exponent)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Elevates base to the exponent'th power`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.random(low, high)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Random value between low and high inclusive`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.round(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Round value to nearest integral number`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.sin(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Sine (in degrees) of value`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.sqrt(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Square root of value`</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">`math.trunc(value)`</td>
+<td style="border-style:solid; border-width:3; padding:7px">`Round value towards zero`</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Simple vs Complex Expressions">Simple vs Complex Expressions</p></h1>
+
+<h2></h2>
+
+A simple expression is a single statement, the value of which is returned to the system that evaluated the expression.  eg:In the current implementation, the last statement requires the use of the return keyword and defines the resulting value of the expression.  eg:</br><h3></h3>
+<br / ><textarea readonly="true" cols="69" rows="4">
+temp.my_temp_var = Math.sin(query.anim_time * 1.23);
+temp.my_other_temp_var = Math.cos(query.life_time + 2.0);
+return temp.my_temp_var * temp.my_temp_var + temp.my_other_temp_var;
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
+<br><br>
+
+<h1><p id="Types, Values, and Variables">Types, Values, and Variables</p></h1>
+
+In general, all expression values are floats.  In render controllers, some expressions result in a texture or material depending on the context.  All array index expressions are processed as floats, and cast to integers when performing the final lookup into the array.  Positive array indices wrap by the size of the array.  Negative array indices clamp to 0.</br><a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Values">Values</p></h1>
+
+- Value types are concretely specified, or numeric if not.</br>- All numerical values are floats.</br>- Boolean values such as actor flags are converted to a float value of either 0.0 or 1.0 for values of false or true respectively.</br>- For boolean tests, a float value equivalent to 0.0 is false, and anything not equal to 0.0 is true.</br>- For array indices, floats are c-style cast to ints, and clamped at zero for negative values or wrapped by the array size for large values.</br>- Other supported types are textures, materials, and geometry where they make sense (such as render controllers).</br>- Errors generally return a value of 0.0.</br><a href="#Index">Back to top</a><br><br>
+
+<h1><p id="Variables">Variables</p></h1>
+
+There are several domains a variable may belong to:</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Domain</th> <th style="border-style:solid; border-width:3;">Scope</th> <th style="border-style:solid; border-width:3;">Example</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">geometry</td>
+<td style="border-style:solid; border-width:3; padding:7px">current render controller</td>
+<td style="border-style:solid; border-width:3; padding:7px">"geometry": "array.geos[query.is_sheared]"</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">material</td>
+<td style="border-style:solid; border-width:3; padding:7px">current render controller</td>
+<td style="border-style:solid; border-width:3; padding:7px">"materials": [ { "*": "material.default" }, { "leg*": "material.legs" } ]</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query</td>
+<td style="border-style:solid; border-width:3; padding:7px">read-only values, usually related to current entity</td>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_baby</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">temp</td>
+<td style="border-style:solid; border-width:3; padding:7px">current expression</td>
+<td style="border-style:solid; border-width:3; padding:7px">temp.foo = math.sin(query.anim_time); return temp.foo * temp.foo;</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">texture</td>
+<td style="border-style:solid; border-width:3; padding:7px">current render controller</td>
+<td style="border-style:solid; border-width:3; padding:7px">"textures": ["array.skins[query.is_saddled]"]</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">variable</td>
+<td style="border-style:solid; border-width:3; padding:7px">read-write values, usually related to the current entity</td>
+<td style="border-style:solid; border-width:3; padding:7px">variable.my_saved_var = variable.my_saved_var + 1;</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
 
 <br><br>
 
@@ -973,4 +943,8 @@ Query Functions are boolean expressions that allow you to query for values owned
 <a href="#Index">Back to top</a><br><br>
 
 <br><br>
+
+<h1><p id="Why Does MoLang Exist?">Why Does MoLang Exist?</p></h1>
+
+MoLang is a simple expression-based language designed for fast calculation of values at run-time.  Its focus is solely to enable script-like capabilities in high-performance systems where JavaScript is not performant at scale.  We need scripting capabilities in these low-level systems to support end-user modding capabilities, custom entities, rendering, and animation.</br><a href="#Index">Back to top</a><br><br>
 
