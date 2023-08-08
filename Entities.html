@@ -1,4 +1,4 @@
-<h1>ENTITIES DOCUMENTATION </br>Version: 1.11.0.3</h1>
+<h1>ENTITIES DOCUMENTATION </br>Version: 1.11.0.4</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -27,6 +27,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.move_to_land"> minecraft:behavior.move_to_land</a> </tr> </td>
 <tr> <td> <a href="#minecraft.behavior.move_to_poi"> minecraft.behavior.move_to_poi</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.move_to_village"> minecraft:behavior.move_to_village</a> </tr> </td>
+<tr> <td> <a href="#minecraft.behavior.hide"> minecraft.behavior.hide</a> </tr> </td>
 <tr> <td> <a href="#minecraft.behavior.work"> minecraft.behavior.work</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.random_breach"> minecraft:behavior.random_breach</a> </tr> </td>
 <tr> <td> <a href="#minecraft:behavior.nearest_attackable_target"> minecraft:behavior.nearest_attackable_target</a> </tr> </td>
@@ -172,6 +173,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#is_snow_covered"> is_snow_covered</a> </tr> </td>
 <tr> <td> <a href="#is_temperature_type"> is_temperature_type</a> </tr> </td>
 <tr> <td> <a href="#is_temperature_value"> is_temperature_value</a> </tr> </td>
+<tr> <td> <a href="#has_trade_supply"> has_trade_supply</a> </tr> </td>
 <tr> <th><a href="#Client Entity Documentation">Client Entity Documentation</a></th> </tr>
 <tr> <td> <a href="#identifier"> identifier</a> </tr> </td>
 <tr> <td> <a href="#min_engine_version"> min_engine_version</a> </tr> </td>
@@ -913,6 +915,39 @@ Allows the mob to move into a random location within a village.</br><h2>Paramete
 </table>
 <a href="#Index">Back to top</a><br><br>
 
+<h1><p id="minecraft.behavior.hide">minecraft.behavior.hide</p></h1>
+
+Allows a mob with the hide component to attempt to move to - and hide at - an owned or nearby POI.</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Default Value</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">speed_multiplier</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Movement speed multiplier of the mob when using this AI Goal</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">timeout_cooldown</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">8.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">The cooldown time in seconds before the goal can be reused after a internal failure or timeout condition.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">poi_type</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">Defines what POI type to hide at.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">duration</td>
+<td style="border-style:solid; border-width:3; padding:7px">Decimal</td>
+<td style="border-style:solid; border-width:3; padding:7px">1.0</td>
+<td style="border-style:solid; border-width:3; padding:7px">Amount of time in seconds that the mob reacts.</br></td>
+</tr>
+</table>
+<a href="#Index">Back to top</a><br><br>
+
 <h1><p id="minecraft.behavior.work">minecraft.behavior.work</p></h1>
 
 allows the NPC to use their jobsite POI</br><h2>Parameters</h2>
@@ -954,6 +989,12 @@ allows the NPC to use their jobsite POI</br><h2>Parameters</h2>
 <td style="border-style:solid; border-width:3; padding:7px">Integer</td>
 <td style="border-style:solid; border-width:3; padding:7px">-1</td>
 <td style="border-style:solid; border-width:3; padding:7px">If "can_work_in_rain" is false, this is the maximum number of ticks left in the goal where rain will not interrupt the goal</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">on_arrival</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">Event to run when the mob reaches their jobsite and finishes working.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">speed_multiplier</td>
@@ -8581,6 +8622,106 @@ Short (using Defaults)..<br / ><textarea readonly="true" cols="52" rows="2">
 </textarea> </br>
 <a href="#Index">Back to top</a><br><br>
 
+<h1><p id="has_trade_supply">has_trade_supply</p></h1>
+
+Tests whether the target has any trade supply left. Will return false if the target cannot be traded with.</br><h2>Parameters</h2>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:3;">
+<tr> <th style="border-style:solid; border-width:3;">Name</th> <th style="border-style:solid; border-width:3;">Type</th> <th style="border-style:solid; border-width:3;">Default</th> <th style="border-style:solid; border-width:3;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">subject</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px">self</td>
+<td style="border-style:solid; border-width:3; padding:7px">(Optional) The subject of this filter test.</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Options</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">self</td>
+<td style="border-style:solid; border-width:2; padding:8px">The entity or object calling the test</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">other</td>
+<td style="border-style:solid; border-width:2; padding:8px">The other member of an interaction, not the caller.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">parent</td>
+<td style="border-style:solid; border-width:2; padding:8px">The caller's current parent.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">player</td>
+<td style="border-style:solid; border-width:2; padding:8px">The player involved with the interaction.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">target</td>
+<td style="border-style:solid; border-width:2; padding:8px">The caller's current target.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">operator</td>
+<td style="border-style:solid; border-width:3; padding:7px">String</td>
+<td style="border-style:solid; border-width:3; padding:7px">equals</td>
+<td style="border-style:solid; border-width:3; padding:7px">(Optional) The comparison to apply with 'value'.</br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tr> <th style="border-style:solid; border-width:2;">Options</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">>=</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for greater-than or equal to the value.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">equals</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for equality.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px"><></td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for inequality.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">==</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for equality.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">=</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for equality.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">not</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for inequality.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px"><</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for less-than the value.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">!=</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for inequality.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">></td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for greater-than the value.</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px"><=</td>
+<td style="border-style:solid; border-width:2; padding:8px">Test for less-than or equal to the value.</br></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">value</td>
+<td style="border-style:solid; border-width:3; padding:7px">Boolean</td>
+<td style="border-style:solid; border-width:3; padding:7px">true</td>
+<td style="border-style:solid; border-width:3; padding:7px">(Optional) true or false.</br></td>
+</tr>
+</table>
+<h2>Examples</h2>
+Full..<br / ><textarea readonly="true" cols="89" rows="2">
+{ "test": "has_trade_supply", "subject": "self", "operator": "equals", "value": "true" }
+</textarea> </br>
+Short (using Defaults)..<br / ><textarea readonly="true" cols="31" rows="2">
+{ "test": "has_trade_supply" }
+</textarea> </br>
+<a href="#Index">Back to top</a><br><br>
+
 <h2>Example:</h2>
 This filter group will pass only when the moon_intensity is greater than 0.5 AND the caller's target entity is standing in water.<br / ><textarea readonly="true" cols="97" rows="8">
 "all_of" : [
@@ -11623,6 +11764,18 @@ Defines this entity's ability to trade with players.</br><h3>Parameters</h3>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
 <td style="border-style:solid; border-width:2; padding:8px">File path relative to the resource pack root for this entity's trades</br></td>
 </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">new_screen</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">Used to determine if trading with entity opens the new trade screen</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">hero_demand_discount</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">-4</td>
+<td style="border-style:solid; border-width:2; padding:8px">How much should Demand be modified by when the player has the Hero of the Village mob effect</br></td>
+</tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
 
@@ -13613,6 +13766,12 @@ Example Spawn Rules for the zombie<br / ><textarea readonly="true" cols="72" row
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px"></td>
 <td style="border-style:solid; border-width:3; padding:7px">-805189394</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">minecraft.behavior.hide</td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px"></td>
+<td style="border-style:solid; border-width:3; padding:7px">0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">minecraft.behavior.work</td>
