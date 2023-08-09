@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>MOLANG DOCUMENTATION </br>Version: 1.16.0.60</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>MOLANG DOCUMENTATION </br>Version: 1.16.0.61</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -920,6 +920,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the current walk speed of the entity modified by status flags such as is_baby or on_fire</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.movement_direction</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the specified axis of the normalized position delta of the entity</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.on_fire_time</td>
 <td style="border-style:solid; border-width:3; padding:7px">returns the time that the entity is on fire, else it returns 0.0</br></td>
 </tr>
@@ -998,6 +1002,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.swelling_dir</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the swelling direction of the entity if it makes sense, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.swim_amount</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the amount the current entity is swimming</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.tail_angle</td>

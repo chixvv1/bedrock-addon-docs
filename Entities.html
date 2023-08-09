@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><html><head></head><body><h1>ENTITIES DOCUMENTATION <br>Version: 1.16.0.60</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><html><head></head><body><h1>ENTITIES DOCUMENTATION <br>Version: 1.16.0.61</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -160,6 +160,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:home"> minecraft:home</a> </td></tr> 
 <tr> <td> <a href="#minecraft:hurt_on_condition"> minecraft:hurt_on_condition</a> </td></tr> 
 <tr> <td> <a href="#minecraft:insomnia"> minecraft:insomnia</a> </td></tr> 
+<tr> <td> <a href="#minecraft:instant_despawn"> minecraft:instant_despawn</a> </td></tr> 
 <tr> <td> <a href="#minecraft:interact"> minecraft:interact</a> </td></tr> 
 <tr> <td> <a href="#minecraft:inventory"> minecraft:inventory</a> </td></tr> 
 <tr> <td> <a href="#minecraft:item_hopper"> minecraft:item_hopper</a> </td></tr> 
@@ -12717,15 +12718,66 @@ Defines what events to call when this entity is damaged by specific entities or 
 
 <h2><p id="minecraft:despawn">minecraft:despawn</p></h2>
 
-Despawns the associated Actor immediately or when the optional filter evaluates to true.<br><h3>Parameters</h3>
+Despawns the Actor when the despawn rules or optional filters evaluate to true.<br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
+<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px"></td>
+<td style="border-style:solid; border-width:2; padding:8px">despawn_from_distance<br><table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:1;">
+<tbody><tr> <th style="border-style:solid; border-width:1;">Name</th> <th style="border-style:solid; border-width:1;">Type</th> <th style="border-style:solid; border-width:1;">Default Value</th> <th style="border-style:solid; border-width:1;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">max_distance</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">128</td>
+<td style="border-style:solid; border-width:1; padding:9px">maximum distance for standard despawn rules to instantly despawn the mob.<br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:1; padding:9px">min_distance</td>
+<td style="border-style:solid; border-width:1; padding:9px">Integer</td>
+<td style="border-style:solid; border-width:1; padding:9px">32</td>
+<td style="border-style:solid; border-width:1; padding:9px">minimum distance for standard despawn rules to try to despawn the mob.<br></td>
+</tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">despawn_from_chance</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">Determines if "min_range_random_chance" is used in the standard despawn rules<br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">despawn_from_inactivity</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">Determines if the "min_range_inactivity_timer" is used in the standard despawn rules.<br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">despawn_from_simulation_edge</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">true</td>
+<td style="border-style:solid; border-width:2; padding:8px">Determines if the mob is instantly despawned at the edge of simulation distance in the standard despawn rules.<br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:2; padding:8px">filters</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">The list of conditions that must be satisfied before the Actor is despawned.<br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The list of conditions that must be satisfied before the Actor is despawned. If a filter is defined then standard despawn rules are ignored.<br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">min_range_inactivity_timer</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">30</td>
+<td style="border-style:solid; border-width:2; padding:8px">The amount of time in seconds that the mob must be inactive.<br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">min_range_random_chance</td>
+<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
+<td style="border-style:solid; border-width:2; padding:8px">800</td>
+<td style="border-style:solid; border-width:2; padding:8px">A random chance between 1 and the given value.<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">remove_child_entities</td>
@@ -13370,6 +13422,21 @@ Adds a timer since last rested to see if phantoms should spawn.<br><h3>Parameter
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">3.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Number of days the mob has to stay up until the insomnia effect begins.<br></td>
+</tr>
+</tbody></table>
+<a href="#Index">Back to top</a><br><br>
+
+<h2><p id="minecraft:instant_despawn">minecraft:instant_despawn</p></h2>
+
+Despawns the Actor immediately.<br><h3>Parameters</h3>
+
+<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
+<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">remove_child_entities</td>
+<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
+<td style="border-style:solid; border-width:2; padding:8px">false</td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, all entities linked to this entity in a child relationship (eg. leashed) will also be despawned.<br></td>
 </tr>
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
@@ -16480,6 +16547,10 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:insomnia</td>
 <td style="border-style:solid; border-width:2; padding:8px">-300455606<br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:2; padding:8px">minecraft:instant_despawn</td>
+<td style="border-style:solid; border-width:2; padding:8px">-634288138<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:interact</td>
