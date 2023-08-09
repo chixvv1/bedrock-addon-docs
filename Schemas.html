@@ -1,4 +1,5 @@
-<h1>SCHEMAS DOCUMENTATION </br>Version: 1.16.20.3</h1>
+<h1>SCHEMAS DOCUMENTATION </br>Version: 1.16.100.50</h1>
+This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
 <tr> <th><a href="#Overview">Overview</a></th> </tr>
@@ -20,6 +21,7 @@ actor_animation:1.8.0:{
         {
             bool "loop" : opt // should this animation stop, loop, or stay on the last frame when finished (true, false, "hold_on_last_frame"
             string "loop"<"hold_on_last_frame"> : opt // should this animation stop, loop, or stay on the last frame when finished (true, false, "hold_on_last_frame"
+            molang "start_delay" : opt // How long to wait in seconds before playing this animation.  Note that this expression is evaluated once before playing, and only re-evaluated if asked to play from the beginning again.  A looping animation should use 'loop_delay' if it wants a delay between loops.
             molang "anim_time_update" : opt // how does time pass when playing the animation.  Defaults to "query.anim_time + query.delta_time" which means advance in seconds.
             molang "blend_weight" : opt
             bool "override_previous_animation" : opt // reset bones in this animation to the default pose before applying this animation
@@ -204,7 +206,7 @@ actor_animation_controller:1.10.0:{
                         {
                             string "effect" // The name of a particle effect that should be played
                             string "locator" : opt // The name of a locator on the actor where the effect should be located
-                            string "pre_effect_script" : opt // A molang script that will be run when the particle emitter is initialized
+                            molang "pre_effect_script" : opt // A molang script that will be run when the particle emitter is initialized
                             bool "bind_to_actor" : opt // Set to false to have the effect spawned in the world without being bound to an actor (by default an effect is bound to the actor).
                         }
                     }
@@ -242,242 +244,6 @@ block_reference:1.10.0:{
         bool "\w*:?\w+" : opt
         int "\w*:?\w+" : opt
         string "\w*:?\w+" : opt
-    }
-}
-
-actor_resource_definition:1.8.0:{
-    version "format_version"
-    object "minecraft:(client_entity|attachable)"
-    {
-        object "description"
-        {
-            string "identifier"
-            version "min_engine_version" : opt
-            object "materials" : opt
-            {
-                string "<identifier>"
-            }
-            object "textures" : opt
-            {
-                string "<identifier>"
-            }
-            object "geometry" : opt
-            {
-                string "<identifier>"
-            }
-            object "spawn_egg" : opt
-            {
-                string "texture" : opt
-                string "base_color" : opt
-                string "overlay_color" : opt
-                int "texture_index" : opt
-            }
-            object "scripts" : opt
-            {
-                array "pre_animation" : opt
-                {
-                    molang "<any array element>"
-                }
-                molang "scale" : opt
-                molang "scale[xX]" : opt
-                molang "scale[yY]" : opt
-                molang "scale[zZ]" : opt
-                molang "parent_setup" : opt
-            }
-            object "particle_effects"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            object "particle_emitters"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            object "animations"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            array "animation_controllers"[1,*] : opt
-            {
-                object "<any array element>" : opt
-                {
-                    string "<identifier>" : opt
-                }
-            }
-            array "render_controllers"[1,*] : opt
-            {
-                string "<any array element>" : opt
-            }
-            object "sound_effects"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            bool "enable_attachables" : opt
-        }
-    }
-}
-
-actor_resource_definition:1.10.0:{
-    version "format_version"
-    object "minecraft:client_entity" : opt
-    {
-        object "description"
-        {
-            string "identifier"
-            version "min_engine_version" : opt
-            object "materials" : opt
-            {
-                string "<identifier>"
-            }
-            object "textures" : opt
-            {
-                string "<identifier>"
-            }
-            object "geometry" : opt
-            {
-                string "<identifier>"
-            }
-            object "spawn_egg" : opt
-            {
-                string "texture" : opt
-                string "base_color" : opt
-                string "overlay_color" : opt
-                int "texture_index" : opt
-            }
-            object "scripts" : opt
-            {
-                array "initialize" : opt
-                {
-                    molang "<any array element>"
-                }
-                array "pre_animation" : opt
-                {
-                    molang "<any array element>"
-                }
-                molang "scale" : opt
-                molang "scale[xX]" : opt
-                molang "scale[yY]" : opt
-                molang "scale[zZ]" : opt
-                molang "parent_setup" : opt
-                array "animate"[1,*] : opt
-                {
-                    string "<any array element>" : opt
-                    object "<any array element>"[1] : opt
-                    {
-                        molang "<scope_identifier>" : opt
-                    }
-                }
-                molang "should_update_bones_and_effects_offscreen" : opt // Bones and effects will still be updated if the entity is off screen if this expression returns anything other than 0.0.
-                molang "should_update_effects_offscreen" : opt // Effects will still be updated if the entity is off screen if this expression or `should_update_bones_and_effects_offscreen` returns anything other than 0.0.
-            }
-            object "particle_effects"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            object "particle_emitters"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            object "animations"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            array "render_controllers"[1,*] : opt
-            {
-                string "<any array element>" : opt
-                object "<any array element>"[1] : opt
-                {
-                    molang "<scope_identifier>" : opt
-                }
-            }
-            object "sound_effects"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            bool "enable_attachables" : opt
-        }
-    }
-    object "minecraft:attachable" : opt
-    {
-        object "description"
-        {
-            string "identifier"
-            version "min_engine_version" : opt
-            object "materials" : opt
-            {
-                string "<identifier>"
-            }
-            object "textures" : opt
-            {
-                string "<identifier>"
-            }
-            object "geometry" : opt
-            {
-                string "<identifier>"
-            }
-            object "spawn_egg" : opt
-            {
-                string "texture" : opt
-                string "base_color" : opt
-                string "overlay_color" : opt
-                int "texture_index" : opt
-            }
-            object "scripts" : opt
-            {
-                array "initialize" : opt
-                {
-                    molang "<any array element>"
-                }
-                array "pre_animation" : opt
-                {
-                    molang "<any array element>"
-                }
-                molang "scale" : opt
-                molang "scale[xX]" : opt
-                molang "scale[yY]" : opt
-                molang "scale[zZ]" : opt
-                molang "parent_setup" : opt
-                array "animate"[1,*] : opt
-                {
-                    string "<any array element>" : opt
-                    object "<any array element>"[1] : opt
-                    {
-                        molang "<scope_identifier>" : opt
-                    }
-                }
-                molang "should_update_bones_and_effects_offscreen" : opt // Bones and effects will still be updated if the entity is off screen if this expression returns anything other than 0.0.
-                molang "should_update_effects_offscreen" : opt // Effects will still be updated if the entity is off screen if this expression or `should_update_bones_and_effects_offscreen` returns anything other than 0.0.
-            }
-            object "particle_effects"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            object "particle_emitters"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            object "animations"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            array "render_controllers"[1,*] : opt
-            {
-                string "<any array element>" : opt
-                object "<any array element>"[1] : opt
-                {
-                    molang "<scope_identifier>" : opt
-                }
-            }
-            object "sound_effects"[1,*] : opt
-            {
-                string "<identifier>" : opt
-            }
-            bool "enable_attachables" : opt
-            string "item" : opt
-            object "item"[1] : opt
-            {
-                molang "<scope_identifier>"
-            }
-        }
     }
 }
 
