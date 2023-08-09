@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>SCHEMAS DOCUMENTATION </br>Version: 1.15.0.51</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>SCHEMAS DOCUMENTATION </br>Version: 1.15.0.53</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -242,6 +242,242 @@ block_reference<span class="token operator">:</span><span class="token number">1
         bool <span class="token property">"\w*:?\w+"</span> <span class="token operator">:</span> opt
         int <span class="token property">"\w*:?\w+"</span> <span class="token operator">:</span> opt
         string <span class="token property">"\w*:?\w+"</span> <span class="token operator">:</span> opt
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+actor_resource_definition<span class="token operator">:</span><span class="token number">1.8</span>.<span class="token number">0</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    version <span class="token string">"format_version"</span>
+    object <span class="token string">"minecraft:(client_entity|attachable)"</span>
+    <span class="token punctuation">{</span>
+        object <span class="token string">"description"</span>
+        <span class="token punctuation">{</span>
+            string <span class="token string">"identifier"</span>
+            version <span class="token property">"min_engine_version"</span> <span class="token operator">:</span> opt
+            object <span class="token property">"materials"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"textures"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"geometry"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"spawn_egg"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"texture"</span> <span class="token operator">:</span> opt
+                string <span class="token property">"base_color"</span> <span class="token operator">:</span> opt
+                string <span class="token property">"overlay_color"</span> <span class="token operator">:</span> opt
+                int <span class="token property">"texture_index"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token property">"scripts"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                array <span class="token property">"pre_animation"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token string">"&lt;any array element>"</span>
+                <span class="token punctuation">}</span>
+                molang <span class="token property">"scale"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[xX]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[yY]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[zZ]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"parent_setup"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"particle_effects"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"particle_emitters"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"animations"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            array <span class="token string">"animation_controllers"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                object <span class="token property">"&lt;any array element>"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            array <span class="token string">"render_controllers"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;any array element>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"sound_effects"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            bool <span class="token property">"enable_attachables"</span> <span class="token operator">:</span> opt
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+actor_resource_definition<span class="token operator">:</span><span class="token number">1.10</span>.<span class="token number">0</span><span class="token operator">:</span><span class="token punctuation">{</span>
+    version <span class="token string">"format_version"</span>
+    object <span class="token property">"minecraft:client_entity"</span> <span class="token operator">:</span> opt
+    <span class="token punctuation">{</span>
+        object <span class="token string">"description"</span>
+        <span class="token punctuation">{</span>
+            string <span class="token string">"identifier"</span>
+            version <span class="token property">"min_engine_version"</span> <span class="token operator">:</span> opt
+            object <span class="token property">"materials"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"textures"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"geometry"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"spawn_egg"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"texture"</span> <span class="token operator">:</span> opt
+                string <span class="token property">"base_color"</span> <span class="token operator">:</span> opt
+                string <span class="token property">"overlay_color"</span> <span class="token operator">:</span> opt
+                int <span class="token property">"texture_index"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token property">"scripts"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                array <span class="token property">"initialize"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token string">"&lt;any array element>"</span>
+                <span class="token punctuation">}</span>
+                array <span class="token property">"pre_animation"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token string">"&lt;any array element>"</span>
+                <span class="token punctuation">}</span>
+                molang <span class="token property">"scale"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[xX]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[yY]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[zZ]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"parent_setup"</span> <span class="token operator">:</span> opt
+                array <span class="token string">"animate"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    string <span class="token property">"&lt;any array element>"</span> <span class="token operator">:</span> opt
+                    object <span class="token string">"&lt;any array element>"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt
+                    <span class="token punctuation">{</span>
+                        molang <span class="token property">"&lt;scope_identifier>"</span> <span class="token operator">:</span> opt
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                molang <span class="token property">"should_update_bones_and_effects_offscreen"</span> <span class="token operator">:</span> opt <span class="token comment">// Bones and effects will still be updated if the entity is off screen if this expression returns anything other than 0.0.</span>
+                molang <span class="token property">"should_update_effects_offscreen"</span> <span class="token operator">:</span> opt <span class="token comment">// Effects will still be updated if the entity is off screen if this expression or `should_update_bones_and_effects_offscreen` returns anything other than 0.0.</span>
+            <span class="token punctuation">}</span>
+            object <span class="token string">"particle_effects"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"particle_emitters"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"animations"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            array <span class="token string">"render_controllers"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;any array element>"</span> <span class="token operator">:</span> opt
+                object <span class="token string">"&lt;any array element>"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token property">"&lt;scope_identifier>"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            object <span class="token string">"sound_effects"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            bool <span class="token property">"enable_attachables"</span> <span class="token operator">:</span> opt
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    object <span class="token property">"minecraft:attachable"</span> <span class="token operator">:</span> opt
+    <span class="token punctuation">{</span>
+        object <span class="token string">"description"</span>
+        <span class="token punctuation">{</span>
+            string <span class="token string">"identifier"</span>
+            version <span class="token property">"min_engine_version"</span> <span class="token operator">:</span> opt
+            object <span class="token property">"materials"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"textures"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"geometry"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token string">"&lt;identifier>"</span>
+            <span class="token punctuation">}</span>
+            object <span class="token property">"spawn_egg"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"texture"</span> <span class="token operator">:</span> opt
+                string <span class="token property">"base_color"</span> <span class="token operator">:</span> opt
+                string <span class="token property">"overlay_color"</span> <span class="token operator">:</span> opt
+                int <span class="token property">"texture_index"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token property">"scripts"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                array <span class="token property">"initialize"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token string">"&lt;any array element>"</span>
+                <span class="token punctuation">}</span>
+                array <span class="token property">"pre_animation"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token string">"&lt;any array element>"</span>
+                <span class="token punctuation">}</span>
+                molang <span class="token property">"scale"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[xX]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[yY]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"scale[zZ]"</span> <span class="token operator">:</span> opt
+                molang <span class="token property">"parent_setup"</span> <span class="token operator">:</span> opt
+                array <span class="token string">"animate"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    string <span class="token property">"&lt;any array element>"</span> <span class="token operator">:</span> opt
+                    object <span class="token string">"&lt;any array element>"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt
+                    <span class="token punctuation">{</span>
+                        molang <span class="token property">"&lt;scope_identifier>"</span> <span class="token operator">:</span> opt
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                molang <span class="token property">"should_update_bones_and_effects_offscreen"</span> <span class="token operator">:</span> opt <span class="token comment">// Bones and effects will still be updated if the entity is off screen if this expression returns anything other than 0.0.</span>
+                molang <span class="token property">"should_update_effects_offscreen"</span> <span class="token operator">:</span> opt <span class="token comment">// Effects will still be updated if the entity is off screen if this expression or `should_update_bones_and_effects_offscreen` returns anything other than 0.0.</span>
+            <span class="token punctuation">}</span>
+            object <span class="token string">"particle_effects"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"particle_emitters"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            object <span class="token string">"animations"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            array <span class="token string">"render_controllers"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;any array element>"</span> <span class="token operator">:</span> opt
+                object <span class="token string">"&lt;any array element>"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">{</span>
+                    molang <span class="token property">"&lt;scope_identifier>"</span> <span class="token operator">:</span> opt
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            object <span class="token string">"sound_effects"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                string <span class="token property">"&lt;identifier>"</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">}</span>
+            bool <span class="token property">"enable_attachables"</span> <span class="token operator">:</span> opt
+            string <span class="token property">"item"</span> <span class="token operator">:</span> opt
+            object <span class="token string">"item"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt
+            <span class="token punctuation">{</span>
+                molang <span class="token string">"&lt;scope_identifier>"</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 

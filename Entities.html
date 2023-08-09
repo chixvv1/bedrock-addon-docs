@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><html><head></head><body><h1>ENTITIES DOCUMENTATION <br>Version: 1.15.0.51</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><html><head></head><body><h1>ENTITIES DOCUMENTATION <br>Version: 1.15.0.53</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -12,21 +12,16 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.break_door"> minecraft:behavior.break_door</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.breed"> minecraft:behavior.breed</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.celebrate"> minecraft:behavior.celebrate</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.charge_attack"> minecraft:behavior.charge_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.charge_held_item"> minecraft:behavior.charge_held_item</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.circle_around_anchor"> minecraft:behavior.circle_around_anchor</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.controlled_by_player"> minecraft:behavior.controlled_by_player</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.defend_trusted_target"> minecraft:behavior.defend_trusted_target</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.defend_village_target"> minecraft:behavior.defend_village_target</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.delayed_attack"> minecraft:behavior.delayed_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.door_interact"> minecraft:behavior.door_interact</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.dragonchargeplayer"> minecraft:behavior.dragonchargeplayer</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.dragondeath"> minecraft:behavior.dragondeath</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.dragonflaming"> minecraft:behavior.dragonflaming</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.dragonholdingpattern"> minecraft:behavior.dragonholdingpattern</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.dragonlanding"> minecraft:behavior.dragonlanding</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.dragonscanning"> minecraft:behavior.dragonscanning</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.dragonstrafeplayer"> minecraft:behavior.dragonstrafeplayer</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.dragontakeoff"> minecraft:behavior.dragontakeoff</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.drink_potion"> minecraft:behavior.drink_potion</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.drop_item_for"> minecraft:behavior.drop_item_for</a> </td></tr> 
@@ -47,7 +42,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.follow_parent"> minecraft:behavior.follow_parent</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.follow_target_captain"> minecraft:behavior.follow_target_captain</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.go_home"> minecraft:behavior.go_home</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.guardian_attack"> minecraft:behavior.guardian_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.harvest_farm_block"> minecraft:behavior.harvest_farm_block</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.hold_ground"> minecraft:behavior.hold_ground</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.hurt_by_target"> minecraft:behavior.hurt_by_target</a> </td></tr> 
@@ -61,7 +55,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.look_at_target"> minecraft:behavior.look_at_target</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.look_at_trading_player"> minecraft:behavior.look_at_trading_player</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.make_love"> minecraft:behavior.make_love</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.melee_attack"> minecraft:behavior.melee_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.mingle"> minecraft:behavior.mingle</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.mount_pathing"> minecraft:behavior.mount_pathing</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.move_indoors"> minecraft:behavior.move_indoors</a> </td></tr> 
@@ -76,7 +69,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.nearest_attackable_target"> minecraft:behavior.nearest_attackable_target</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.nearest_prioritized_attackable_target"> minecraft:behavior.nearest_prioritized_attackable_target</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.ocelot_sit_on_block"> minecraft:behavior.ocelot_sit_on_block</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.ocelotattack"> minecraft:behavior.ocelotattack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.offer_flower"> minecraft:behavior.offer_flower</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.open_door"> minecraft:behavior.open_door</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.owner_hurt_by_target"> minecraft:behavior.owner_hurt_by_target</a> </td></tr> 
@@ -96,7 +88,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.random_sitting"> minecraft:behavior.random_sitting</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.random_stroll"> minecraft:behavior.random_stroll</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.random_swim"> minecraft:behavior.random_swim</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.ranged_attack"> minecraft:behavior.ranged_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.receive_love"> minecraft:behavior.receive_love</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.restrict_open_door"> minecraft:behavior.restrict_open_door</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.restrict_sun"> minecraft:behavior.restrict_sun</a> </td></tr> 
@@ -108,10 +99,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.silverfish_wake_up_friends"> minecraft:behavior.silverfish_wake_up_friends</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.skeleton_horse_trap"> minecraft:behavior.skeleton_horse_trap</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.sleep"> minecraft:behavior.sleep</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.slime_attack"> minecraft:behavior.slime_attack</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.slime_float"> minecraft:behavior.slime_float</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.slime_keep_on_jumping"> minecraft:behavior.slime_keep_on_jumping</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.slime_random_direction"> minecraft:behavior.slime_random_direction</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.snacking"> minecraft:behavior.snacking</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.sneeze"> minecraft:behavior.sneeze</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.squid_dive"> minecraft:behavior.squid_dive</a> </td></tr> 
@@ -121,15 +108,10 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:behavior.squid_out_of_water"> minecraft:behavior.squid_out_of_water</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.stalk_and_pounce_on_target"> minecraft:behavior.stalk_and_pounce_on_target</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.stay_while_sitting"> minecraft:behavior.stay_while_sitting</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.stomp_attack"> minecraft:behavior.stomp_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.stomp_turtle_egg"> minecraft:behavior.stomp_turtle_egg</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.stroll_towards_village"> minecraft:behavior.stroll_towards_village</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.summon_entity"> minecraft:behavior.summon_entity</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.swell"> minecraft:behavior.swell</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.swim_idle"> minecraft:behavior.swim_idle</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.swim_wander"> minecraft:behavior.swim_wander</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.swim_with_entity"> minecraft:behavior.swim_with_entity</a> </td></tr> 
-<tr> <td> <a href="#minecraft:behavior.swoop_attack"> minecraft:behavior.swoop_attack</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.take_flower"> minecraft:behavior.take_flower</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.tempt"> minecraft:behavior.tempt</a> </td></tr> 
 <tr> <td> <a href="#minecraft:behavior.trade_interest"> minecraft:behavior.trade_interest</a> </td></tr> 
@@ -165,7 +147,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr> <td> <a href="#minecraft:flocking"> minecraft:flocking</a> </td></tr> 
 <tr> <td> <a href="#minecraft:genetics"> minecraft:genetics</a> </td></tr> 
 <tr> <td> <a href="#minecraft:giveable"> minecraft:giveable</a> </td></tr> 
-<tr> <td> <a href="#minecraft:goal_selector"> minecraft:goal_selector</a> </td></tr> 
 <tr> <td> <a href="#minecraft:grows_crop"> minecraft:grows_crop</a> </td></tr> 
 <tr> <td> <a href="#minecraft:healable"> minecraft:healable</a> </td></tr> 
 <tr> <td> <a href="#minecraft:home"> minecraft:home</a> </td></tr> 
@@ -7507,39 +7488,6 @@ This allows the mob celebrate by jumping up and playing a sound periodically.<br
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.charge_attack">minecraft:behavior.charge_attack</p></h2>
-
-Allows this entity to damage a target by using a running attack.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_distance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">3.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">A charge attack cannot start if the entity is farther than this distance to the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">min_distance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">A charge attack cannot start if the entity is closer than this distance to the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Modifies the entity's speed when charging toward the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">success_rate</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.1428</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance this entity will start a charge attack, if not already attacking (1.0 = 100%)<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.charge_held_item">minecraft:behavior.charge_held_item</p></h2>
 
 Allows this mob to charge and use their held item.<br><h3>Parameters</h3>
@@ -7748,232 +7696,13 @@ Allows the mob to stay in the village and fight mobs hostile to the villagers.<b
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.delayed_attack">minecraft:behavior.delayed_attack</p></h2>
-
-Allows an entity to attack, while also delaying the damage-dealt until a specific time in the attack animation.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_duration</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.75</td>
-<td style="border-style:solid; border-width:2; padding:8px">The entity's attack animation will play out over this duration (in seconds). Also controls attack cooldown.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_once</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Allows the entity to use this attack behavior, only once EVER.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_types</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the entity types this entity will attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">cooldown_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Cooldown time (in seconds) between attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">hit_delay_pct</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">The percentage into the attack animation to apply the damage of the attack (1.0 = 100%).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">inner_boundary_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.25</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when the target is beyond the "path_inner_boundary".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_dist</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Unused. No effect on "minecraft:behavior.melee_attack".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_path_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.55</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum base time (in seconds) to recalculate new attack path to target (before increases applied).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">melee_fov</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">90.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Field of view (in degrees) when using the sensing component to detect an attack target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">min_path_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.2</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum base time (in seconds) to recalculate new attack path to target (before increases applied).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">on_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">Trigger</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the event to trigger when this entity successfully attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">outer_boundary_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when the target is beyond the "path_outer_boundary".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_fail_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.75</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when this entity cannot move along the current path.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_inner_boundary</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">16.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance at which to increase attack path recalculation by "inner_boundary_tick_increase".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_outer_boundary</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">32.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance at which to increase attack path recalculation by "outer_boundary_tick_increase".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">random_stop_interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This entity will have a 1 in N chance to stop it's current attack, where N = "random_stop_interval".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">reach_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Used with the base size of the entity to determine minimum target-distance before trying to deal attack damage.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">require_complete_path</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Toggles (on/off) the need to have a full path from the entity to the target when using this melee attack behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This multiplier modifies the attacking entity's speed when moving toward the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_dist</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/a</td>
-<td style="border-style:solid; border-width:2; padding:8px">Unused. No effect on "minecraft:behavior.melee_attack".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">track_target</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Allows the entity to track the attack target, even if the entity has no sensing.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_head_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate its head while trying to look at the target.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.door_interact">minecraft:behavior.door_interact</p></h2>
 
 Allows the mob to open and close doors.<br><a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.dragonchargeplayer">minecraft:behavior.dragonchargeplayer</p></h2>
-
-Allows this entity to attack a player by charging at them. The player is chosen by the "minecraft.behavior:dragonscanning". Can only be used by the Ender Dragon.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">active_speed</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">The speed this entity moves when this behavior has started or while it's active.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">continue_charge_threshold_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">If the dragon is outside the "target_zone" for longer than "continue_charge_threshold_time" seconds, the charge is canceled.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">flight_speed</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.6</td>
-<td style="border-style:solid; border-width:2; padding:8px">The speed this entity moves while this behavior is not active.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_zone</td>
-<td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
-<td style="border-style:solid; border-width:2; padding:8px">[10.0, 150.0]</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum and maximum distance, from the target, this entity can use this behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">turn_speed</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.7</td>
-<td style="border-style:solid; border-width:2; padding:8px">The speed at which this entity turns while using this behavior.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.dragondeath">minecraft:behavior.dragondeath</p></h2>
 
 Allows the dragon to go out with glory. This controls the Ender Dragon's death animation and can't be used by other mobs.<br><a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.dragonflaming">minecraft:behavior.dragonflaming</p></h2>
-
-Allows this entity to use a flame-breath attack. Can only be used by the Ender Dragon.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">cooldown_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">10.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds), after roar, to breath flame.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">flame_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds), after roar, to breath flame.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">ground_flame_count</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">4</td>
-<td style="border-style:solid; border-width:2; padding:8px">Number of ground flame-breath attacks to use before flight-takeoff.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">roar_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to roar, before breathing flame.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:behavior.dragonholdingpattern">minecraft:behavior.dragonholdingpattern</p></h2>
 
@@ -7986,63 +7715,6 @@ Allows the Dragon to stop flying and transition into perching mode. Can only be 
 <h2><p id="minecraft:behavior.dragonscanning">minecraft:behavior.dragonscanning</p></h2>
 
 Allows the dragon to look around for a player to attack while in perch mode. Can only be used by the Ender Dragon.<br><a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.dragonstrafeplayer">minecraft:behavior.dragonstrafeplayer</p></h2>
-
-Allows this entity to fly around looking for a player to shoot fireballs at. Can only be used by the Ender Dragon.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">active_speed</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">The speed this entity moves when this behavior has started or while it's active.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">fireball_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">64.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum distance of this entity's fireball attack while strafing.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">flight_speed</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.6</td>
-<td style="border-style:solid; border-width:2; padding:8px">The speed this entity moves while this behavior is not active.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">switch_direction_probability</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.125</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance to to switch this entity's strafe direction between clockwise and counterclockwise. Switch direction chance occurs each time a new target is chosen (1.0 = 100%).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_in_range_and_in_view_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.25</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) the target must be in fireball range, and in view [ie, no solid terrain in-between the target and this entity], before a fireball can be shot.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_zone</td>
-<td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
-<td style="border-style:solid; border-width:2; padding:8px">[10.0, 150.0]</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum and maximum distance, from the target, this entity can use this behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">turn_speed</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.7</td>
-<td style="border-style:solid; border-width:2; padding:8px">The speed at which this entity turns while using this behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">view_angle</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">10.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">The target must be within "view_angle" degrees of the dragon's current rotation before a fireball can be shot.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:behavior.dragontakeoff">minecraft:behavior.dragontakeoff</p></h2>
 
@@ -8609,57 +8281,6 @@ Allows the mob to move back to the position they were spawned.<br><h3>Parameters
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.guardian_attack">minecraft:behavior.guardian_attack</p></h2>
-
-Allows this entity to use a laser beam attack. Can only be used by Guardians and Elder Guardians.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">elder_extra_magic_damage</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">2</td>
-<td style="border-style:solid; border-width:2; padding:8px">Amount of additional damage dealt from an elder guardian's magic attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">hard_mode_extra_magic_damage</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">2</td>
-<td style="border-style:solid; border-width:2; padding:8px">In hard difficulty, amount of additional damage dealt from a guardian's magic attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">magic_damage</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">1</td>
-<td style="border-style:solid; border-width:2; padding:8px">Amount of damage dealt from a guardian's magic attack. Magic attack damage is added to the guardian's base attack damage.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">min_distance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">3.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Guardian attack behavior stops if the target is closer than this distance (doesn't apply to elders).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">sound_delay_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to wait after starting an attack before playing the guardian attack sound.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">90.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_head_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">90.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate its head while trying to look at the target.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.harvest_farm_block">minecraft:behavior.harvest_farm_block</p></h2>
 
 Allows the villager to harvest nearby farms. Can only be used by Villagers.<br><h3>Parameters</h3>
@@ -9117,141 +8738,6 @@ Allows the mob to look at the player they are trading with.<br><h3>Parameters</h
 
 Allows the villager to look for a mate to spawn other villagers with. Can only be used by Villagers.<br><a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.melee_attack">minecraft:behavior.melee_attack</p></h2>
-
-Allows an entity to deal damage through a melee attack.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_once</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Allows the entity to use this attack behavior, only once EVER.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_types</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the entity types this entity will attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">cooldown_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Cooldown time (in seconds) between attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">inner_boundary_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.25</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when the target is beyond the "path_inner_boundary".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_dist</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Unused. No effect on "minecraft:behavior.melee_attack".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_path_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.55</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum base time (in seconds) to recalculate new attack path to target (before increases applied).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">melee_fov</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">90.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Field of view (in degrees) when using the sensing component to detect an attack target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">min_path_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.2</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum base time (in seconds) to recalculate new attack path to target (before increases applied).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">on_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">Trigger</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the event to trigger when this entity successfully attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">outer_boundary_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when the target is beyond the "path_outer_boundary".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_fail_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.75</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when this entity cannot move along the current path.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_inner_boundary</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">16.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance at which to increase attack path recalculation by "inner_boundary_tick_increase".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_outer_boundary</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">32.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance at which to increase attack path recalculation by "outer_boundary_tick_increase".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">random_stop_interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This entity will have a 1 in N chance to stop it's current attack, where N = "random_stop_interval".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">reach_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Used with the base size of the entity to determine minimum target-distance before trying to deal attack damage.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">require_complete_path</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Toggles (on/off) the need to have a full path from the entity to the target when using this melee attack behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This multiplier modifies the attacking entity's speed when moving toward the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_dist</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/a</td>
-<td style="border-style:solid; border-width:2; padding:8px">Unused. No effect on "minecraft:behavior.melee_attack".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">track_target</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Allows the entity to track the attack target, even if the entity has no sensing.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_head_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate its head while trying to look at the target.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.mingle">minecraft:behavior.mingle</p></h2>
 
 Allows an entity to go to the village bell and mingle with other entities<br><h3>Parameters</h3>
@@ -9565,7 +9051,7 @@ Allows an entity to attack the closest target within a given subset of specific 
 <td style="border-style:solid; border-width:2; padding:8px">attack_interval</td>
 <td style="border-style:solid; border-width:2; padding:8px">Integer</td>
 <td style="border-style:solid; border-width:2; padding:8px">0</td>
-<td style="border-style:solid; border-width:2; padding:8px">If "attack_interval" is greater than 0, then searching for an attack target has a 1 in "attack_interval" chance to begin.<br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Time range (in seconds) between searching for an attack target, range is in (0, "attack_interval"]. Only used if "attack_interval" is greater than 0, otherwise "scan_interval" is used.<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">attack_interval_min</td>
@@ -9800,75 +9286,6 @@ Allows to mob to be able to sit in place like the ocelot.<br><h3>Parameters</h3>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">1.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Movement speed multiplier of the mob when using this AI Goal<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.ocelotattack">minecraft:behavior.ocelotattack</p></h2>
-
-Allows an entity to attack by sneaking and pouncing.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">cooldown_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) between attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_distance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">15.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Max distance from the target, this entity will use this attack behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_sneak_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">15.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Max distance from the target, this entity starts sneaking.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_sprint_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">4.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Max distance from the target, this entity starts sprinting (sprinting takes priority over sneaking).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">reach_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Used with the base size of the entity to determine minimum target-distance before trying to deal attack damage.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">sneak_speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.6</td>
-<td style="border-style:solid; border-width:2; padding:8px">Modifies the attacking entity's movement speed while sneaking.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">sprint_speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.33</td>
-<td style="border-style:solid; border-width:2; padding:8px">Modifies the attacking entity's movement speed while sprinting.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">walk_speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.8</td>
-<td style="border-style:solid; border-width:2; padding:8px">Modifies the attacking entity's movement speed when not sneaking or sprinting, but still within attack range.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_head_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate its head while trying to look at the target.<br></td>
 </tr>
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
@@ -10449,93 +9866,6 @@ Allows an entity to randomly move through water<br><h3>Parameters</h3>
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.ranged_attack">minecraft:behavior.ranged_attack</p></h2>
-
-Allows an entity to attack by using ranged shots. "charge_shoot_trigger" must be greater than 0 to enable charged up burst-shot attacks.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Alternative to "attack_interval_min" & "attack_interval_max". Consistent reload-time (in seconds), when not using a charged shot. Does not scale with target-distance.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_interval_max</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum bound for reload-time range (in seconds), when not using a charged shot. Reload-time range scales with target-distance.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_interval_min</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum bound for reload-time range (in seconds), when not using a charged shot. Reload-time range scales with target-distance.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_radius</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum distance to target before this entity will attempt to shoot.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">burst_interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) between each individual shot when firing a burst of shots from a charged up attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">burst_shots</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">1</td>
-<td style="border-style:solid; border-width:2; padding:8px">Number of shots fired every time the attacking entity uses a charged up attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">charge_charged_trigger</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds, then add "charge_shoot_trigger"), before a charged up attack is done charging. Charge-time decays while target is not in sight.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">charge_shoot_trigger</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Amount of time (in seconds, then doubled) a charged shot must be charging before reloading burst shots. Charge-time decays while target is not in sight.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">ranged_fov</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">90.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Field of view (in degrees) when using sensing to detect a target for attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">During attack behavior, this multiplier modifies the entity's speed when moving toward the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_in_sight_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum amount of time (in seconds) the attacking entity needs to see the target before moving toward it.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_head_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate its head while trying to look at the target.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.receive_love">minecraft:behavior.receive_love</p></h2>
 
 Allows the villager to stop so another villager can breed with it. Can only be used by a Villager.<br><a href="#Index">Back to top</a><br><br>
@@ -10766,96 +10096,6 @@ Allows mobs that own a bed to in a village to move to and sleep in it.<br><h3>Pa
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
 
-<h2><p id="minecraft:behavior.slime_attack">minecraft:behavior.slime_attack</p></h2>
-
-Causes the entity to grow tired every once in a while, while attacking.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">During attack behavior, this multiplier modifies the entity's speed when moving toward the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">10.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">10.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.slime_float">minecraft:behavior.slime_float</p></h2>
-
-Allow slimes to float in water / lava. Can only be used by Slime and Magma Cubes.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">jump_chance_percentage</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.8</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance a slime or magma cube has to jump while in water / lava.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.2</td>
-<td style="border-style:solid; border-width:2; padding:8px">Determines the multiplier the entity's speed is modified by when moving through water / lava.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.slime_keep_on_jumping">minecraft:behavior.slime_keep_on_jumping</p></h2>
-
-Allows the entity to continuously jump around like a slime.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Determines the multiplier this entity's speed is modified by when jumping around.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.slime_random_direction">minecraft:behavior.slime_random_direction</p></h2>
-
-Allows the entity to move in random directions like a slime.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">add_random_time_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">3</td>
-<td style="border-style:solid; border-width:2; padding:8px">Additional time (in whole seconds), chosen randomly in the range of [0, "add_random_time_range"], to add to "min_change_direction_time".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">min_change_direction_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Constant minimum time (in seconds) to wait before choosing a new direction.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">turn_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">360</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation angle range (in degrees) when randomly choosing a new direction.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
 <h2><p id="minecraft:behavior.snacking">minecraft:behavior.snacking</p></h2>
 
 Allows the mob to take a load off and snack on food that it found nearby.<br><h3>Parameters</h3>
@@ -11071,153 +10311,6 @@ Allows a mob to stalk a target, then once within range pounce onto a target, on 
 <h2><p id="minecraft:behavior.stay_while_sitting">minecraft:behavior.stay_while_sitting</p></h2>
 
 Allows the mob to stay put while it is in a sitting state instead of doing something else.<br><a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.stomp_attack">minecraft:behavior.stomp_attack</p></h2>
-
-Allows an entity to attack using stomp AoE damage behavior.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_once</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Allows the entity to use this attack behavior, only once EVER.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">attack_types</td>
-<td style="border-style:solid; border-width:2; padding:8px">String</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the entity types this entity will attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">cooldown_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Cooldown time (in seconds) between attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">inner_boundary_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.25</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when the target is beyond the "path_inner_boundary".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_dist</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Unused. No effect on "minecraft:behavior.melee_attack".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">max_path_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.55</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum base time (in seconds) to recalculate new attack path to target (before increases applied).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">melee_fov</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">90.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Field of view (in degrees) when using the sensing component to detect an attack target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">min_path_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.2</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum base time (in seconds) to recalculate new attack path to target (before increases applied).<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">no_damage_range_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Multiplied with the final AoE damage range to determine a no damage range. The stomp attack will go on cooldown if target is in this no damage range.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">on_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">Trigger</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/A</td>
-<td style="border-style:solid; border-width:2; padding:8px">Defines the event to trigger when this entity successfully attacks.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">outer_boundary_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when the target is beyond the "path_outer_boundary".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_fail_time_increase</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.75</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) to add to attack path recalculation when this entity cannot move along the current path.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_inner_boundary</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">16.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance at which to increase attack path recalculation by "inner_boundary_tick_increase".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">path_outer_boundary</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">32.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance at which to increase attack path recalculation by "outer_boundary_tick_increase".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">random_stop_interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Integer</td>
-<td style="border-style:solid; border-width:2; padding:8px">0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This entity will have a 1 in N chance to stop it's current attack, where N = "random_stop_interval".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">reach_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Used with the base size of the entity to determine minimum target-distance before trying to deal attack damage.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">require_complete_path</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Toggles (on/off) the need to have a full path from the entity to the target when using this melee attack behavior.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This multiplier modifies the attacking entity's speed when moving toward the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">stomp_range_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Multiplied with the base size of the entity to determine stomp AoE damage range.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">target_dist</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">N/a</td>
-<td style="border-style:solid; border-width:2; padding:8px">Unused. No effect on "minecraft:behavior.melee_attack".<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">track_target</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Allows the entity to track the attack target, even if the entity has no sensing.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">x_max_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the X-axis, this entity can rotate while trying to look at the target.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">y_max_head_rotation</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">30.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum rotation (in degrees), on the Y-axis, this entity can rotate its head while trying to look at the target.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:behavior.stomp_turtle_egg">minecraft:behavior.stomp_turtle_egg</p></h2>
 
@@ -11467,156 +10560,6 @@ Allows the creeper to swell up when a player is nearby. It can only be used by C
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
 <td style="border-style:solid; border-width:2; padding:8px">2.0</td>
 <td style="border-style:solid; border-width:2; padding:8px">This mob stops swelling when a target has moved away at least this many blocks<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.swim_idle">minecraft:behavior.swim_idle</p></h2>
-
-Allows the entity go idle, if swimming. Entity must be in water.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">idle_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">5.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Amount of time (in seconds) to stay idle.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">success_rate</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.1</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance this entity will go idle, 1.0 = 100%.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.swim_wander">minecraft:behavior.swim_wander</p></h2>
-
-Allows the entity wander around while swimming, when not path-finding.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.00833</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance to start wandering, when not path-finding. 1 = 100%<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">look_ahead</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">5.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance to look ahead for obstacle avoidance, while wandering.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">This multiplier modifies the entity's speed when wandering.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">wander_time</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">5.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Amount of time (in seconds) to wander after wandering behavior was successfully started.<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.swim_with_entity">minecraft:behavior.swim_with_entity</p></h2>
-
-Allows the entity follow another entity. Both entities must be swimming [ie, in water].<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">catch_up_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">The multiplier this entity's speed is modified by when matching another entity's direction.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">catch_up_threshold</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">12.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance, from the entity being followed, at which this entity will speed up to reach that entity.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">chance_to_stop</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0333</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance to stop following the current entity, if they're riding another entity or they're not swimming. 1.0 = 100%<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">entity_types</td>
-<td style="border-style:solid; border-width:2; padding:8px">JSON Object</td>
-<td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">Filters which types of entities are valid to follow.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">match_direction_threshold</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">2.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance, from the entity being followed, at which this entity will try to match that entity's direction<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">search_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">20.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Radius around this entity to search for another entity to follow.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">The multiplier this entity's speed is modified by when trying to catch up to the entity being followed.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">state_check_interval</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.5</td>
-<td style="border-style:solid; border-width:2; padding:8px">Time (in seconds) between checks to determine if this entity should catch up to the entity being followed or match the direction of the entity being followed.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">stop_distance</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">5.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">Distance, from the entity being followed, at which this entity will stop following that entity.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">success_rate</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.1</td>
-<td style="border-style:solid; border-width:2; padding:8px">Percent chance to start following another entity, if not already doing so. 1.0 = 100%<br></td>
-</tr>
-</tbody></table>
-<a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:behavior.swoop_attack">minecraft:behavior.swoop_attack</p></h2>
-
-Allows an entity to attack using swoop attack behavior; Ideal for use with flying mobs. The behavior ends if the entity has a horizontal collision or gets hit.<br><h3>Parameters</h3>
-
-<table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
-<tbody><tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">damage_reach</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.2</td>
-<td style="border-style:solid; border-width:2; padding:8px">Added to the base size of the entity, to determine the target's maximum allowable distance, when trying to deal attack damage.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">delay_range</td>
-<td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
-<td style="border-style:solid; border-width:2; padding:8px">[10.0, 20.0]</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum and maximum cooldown time-range (in seconds) between each attempted swoop attack.<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">speed_multiplier</td>
-<td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
-<td style="border-style:solid; border-width:2; padding:8px">During swoop attack behavior, this determines the multiplier the entity's speed is modified by when moving toward the target.<br></td>
 </tr>
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
@@ -13042,10 +11985,6 @@ Defines sets of items that can be used to trigger events when used on this entit
 </tr>
 </tbody></table>
 <a href="#Index">Back to top</a><br><br>
-
-<h2><p id="minecraft:goal_selector">minecraft:goal_selector</p></h2>
-
-Allows this entity to use minecraft:behavior functionality<br><a href="#Index">Back to top</a><br><br>
 
 <h2><p id="minecraft:grows_crop">minecraft:grows_crop</p></h2>
 
@@ -15537,10 +14476,6 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">995178519<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.charge_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">16313004636962889255<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.charge_held_item</td>
 <td style="border-style:solid; border-width:2; padding:8px">81480366<br></td>
 </tr>
@@ -15561,24 +14496,12 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">1469600895<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.delayed_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">16686103324935382281<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.door_interact</td>
 <td style="border-style:solid; border-width:2; padding:8px">-286762735<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragonchargeplayer</td>
-<td style="border-style:solid; border-width:2; padding:8px">3000393824704693780<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragondeath</td>
 <td style="border-style:solid; border-width:2; padding:8px">-1541162059<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragonflaming</td>
-<td style="border-style:solid; border-width:2; padding:8px">17923055218634571091<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragonholdingpattern</td>
@@ -15591,10 +14514,6 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragonscanning</td>
 <td style="border-style:solid; border-width:2; padding:8px">-1003941066<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragonstrafeplayer</td>
-<td style="border-style:solid; border-width:2; padding:8px">18364378208758607551<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.dragontakeoff</td>
@@ -15677,10 +14596,6 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">-1579225026<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.guardian_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">10035257602683297598<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.harvest_farm_block</td>
 <td style="border-style:solid; border-width:2; padding:8px">10843010<br></td>
 </tr>
@@ -15731,10 +14646,6 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.make_love</td>
 <td style="border-style:solid; border-width:2; padding:8px">-1551283431<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.melee_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">11509785650956819759<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.mingle</td>
@@ -15791,10 +14702,6 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.ocelot_sit_on_block</td>
 <td style="border-style:solid; border-width:2; padding:8px">-1327999383<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.ocelotattack</td>
-<td style="border-style:solid; border-width:2; padding:8px">6119969836310458450<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.offer_flower</td>
@@ -15873,10 +14780,6 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">-1465281278<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.ranged_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">17427060681688556526<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.receive_love</td>
 <td style="border-style:solid; border-width:2; padding:8px">1156694272<br></td>
 </tr>
@@ -15921,22 +14824,6 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">-1811763<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.slime_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">9939462702916185623<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.slime_float</td>
-<td style="border-style:solid; border-width:2; padding:8px">3498887529883213515<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.slime_keep_on_jumping</td>
-<td style="border-style:solid; border-width:2; padding:8px">9635607836508236313<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.slime_random_direction</td>
-<td style="border-style:solid; border-width:2; padding:8px">16233644158771707634<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.snacking</td>
 <td style="border-style:solid; border-width:2; padding:8px">875141064<br></td>
 </tr>
@@ -15973,10 +14860,6 @@ Sets the mapping of internal animation controller references to actual animation
 <td style="border-style:solid; border-width:2; padding:8px">1346980478<br></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.stomp_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">2494714009520253728<br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.stomp_turtle_egg</td>
 <td style="border-style:solid; border-width:2; padding:8px">851839416<br></td>
 </tr>
@@ -15991,22 +14874,6 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.swell</td>
 <td style="border-style:solid; border-width:2; padding:8px">-1473132493<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.swim_idle</td>
-<td style="border-style:solid; border-width:2; padding:8px">6562850329755828441<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.swim_wander</td>
-<td style="border-style:solid; border-width:2; padding:8px">12378924708543723854<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.swim_with_entity</td>
-<td style="border-style:solid; border-width:2; padding:8px">10204691344094313319<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.swoop_attack</td>
-<td style="border-style:solid; border-width:2; padding:8px">7451467701814397451<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:behavior.take_flower</td>
@@ -16177,10 +15044,6 @@ Sets the mapping of internal animation controller references to actual animation
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:giveable</td>
 <td style="border-style:solid; border-width:2; padding:8px">1739199795<br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">minecraft:goal_selector</td>
-<td style="border-style:solid; border-width:2; padding:8px">-81266281<br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:grows_crop</td>
