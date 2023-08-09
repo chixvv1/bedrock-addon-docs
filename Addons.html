@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>ADDONS DOCUMENTATION </br>Version: 1.16.0.58</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>ADDONS DOCUMENTATION </br>Version: 1.16.0.60</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -96,7 +96,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:barrier</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:basalt_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:basalt</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:beacon</td>
@@ -165,16 +165,10 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:blast_furnace</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:blue_fire</td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:blue_glazed_terracotta</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:blue_ice</td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:blue_nether_wart_block</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:bone_block</td>
@@ -375,7 +369,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:crimson_stem</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:crimson_trap_door</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:crimson_trapdoor</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:crimson_wall_sign</td>
@@ -1203,7 +1197,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:polished_andesite_stairs</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:polished_basalt_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:polished_basalt</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:polished_blackstone</td>
@@ -1374,7 +1368,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:seagrass</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:shroomlight_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:shroomlight</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:shulker_box</td>
@@ -1416,13 +1410,16 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_campfire</td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_fire</td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_lantern</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_sand</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_soil_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_soil</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:soul_torch</td>
@@ -1554,7 +1551,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:tallgrass</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:target_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:target</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:tnt</td>
@@ -1656,6 +1653,9 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:warped_wall_sign</td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:warped_wart_block</td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:water</td>
 </tr>
 <tr>
@@ -1665,7 +1665,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:web</td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">minecraft:weeping_vines_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">minecraft:weeping_vines</td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">minecraft:wheat</td>
@@ -2662,7 +2662,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">basalt_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">basalt</td>
 <td style="border-style:solid; border-width:4; padding:6px">-234</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
@@ -2812,11 +2812,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">blue_fire</td>
-<td style="border-style:solid; border-width:4; padding:6px">-237</td>
-<td style="border-style:solid; border-width:4; padding:6px"></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:4; padding:6px">blue_glazed_terracotta</td>
 <td style="border-style:solid; border-width:4; padding:6px">231</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -2824,11 +2819,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">blue_ice</td>
 <td style="border-style:solid; border-width:4; padding:6px">-11</td>
-<td style="border-style:solid; border-width:4; padding:6px"></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:4; padding:6px">blue_nether_wart_block</td>
-<td style="border-style:solid; border-width:4; padding:6px">-227</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
@@ -3267,6 +3257,11 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">crimson_double_slab</td>
+<td style="border-style:solid; border-width:4; padding:6px">-266</td>
+<td style="border-style:solid; border-width:4; padding:6px"></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">crimson_fence</td>
 <td style="border-style:solid; border-width:4; padding:6px">-256</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -3332,7 +3327,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">crimson_trap_door</td>
+<td style="border-style:solid; border-width:4; padding:6px">crimson_trapdoor</td>
 <td style="border-style:solid; border-width:4; padding:6px">-246</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
@@ -4812,6 +4807,11 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">item.nether_sprouts</td>
+<td style="border-style:solid; border-width:4; padding:6px">-238</td>
+<td style="border-style:solid; border-width:4; padding:6px"></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">item.nether_wart</td>
 <td style="border-style:solid; border-width:4; padding:6px">115</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -5203,7 +5203,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 </tr>
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">nether_sprouts</td>
-<td style="border-style:solid; border-width:4; padding:6px">-238</td>
+<td style="border-style:solid; border-width:4; padding:6px">760</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
@@ -5382,7 +5382,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">polished_basalt_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">polished_basalt</td>
 <td style="border-style:solid; border-width:4; padding:6px">-235</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
@@ -5612,11 +5612,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">real_crimson_slab</td>
-<td style="border-style:solid; border-width:4; padding:6px">-266</td>
-<td style="border-style:solid; border-width:4; padding:6px"></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:4; padding:6px">real_double_stone_slab</td>
 <td style="border-style:solid; border-width:4; padding:6px">43</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -5634,11 +5629,6 @@ This is documentation for a beta release of Minecraft. New features, components,
 <tr>
 <td style="border-style:solid; border-width:4; padding:6px">real_double_stone_slab4</td>
 <td style="border-style:solid; border-width:4; padding:6px">-168</td>
-<td style="border-style:solid; border-width:4; padding:6px"></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:4; padding:6px">real_warped_slab</td>
-<td style="border-style:solid; border-width:4; padding:6px">-267</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
@@ -5867,7 +5857,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">shroomlight_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">shroomlight</td>
 <td style="border-style:solid; border-width:4; padding:6px">-230</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
@@ -5957,6 +5947,11 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">soul_fire</td>
+<td style="border-style:solid; border-width:4; padding:6px">-237</td>
+<td style="border-style:solid; border-width:4; padding:6px"></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">soul_lantern</td>
 <td style="border-style:solid; border-width:4; padding:6px">-269</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -5967,7 +5962,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">soul_soil_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">soul_soil</td>
 <td style="border-style:solid; border-width:4; padding:6px">-236</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
@@ -6247,7 +6242,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">target_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">target</td>
 <td style="border-style:solid; border-width:4; padding:6px">-239</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
@@ -6367,6 +6362,11 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">warped_double_slab</td>
+<td style="border-style:solid; border-width:4; padding:6px">-267</td>
+<td style="border-style:solid; border-width:4; padding:6px"></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">warped_fence</td>
 <td style="border-style:solid; border-width:4; padding:6px">-257</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -6447,6 +6447,11 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:4; padding:6px">warped_wart_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">-227</td>
+<td style="border-style:solid; border-width:4; padding:6px"></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:4; padding:6px">water</td>
 <td style="border-style:solid; border-width:4; padding:6px">9</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
@@ -6462,7 +6467,7 @@ This is documentation for a beta release of Minecraft. New features, components,
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
 <tr>
-<td style="border-style:solid; border-width:4; padding:6px">weeping_vines_block</td>
+<td style="border-style:solid; border-width:4; padding:6px">weeping_vines</td>
 <td style="border-style:solid; border-width:4; padding:6px">-231</td>
 <td style="border-style:solid; border-width:4; padding:6px"></td>
 </tr>
