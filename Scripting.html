@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>SCRIPTING DOCUMENTATION </br>Version: 1.15.0.53</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>SCRIPTING DOCUMENTATION </br>Version: 1.16.0.58</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -1863,18 +1863,6 @@ Defines how the entity explodes.</br><h3>Parameters</h3>
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
 <tr>
-<td style="border-style:solid; border-width:2; padding:8px">allow_breaking_underwater</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Whether the explosion breaks blocks while submerged in water.</br></td>
-</tr>
-<tr>
-<td style="border-style:solid; border-width:2; padding:8px">allow_damage_underwater</td>
-<td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
-<td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">Whether the explosion deals damage while submerged in water.</br></td>
-</tr>
-<tr>
 <td style="border-style:solid; border-width:2; padding:8px">breaks_blocks</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">true</td>
@@ -1913,13 +1901,13 @@ Defines how the entity explodes.</br><h3>Parameters</h3>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">max_resistance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">Infinite</td>
+<td style="border-style:solid; border-width:2; padding:8px">3.40282e+38</td>
 <td style="border-style:solid; border-width:2; padding:8px">A blocks explosion resistance will be capped at this value when an explosion occurs.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">power</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">3.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">3</td>
 <td style="border-style:solid; border-width:2; padding:8px">The radius of the explosion in blocks and the amount of damage the explosion deals.</br></td>
 </tr>
 </table>
@@ -2228,7 +2216,7 @@ Defines the behavior when another entity looks at this entity.</br><h3>Parameter
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">look_cooldown</td>
 <td style="border-style:solid; border-width:2; padding:8px">Range [a, b]</td>
-<td style="border-style:solid; border-width:2; padding:8px">[0.0, 0.0]</td>
+<td style="border-style:solid; border-width:2; padding:8px">[0, 0]</td>
 <td style="border-style:solid; border-width:2; padding:8px">The range for the random amount of time during which the entity is 'cooling down' and won't get angered or look for a target.</br></td>
 </tr>
 <tr>
@@ -2240,7 +2228,7 @@ Defines the behavior when another entity looks at this entity.</br><h3>Parameter
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">search_radius</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">10.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">10</td>
 <td style="border-style:solid; border-width:2; padding:8px">Maximum distance this entity will look for another entity looking at it.</br></td>
 </tr>
 <tr>
@@ -2377,7 +2365,7 @@ Defines the entity's ranged attacks. This doesn't allow the entity to use a rang
 
 <h2><p id="minecraft:spawn_entity">minecraft:spawn_entity</p></h2>
 
-Controls the entity's ability to spawn an entity or an item. This is similar to the chicken's ability to lay eggs after a set amount of time.</br><h3>Parameters</h3>
+Adds a timer after which this entity will spawn another entity or item (similar to vanilla's chicken's egg-laying behavior).</br><h3>Parameters</h3>
 
 <table border="1" style="width:100%; border-style:solid; border-collapse:collapse; border-width:2;">
 <tr> <th style="border-style:solid; border-width:2;">Name</th> <th style="border-style:solid; border-width:2;">Type</th> <th style="border-style:solid; border-width:2;">Default Value</th> <th style="border-style:solid; border-width:2;">Description</th> </tr>
@@ -2385,67 +2373,67 @@ Controls the entity's ability to spawn an entity or an item. This is similar to 
 <td style="border-style:solid; border-width:2; padding:8px">filters</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minecraft Filter</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">If present, the specified entity will only spawn if the filter evaluates to true</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If present, the specified entity will only spawn if the filter evaluates to true.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">max_wait_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Integer</td>
 <td style="border-style:solid; border-width:2; padding:8px">600</td>
-<td style="border-style:solid; border-width:2; padding:8px">Maximum amount of time to randomly wait in seconds before another entity is spawned</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Maximum amount of time to randomly wait in seconds before another entity is spawned.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">min_wait_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Integer</td>
 <td style="border-style:solid; border-width:2; padding:8px">300</td>
-<td style="border-style:solid; border-width:2; padding:8px">Minimum amount of time to randomly wait in seconds before another entity is spawned</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Minimum amount of time to randomly wait in seconds before another entity is spawned.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">num_to_spawn</td>
 <td style="border-style:solid; border-width:2; padding:8px">Integer</td>
 <td style="border-style:solid; border-width:2; padding:8px">1</td>
-<td style="border-style:solid; border-width:2; padding:8px">The number of entities of this type to spawn each time that this triggers</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">The number of entities of this type to spawn each time that this triggers.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">should_leash</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, this the spawned entity will be leashed to the parent</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this the spawned entity will be leashed to the parent.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">single_use</td>
 <td style="border-style:solid; border-width:2; padding:8px">Boolean</td>
 <td style="border-style:solid; border-width:2; padding:8px">false</td>
-<td style="border-style:solid; border-width:2; padding:8px">If true, this component will only ever spawn the specified entity once</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">If true, this component will only ever spawn the specified entity once.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">spawn_entity</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px"></td>
-<td style="border-style:solid; border-width:2; padding:8px">Identifier of the entity to spawn, leave empty to spawn the item defined above instead</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Identifier of the entity to spawn, leave empty to spawn the item defined above instead.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">spawn_event</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px">minecraft:entity_born</td>
-<td style="border-style:solid; border-width:2; padding:8px">Event to call when the entity is spawned</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Event to call when the entity is spawned.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">spawn_item</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px">egg</td>
-<td style="border-style:solid; border-width:2; padding:8px">Item identifier of the item to spawn</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Item identifier of the item to spawn.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">spawn_method</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px">born</td>
-<td style="border-style:solid; border-width:2; padding:8px">Method to use to spawn the entity</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Method to use to spawn the entity.</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">spawn_sound</td>
 <td style="border-style:solid; border-width:2; padding:8px">String</td>
 <td style="border-style:solid; border-width:2; padding:8px">plop</td>
-<td style="border-style:solid; border-width:2; padding:8px">Identifier of the sound effect to play when the entity is spawned</br></td>
+<td style="border-style:solid; border-width:2; padding:8px">Identifier of the sound effect to play when the entity is spawned.</br></td>
 </tr>
 </table>
 <a href="#Index">Back to top</a><br><br>
@@ -2475,19 +2463,19 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">max_random_teleport_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">20.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">20</td>
 <td style="border-style:solid; border-width:2; padding:8px">Maximum amount of time in seconds between random teleports</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">min_random_teleport_time</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">0.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">0</td>
 <td style="border-style:solid; border-width:2; padding:8px">Minimum amount of time in seconds between random teleports</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">random_teleport_cube</td>
 <td style="border-style:solid; border-width:2; padding:8px">Vector [a, b, c]</td>
-<td style="border-style:solid; border-width:2; padding:8px">[32.0, 16.0, 32.0]</td>
+<td style="border-style:solid; border-width:2; padding:8px">[32, 16, 32]</td>
 <td style="border-style:solid; border-width:2; padding:8px">Entity will teleport to a random position within the area defined by this cube</br></td>
 </tr>
 <tr>
@@ -2499,13 +2487,13 @@ This controls the entity's ability to teleport itself (similar to the Enderman).
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">target_distance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">16.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">16</td>
 <td style="border-style:solid; border-width:2; padding:8px">Maximum distance the entity will teleport when chasing a target</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:2; padding:8px">target_teleport_chance</td>
 <td style="border-style:solid; border-width:2; padding:8px">Decimal</td>
-<td style="border-style:solid; border-width:2; padding:8px">1.0</td>
+<td style="border-style:solid; border-width:2; padding:8px">1</td>
 <td style="border-style:solid; border-width:2; padding:8px">The chance that the entity will teleport between 0.0 and 1.0. 1.0 means 100%</br></td>
 </tr>
 </table>

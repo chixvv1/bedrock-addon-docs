@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>FEATURES DOCUMENTATION </br>Version: 1.15.0.53</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>FEATURES DOCUMENTATION </br>Version: 1.16.0.58</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -479,11 +479,6 @@ Here is the complete feature schema<br / ><pre class="language-json">
           <span class="token punctuation">{</span>
               string <span class="token string">"identifier"</span> <span class="token comment">// The name of this feature in the form 'namespace_name:feature_name'. 'feature_name' must match the filename.</span>
           <span class="token punctuation">}</span>
-          object <span class="token property">"can_be_submerged"</span> <span class="token operator">:</span> opt
-          <span class="token punctuation">{</span>
-              int <span class="token string">"max_depth"</span>&lt;<span class="token number">1</span>-*>
-          <span class="token punctuation">}</span>
-          bool <span class="token property">"can_be_submerged"</span> <span class="token operator">:</span> opt
           block_reference <span class="token property">"base_block"</span> <span class="token operator">:</span> opt
           array <span class="token property">"base_block"</span> <span class="token operator">:</span> opt
           <span class="token punctuation">{</span>
@@ -499,6 +494,10 @@ Here is the complete feature schema<br / ><pre class="language-json">
               int <span class="token string">"cluster_radius"</span>&lt;<span class="token number">0</span>-*>
           <span class="token punctuation">}</span>
           array <span class="token property">"may_grow_on"</span> <span class="token operator">:</span> opt
+          <span class="token punctuation">{</span>
+              block_reference <span class="token string">"&lt;any array element>"</span>
+          <span class="token punctuation">}</span>
+          array <span class="token property">"may_replace"</span> <span class="token operator">:</span> opt
           <span class="token punctuation">{</span>
               block_reference <span class="token string">"&lt;any array element>"</span>
           <span class="token punctuation">}</span>
@@ -765,6 +764,11 @@ Here is the complete feature schema<br / ><pre class="language-json">
           <span class="token punctuation">{</span>
                <span class="token string">"trunk_height"</span>
                <span class="token property">"height_modifier"</span> <span class="token operator">:</span> opt
+              object <span class="token property">"can_be_submerged"</span> <span class="token operator">:</span> opt
+              <span class="token punctuation">{</span>
+                  int <span class="token string">"max_depth"</span>&lt;<span class="token number">1</span>-*>
+              <span class="token punctuation">}</span>
+              bool <span class="token property">"can_be_submerged"</span> <span class="token operator">:</span> opt
               block_reference <span class="token string">"trunk_block"</span>
               object <span class="token property">"trunk_decoration"</span> <span class="token operator">:</span> opt
               <span class="token punctuation">{</span>

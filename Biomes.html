@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>BIOMES DOCUMENTATION </br>Version: 1.15.0.53</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>BIOMES DOCUMENTATION </br>Version: 1.16.0.58</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -28,14 +28,14 @@ Here is a sample biome<br / ><pre class="language-json">
     <span class="token property">"minecraft:overworld_height"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"noise_type"</span><span class="token operator">:</span> <span class="token string">"lowlands"</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"minecraft:overworld_surface"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token property">"floor_depth"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
-      <span class="token property">"floor_material"</span><span class="token operator">:</span> <span class="token string">"minecraft:gravel"</span><span class="token punctuation">,</span>
+    <span class="token property">"minecraft:surface_parameters"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"sea_floor_depth"</span><span class="token operator">:</span> <span class="token number">7</span><span class="token punctuation">,</span>
+      <span class="token property">"sea_floor_material"</span><span class="token operator">:</span> <span class="token string">"minecraft:gravel"</span><span class="token punctuation">,</span>
       <span class="token property">"foundation_material"</span><span class="token operator">:</span> <span class="token string">"minecraft:stone"</span><span class="token punctuation">,</span>
       <span class="token property">"mid_material"</span><span class="token operator">:</span> <span class="token string">"minecraft:dirt"</span><span class="token punctuation">,</span>
       <span class="token property">"top_material"</span><span class="token operator">:</span> <span class="token string">"minecraft:grass"</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
-    <span class="token property">"minecraft:world_generation_rules"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"minecraft:overworld_generation_rules"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
       <span class="token property">"hills_transformation"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
         <span class="token punctuation">[</span> <span class="token string">"forest_hills"</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
         <span class="token punctuation">[</span> <span class="token string">"forest"</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token punctuation">]</span>
@@ -66,11 +66,15 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
 <h2></h2>
 <br / ><pre class="language-json">
   <span class="token punctuation">{</span>
-      object <span class="token string">"minecraft:climate"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Describes temperature, humidity, precipitation, etc.  Biomes without this component will have default values.</span>
+      object <span class="token string">"minecraft:climate"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Describes temperature, humidity, precipitation, etc.  Biomes without this component will have default values.</span>
       <span class="token punctuation">{</span>
-          float <span class="token string">"temperature"</span>
-          float <span class="token string">"downfall"</span>
-          array <span class="token string">"snow_accumulation"</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span>
+          float <span class="token property">"temperature"</span> <span class="token operator">:</span> opt
+          float <span class="token property">"downfall"</span> <span class="token operator">:</span> opt
+          float <span class="token property">"red_spores"</span> <span class="token operator">:</span> opt
+          float <span class="token property">"blue_spores"</span> <span class="token operator">:</span> opt
+          float <span class="token property">"ash"</span> <span class="token operator">:</span> opt
+          float <span class="token property">"white_ash"</span> <span class="token operator">:</span> opt
+          array <span class="token string">"snow_accumulation"</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt
           <span class="token punctuation">{</span>
               float <span class="token string">"[0..0]"</span>
               float <span class="token string">"[1..1]"</span>
@@ -661,13 +665,14 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
           <span class="token punctuation">}</span>
       <span class="token punctuation">}</span>
       object <span class="token property">"minecraft:ignore_automatic_features"</span> <span class="token operator">:</span> opt <span class="token comment">// No features will be automatically attached to this Biome, only features specified in the minecraft:forced_features component will appear.</span>
-      object <span class="token string">"minecraft:overworld_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Control the blocks used for the default Minecraft Overworld terrain generation.</span>
+      object <span class="token string">"minecraft:surface_parameters"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Control the blocks used for the default Minecraft Overworld terrain generation.</span>
       <span class="token punctuation">{</span>
           block_reference <span class="token string">"top_material"</span> <span class="token comment">// Controls the block type used for the surface of this biome.</span>
           block_reference <span class="token string">"mid_material"</span> <span class="token comment">// Controls the block type used in a layer below the surface of this biome.</span>
-          block_reference <span class="token string">"floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
+          block_reference <span class="token string">"sea_floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
           block_reference <span class="token string">"foundation_material"</span> <span class="token comment">// Controls the block type used deep underground in this biome.</span>
-          int <span class="token string">"floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          int <span class="token string">"sea_floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          block_reference <span class="token string">"sea_material"</span> <span class="token comment">// Controls the block type used for the bodies of water in this biome.</span>
       <span class="token punctuation">}</span>
       object <span class="token string">"minecraft:surface_material_adjustments"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Specify fine-detail changes to blocks used in terrain generation (based on a noise function)</span>
       <span class="token punctuation">{</span>
@@ -679,42 +684,50 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
                   <span class="token punctuation">{</span>
                       block_reference <span class="token property">"top_material"</span> <span class="token operator">:</span> opt <span class="token comment">// Controls the block type used for the surface of this biome when this adjustment is active.</span>
                       block_reference <span class="token property">"mid_material"</span> <span class="token operator">:</span> opt <span class="token comment">// Controls the block type used in a layer below the surface of this biome when this adjustment is active.</span>
-                      block_reference <span class="token property">"floor_material"</span> <span class="token operator">:</span> opt <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome when this adjustment is active.</span>
+                      block_reference <span class="token property">"sea_floor_material"</span> <span class="token operator">:</span> opt <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome when this adjustment is active.</span>
                       block_reference <span class="token property">"foundation_material"</span> <span class="token operator">:</span> opt <span class="token comment">// Controls the block type used deep underground in this biome when this adjustment is active.</span>
+                      block_reference <span class="token property">"sea_material"</span> <span class="token operator">:</span> opt <span class="token comment">// Controls the block type used in the bodies of water in this biome when this adjustment is active.</span>
                   <span class="token punctuation">}</span>
-                  array <span class="token string">"noise_range"</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token comment">// Defines a range of noise values [min, max) for which this adjustment should be applied.</span>
+                  array <span class="token string">"noise_range"</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Defines a range of noise values [min, max) for which this adjustment should be applied.</span>
                   <span class="token punctuation">{</span>
-                      string <span class="token string">"[0..0]"</span>&lt;<span class="token string">"-infinity"</span>> <span class="token operator">:</span> opt
-                      float <span class="token property">"[0..0]"</span> <span class="token operator">:</span> opt
-                      string <span class="token string">"[1..1]"</span>&lt;<span class="token string">"infinity"</span>> <span class="token operator">:</span> opt
-                      float <span class="token property">"[1..1]"</span> <span class="token operator">:</span> opt
+                      float <span class="token string">"[0..0]"</span>&lt;<span class="token number">-1.000000</span><span class="token number">-1.000000</span>>
+                      float <span class="token string">"[1..1]"</span>&lt;<span class="token number">-1.000000</span><span class="token number">-1.000000</span>>
                   <span class="token punctuation">}</span>
+                  array <span class="token string">"height_range"</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Defines a range of noise values [min, max] for which this adjustment should be applied.</span>
+                  <span class="token punctuation">{</span>
+                      molang <span class="token string">"[0..0]"</span>
+                      molang <span class="token string">"[1..1]"</span>
+                  <span class="token punctuation">}</span>
+                  float <span class="token property">"noise_frequency_scale"</span> <span class="token operator">:</span> opt <span class="token comment">// The scale to multiply by the position when accessing the noise value for the material adjustments.</span>
               <span class="token punctuation">}</span>
           <span class="token punctuation">}</span>
       <span class="token punctuation">}</span>
-      object <span class="token string">"minecraft:swamp_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Similar to overworld_surface.  Adds swamp surface details.</span>
+      object <span class="token string">"minecraft:swamp_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Similar to overworld_surface.  Adds swamp surface details.</span>
       <span class="token punctuation">{</span>
           block_reference <span class="token string">"top_material"</span> <span class="token comment">// Controls the block type used for the surface of this biome.</span>
           block_reference <span class="token string">"mid_material"</span> <span class="token comment">// Controls the block type used in a layer below the surface of this biome.</span>
-          block_reference <span class="token string">"floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
+          block_reference <span class="token string">"sea_floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
           block_reference <span class="token string">"foundation_material"</span> <span class="token comment">// Controls the block type used deep underground in this biome.</span>
-          int <span class="token string">"floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          int <span class="token string">"sea_floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          block_reference <span class="token string">"sea_material"</span> <span class="token comment">// Controls the block type used for the bodies of water in this biome.</span>
       <span class="token punctuation">}</span>
-      object <span class="token string">"minecraft:frozen_ocean_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Similar to overworld_surface.  Adds icebergs.</span>
+      object <span class="token string">"minecraft:frozen_ocean_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Similar to overworld_surface.  Adds icebergs.</span>
       <span class="token punctuation">{</span>
           block_reference <span class="token string">"top_material"</span> <span class="token comment">// Controls the block type used for the surface of this biome.</span>
           block_reference <span class="token string">"mid_material"</span> <span class="token comment">// Controls the block type used in a layer below the surface of this biome.</span>
-          block_reference <span class="token string">"floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
+          block_reference <span class="token string">"sea_floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
           block_reference <span class="token string">"foundation_material"</span> <span class="token comment">// Controls the block type used deep underground in this biome.</span>
-          int <span class="token string">"floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          int <span class="token string">"sea_floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          block_reference <span class="token string">"sea_material"</span> <span class="token comment">// Controls the block type used for the bodies of water in this biome.</span>
       <span class="token punctuation">}</span>
-      object <span class="token string">"minecraft:mesa_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Similar to overworld_surface.  Adds colored strata and optional pillars.</span>
+      object <span class="token string">"minecraft:mesa_surface"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Similar to overworld_surface.  Adds colored strata and optional pillars.</span>
       <span class="token punctuation">{</span>
           block_reference <span class="token string">"top_material"</span> <span class="token comment">// Controls the block type used for the surface of this biome.</span>
           block_reference <span class="token string">"mid_material"</span> <span class="token comment">// Controls the block type used in a layer below the surface of this biome.</span>
-          block_reference <span class="token string">"floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
+          block_reference <span class="token string">"sea_floor_material"</span> <span class="token comment">// Controls the block type used as a floor for bodies of water in this biome.</span>
           block_reference <span class="token string">"foundation_material"</span> <span class="token comment">// Controls the block type used deep underground in this biome.</span>
-          int <span class="token string">"floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          int <span class="token string">"sea_floor_depth"</span> <span class="token comment">// Controls how deep below the world water level the floor should occur.</span>
+          block_reference <span class="token string">"sea_material"</span> <span class="token comment">// Controls the block type used for the bodies of water in this biome.</span>
           block_reference <span class="token string">"clay_material"</span>
           block_reference <span class="token string">"hard_clay_material"</span>
           bool <span class="token string">"bryce_pillars"</span>
@@ -722,7 +735,7 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
       <span class="token punctuation">}</span>
       object <span class="token property">"minecraft:nether_surface"</span> <span class="token operator">:</span> opt <span class="token comment">// Use default Minecraft Nether terrain generation.</span>
       object <span class="token property">"minecraft:the_end_surface"</span> <span class="token operator">:</span> opt <span class="token comment">// Use default Minecraft End terrain generation.</span>
-      object <span class="token string">"minecraft:world_generation_rules"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Control how this biome is instantiated (and then potentially modified) during world generation.</span>
+      object <span class="token string">"minecraft:overworld_generation_rules"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Control how this biome is instantiated (and then potentially modified) during world generation of the overworld.</span>
       <span class="token punctuation">{</span>
           biome_reference <span class="token property">"hills_transformation"</span> <span class="token operator">:</span> opt
           array <span class="token string">"hills_transformation"</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span>*<span class="token punctuation">]</span> <span class="token operator">:</span> opt
@@ -772,6 +785,14 @@ Biomes are read from JSON files in the biomes subfolders of behavior packs. Load
                   int <span class="token string">"[1..1]"</span>
               <span class="token punctuation">}</span>
           <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      object <span class="token string">"minecraft:nether_generation_rules"</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">:</span> opt <span class="token comment">// Controls how this biome is instantiated (and then potentially modified) during world generation of the nether.</span>
+      <span class="token punctuation">{</span>
+          float <span class="token property">"target_temperature"</span> <span class="token operator">:</span> opt <span class="token comment">// Temperature with which this biome should selected, relative to other biomes.</span>
+          float <span class="token property">"target_humidity"</span> <span class="token operator">:</span> opt <span class="token comment">// Humidity with which this biome should selected, relative to other biomes.</span>
+          float <span class="token property">"target_altitude"</span> <span class="token operator">:</span> opt <span class="token comment">// Altitude with which this biome should selected, relative to other biomes.</span>
+          float <span class="token property">"target_weirdness"</span> <span class="token operator">:</span> opt <span class="token comment">// Weirdness with which this biome should selected, relative to other biomes.</span>
+          float <span class="token property">"weight"</span> <span class="token operator">:</span> opt <span class="token comment">// Weight with which this biome should selected, relative to other biomes.</span>
       <span class="token punctuation">}</span>
       object <span class="token property">"minecraft:legacy_world_generation_rules"</span> <span class="token operator">:</span> opt <span class="token comment">// Additional world generation control applicable only to legacy limited worlds.</span>
       object <span class="token property">"[a-z0-9_.:]+"</span> <span class="token operator">:</span> opt <span class="token comment">// Attach arbitrary string tags to this biome</span>

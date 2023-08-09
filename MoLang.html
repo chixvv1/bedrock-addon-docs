@@ -1,4 +1,4 @@
-<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>MOLANG DOCUMENTATION </br>Version: 1.15.0.53</h1>
+<style> pre { font-size: 14px !important; } </style><link rel="stylesheet" type="text/css" href="https://unpkg.com/prismjs@1.19.0/themes/prism.css"></link><h1>MOLANG DOCUMENTATION </br>Version: 1.16.0.58</h1>
 This is documentation for a beta release of Minecraft. New features, components, and capabilities in this release are not final and might change without notice before the final release.<br/>Be sure to check the documentation once the release is out of beta if your add-on isn't working properly. Resource and Behavior Packs created for the beta are not guaranteed to work on the final release.<br/>
 <h2><p id="Index">Index</p></h2>
 <table border="1">
@@ -444,6 +444,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the ratio (from 0 to 1) of how much between AI ticks this frame is being rendered</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.get_actor_info_id</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the integer id of an actor by its string name, 1, 1</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.get_equipped_item_name</td>
 <td style="border-style:solid; border-width:3; padding:7px">takes one optional hand slot as a parameter (0 or 'main_hand' for main hand, 1 or 'off_hand' for off hand), and a second parameter (0=default) if you would like the equipped item or any non-zero number for the currently rendered item, and returns the name of the item in the requested slot (defaulting to the main hand if no parameter is supplied) if there is one, otherwise returns ''.</br></td>
 </tr>
@@ -512,6 +516,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the number of ticks of invulnerability the entity has left if it makes sense, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_admiring</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is admiring, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_alive</td>
 <td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is alive, and 0.0 if it's dead</br></td>
 </tr>
@@ -522,6 +530,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_attached_to_entity</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the actor is attached to an entity, else it will return 0.0 </br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_avoiding_block</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is fleeing from a block, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_avoiding_mobs</td>
@@ -549,6 +561,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_celebrating</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is celebrating, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_celebrating_special</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is celebrating, else it returns 0.0</br></td>
 </tr>
 <tr>
@@ -680,6 +696,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is moving, else it returns 0.0</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_on_fire</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns 1.0 if the entity is on fire, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_on_ground</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is on the ground, else it returns 0.0</br></td>
 </tr>
@@ -694,6 +714,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_orphaned</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the entity is orphaned, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.is_persona_or_premium_skin</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns 1.0 if the player has a persona or permium skin, else it returns 0.0</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.is_powered</td>
@@ -896,6 +920,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <td style="border-style:solid; border-width:3; padding:7px">Returns the current walk speed of the entity modified by status flags such as is_baby or on_fire</br></td>
 </tr>
 <tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.on_fire_time</td>
+<td style="border-style:solid; border-width:3; padding:7px">returns the time that the entity is on fire, else it returns 0.0</br></td>
+</tr>
+<tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.overlay_alpha</td>
 <td style="border-style:solid; border-width:3; padding:7px">Do not use - this function is deprecated and will be removed</br></td>
 </tr>
@@ -982,6 +1010,10 @@ Query Functions are boolean expressions that allow you to query for values owned
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.target_y_rotation</td>
 <td style="border-style:solid; border-width:3; padding:7px">Returns the y rotation required to aim at the entity's current target if it has one, else it returns 0.0</br></td>
+</tr>
+<tr>
+<td style="border-style:solid; border-width:3; padding:7px">query.texture_frame_index</td>
+<td style="border-style:solid; border-width:3; padding:7px">Returns the icon index of the experience orb</br></td>
 </tr>
 <tr>
 <td style="border-style:solid; border-width:3; padding:7px">query.time_stamp</td>
